@@ -5,14 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3dbe333-726e-4db3-b175-407adcecc238" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/AdministrationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/config/ServiceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/dto/CreateUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/dto/RoleDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/dto/UserInfoResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/models/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/models/UserRoles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/seeders/RoleSeeder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/web/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/administration-service/src/test/java/com/dst/administrationservice/AdministrationServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administration-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administration-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -21,23 +47,69 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LPL7OEqoxy5gTW0S90feupVwTz" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Dev/Softuni/java-web/restaurant-management-api",
+    "last_opened_file_path": "D:/Dev/Softuni/java-web/restaurant-management-api/administration-service",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.53333336",
     "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.dst.administrationservice.models" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Dev\Softuni\java-web\restaurant-management-api\administration-service" />
+      <recent name="D:\Dev\Softuni\java-web\restaurant-management-api\administration-service\src\main\java" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="AdministrationService" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <option name="ACTIVE_PROFILES" />
+      <module name="administration-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.dst.administrationservice.AdministrationService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dst.administrationservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.AdministrationService" />
+        <item itemvalue="Spring Boot.AdministrationServiceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -47,11 +119,33 @@
       <option name="presentableId" value="Default" />
       <updated>1675767602726</updated>
       <workItem from="1675772009639" duration="1824000" />
-      <workItem from="1675773994020" duration="750000" />
+      <workItem from="1675773994020" duration="17060000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/service/UserService.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
