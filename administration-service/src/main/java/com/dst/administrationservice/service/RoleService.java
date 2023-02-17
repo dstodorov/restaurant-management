@@ -1,7 +1,7 @@
 package com.dst.administrationservice.service;
 
 import com.dst.administrationservice.models.Role;
-import com.dst.administrationservice.models.UserRoles;
+import com.dst.administrationservice.models.dtos.UserRoles;
 import com.dst.administrationservice.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -4,7 +4,7 @@ import com.dst.administrationservice.dto.CreateUserRequest;
 import com.dst.administrationservice.dto.UserInfoResponse;
 import com.dst.administrationservice.models.User;
 import com.dst.administrationservice.models.Role;
-import com.dst.administrationservice.models.UserRoles;
+import com.dst.administrationservice.models.dtos.UserRoles;
 import com.dst.administrationservice.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

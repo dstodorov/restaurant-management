@@ -5,26 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3dbe333-726e-4db3-b175-407adcecc238" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/AdministrationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/config/ServiceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/dto/CreateUserRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/dto/RoleDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/dto/UserInfoResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/models/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/models/UserRoles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/repository/RoleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/seeders/RoleSeeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/service/RoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/java/com/dst/administrationservice/web/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/administration-service/src/test/java/com/dst/administrationservice/AdministrationServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administration-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/administration-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,24 +36,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Dev/Softuni/java-web/restaurant-management-api/administration-service",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.53333336",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Dev/Softuni/java-web/restaurant-management-api/administration-service&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.53333336&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.dst.administrationservice.models" />
@@ -106,7 +88,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.AdministrationService" />
-        <item itemvalue="Spring Boot.AdministrationServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -119,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1675767602726</updated>
       <workItem from="1675772009639" duration="1824000" />
-      <workItem from="1675773994020" duration="17060000" />
+      <workItem from="1675773994020" duration="18248000" />
     </task>
     <servers />
   </component>

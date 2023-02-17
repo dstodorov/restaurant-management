@@ -1,7 +1,7 @@
 package com.dst.administrationservice.repository;
 
 import com.dst.administrationservice.models.Role;
-import com.dst.administrationservice.models.UserRoles;
+import com.dst.administrationservice.models.dtos.UserRoles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

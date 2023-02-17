@@ -1,5 +1,6 @@
 package com.dst.administrationservice.models;
 
+import com.dst.administrationservice.models.dtos.UserRoles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

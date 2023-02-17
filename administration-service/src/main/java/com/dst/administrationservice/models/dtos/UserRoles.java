@@ -1,4 +1,4 @@
-package com.dst.administrationservice.models;
+package com.dst.administrationservice.models.dtos;
 
 
 public enum UserRoles {
