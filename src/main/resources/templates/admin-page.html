@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="EN">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/logo.png}">
+    <title>Login</title>
+</head>
+<body>
+<section class="Form">
+    <div class="container my-5">
+        <div class="row g-0 align-middle">
+            <div class="col-lg-5">
+                <img src="/images/restaurant_login_image.png" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-7 px-5 pt-5">
+                <h1 class="font-weight-bold py-3">Restaurant Manager</h1>
+                <h4>Sign into your account</h4>
+                <form action="" class="form-row">
+                    <div class="form-row">
+                        <div class="col-lg-7">
+                            <input type="email" placeholder="email" class="form-control my-3 p-2">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-7">
+                            <input type="password" placeholder="password" class="form-control my-3 p-2">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-7">
+                            <button type="button" class="loginButton mt-3 mb-5">LOGIN</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
