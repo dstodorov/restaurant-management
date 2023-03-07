@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/logo.png}">
+    <title>Administration Page</title>
+    <script src="https://kit.fontawesome.com/5daa8eb347.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/images/logo.png" alt="Logo" />
+    </div>
+    <div class="username">
+        <h1>Dimitar Todorov</h1>
+    </div>
+    <div class="text">
+        <th:block th:insert="~{/fragments/clock}"></th:block>
+    </div>
+</header>
+<div class="container">
+    <nav>
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-user"></i>User management</a></li>
+            <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
+        </ul>
+    </nav>
+
+    <form th:action="@{/employee/add}" th:method="POST" th:object="${addEmployeeDTO}">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" th:value="*{firstName}"/>
+            <div id="firstNameError" th:if="${#fields.hasErrors('firstName')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>First name length must be between 3 and 20 characters!</div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" th:value="*{lastName}"/>
+            <div id="lastNameError" th:if="${#fields.hasErrors('lastName')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>Last name length must be between 3 and 20 characters!</div>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" th:value="*{username}"/>
+            <div id="usernameError" th:if="${#fields.hasErrors('username')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>Username length must be between 5 and 20 characters!</div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" th:value="*{password}"/>
+            <div id="passwordError" th:if="${#fields.hasErrors('password')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>Password length must be minimum 5 characters!</div>
+        </div>
+        <div class="form-group">
+            <label for="hireDate">Hire Date:</label>
+            <input type="date" id="hireDate" name="hireDate" th:value="*{hireDate}"/>
+            <div id="hireDateError" th:if="${#fields.hasErrors('hireDate')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>Hire date must be in the future!</div>
+        </div>
+        <div class="form-group">
+            <label for="role">Role:</label>
+            <select id="role" name="role" th:value="*{role}">
+                <option value="" selected>Select role</option>
+                <option th:each="role : ${employeeRoles}" th:value="${role.roleType.name()}" th:text="${role.roleType.name()}" th:selected="*{role}"/>
+            </select>
+            <div id="roleError" th:if="${#fields.hasErrors('role')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>You must select a role of the employee!</div>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" th:value="*{phoneNumber}"/>
+            <div id="phoneNumberError" th:if="${#fields.hasErrors('phoneNumber')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>You must enter phone number!</div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
+<script type="text/javascript" src="/js/addEmployeeErrorStylize.js"></script>
+</body>
+</html>

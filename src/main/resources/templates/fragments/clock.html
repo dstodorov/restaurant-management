@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>clock</title>
+</head>
+<body onload="updateClock(); setInterval(()=>{updateClock()}, 1000)">
+<h1 id="clock" style="display: inline-block; font-size: 20px; "></h1>
+<script>
+    let clock = document.getElementById("clock");
+
+    function updateClock() {
+        let currentTime = new Date();
+        let currentHour = currentTime.getHours();
+        let currentMinute = currentTime.getMinutes();
+        let currentSeconds = currentTime.getSeconds();
+
+        currentHour = currentHour === 0 ? 12 : currentHour;
+        currentHour = currentHour < 10 ? "0" + currentHour : currentHour;
+        currentMinute = currentMinute < 10 ? "0" + currentMinute : currentMinute;
+        currentSeconds = currentSeconds < 10 ? "0" + currentSeconds : currentSeconds;
+
+        clock.innerHTML = currentHour + ":" + currentMinute + ":" + currentSeconds;
+    }
+</script>
+</body>
+</html>

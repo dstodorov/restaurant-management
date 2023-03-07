@@ -4,15 +4,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "t_employees")
 public class Employee extends BaseEntity {
@@ -30,4 +30,5 @@ public class Employee extends BaseEntity {
     private LocalDate hireDate;
     @ManyToOne
     private Role role;
+
 }

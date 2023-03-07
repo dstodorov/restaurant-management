@@ -1,43 +1,190 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="EN">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <link th:href="@{/css/styles.css}" rel="stylesheet">
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" th:href="@{/images/logo.png}">
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration Page</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        thead tr th{
+            padding: 0;
+            font-style: normal;
+            border-right: 1px solid rgb(85, 85, 85);
+            border-bottom: 1px solid rgb(85, 85, 85);
+            border-top: 1px solid rgb(85, 85, 85);
+            background-color: rgb(53, 53, 53);
+            border-left: 1px solid rgb(53, 53, 53);
+            color: white;
+        }
+
+        table tr td {
+            border-right: 1px solid rgb(85, 85, 85);
+            border-bottom: 1px solid rgb(85, 85, 85);
+            border-top: 1px solid rgb(85, 85, 85);
+            border-left: 1px solid rgb(53, 53, 53);
+            text-align: center;
+        }
+        ul li{
+            text-decoration: none;
+        }
+        ul{
+            padding: 0;
+        }
+        table{
+            margin: 0;
+            border-collapse: collapse;
+            width: 90%;
+        }
+        aside {
+            width: 9%;
+            height: 100vh;
+            border-right: 1px solid rgb(85, 85, 85);
+            background-color: rgb(53, 53, 53);
+            color: white;
+        }
+        .action-cell{
+            width: 1%;
+            white-space: nowrap;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        header{
+            height: 50px;
+            background-color: rgb(53, 53, 53);
+            margin-bottom: 10px;
+        }
+
+        tr:nth-child(2n) {
+            background-color: rgb(199, 199, 199);
+        }
+        .new-user-button{
+        }
+
+        .button{
+            border: 0;
+            box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
+            margin: 5px 0;
+            height: 25px;
+        }
+
+        .button-edit{
+            background-color: rgb(92, 190, 255);
+            font-weight: bold;
+        }
+
+        .button-delete{
+            background-color: rgb(255, 123, 123);
+            color: white;
+            font-weight: bold;
+        }
+        .new-user-container{
+            text-align: right;
+            margin-right: 25px;
+            margin-top: 5px;
+        }
+        .button:hover{
+            background-color: black;
+        }
+    </style>
 </head>
 <body>
-<section class="Form">
-    <div class="container my-5">
-        <div class="row g-0 align-middle">
-            <div class="col-lg-5">
-                <img src="/images/restaurant_login_image.png" class="img-fluid" alt="">
-            </div>
-            <div class="col-lg-7 px-5 pt-5">
-                <h1 class="font-weight-bold py-3">Restaurant Manager</h1>
-                <h4>Sign into your account</h4>
-                <form action="" class="form-row">
-                    <div class="form-row">
-                        <div class="col-lg-7">
-                            <input type="email" placeholder="email" class="form-control my-3 p-2">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-lg-7">
-                            <input type="password" placeholder="password" class="form-control my-3 p-2">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-lg-7">
-                            <button type="button" class="loginButton mt-3 mb-5">LOGIN</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+<header></header>
+<aside style="float:left;">
+    <nav>
+        <ul style="margin-top: 2px">
+            <li>User Management</li>
+            <li>Logout</li>
+        </ul>
+    </nav>
+</aside>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Phone number</th>
+            <th>Hire date</th>
+            <th class="action-cell">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Multi</td>
+            <td>Admin</td>
+            <td>Dimitar</td>
+            <td>Todorov</td>
+            <td>0897065558</td>
+            <td>28-08-1987</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Dobi</td>
+            <td>Hostess</td>
+            <td>Dobrina</td>
+            <td>Dimova</td>
+            <td>0897065558</td>
+            <td>30-08-1983</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Krasima</td>
+            <td>Cook</td>
+            <td>Krasimira</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>31-08-1962</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Zara</td>
+            <td>Waiter</td>
+            <td>Svetozara</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>20-05-2019</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="new-user-container">
+        <button type="button" class="new-user-button button">NEW</button>
     </div>
-</section>
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</main>
+<footer></footer>
+
 </body>
 </html>
