@@ -5,11 +5,12 @@
     padding: 0;
 }
 
-/* Set default font family and font size */
 body {
     font-family: Arial, sans-serif;
     font-size: 16px;
     background-image: url(../images/background.jpg);
+    background-attachment: fixed;
+    height: 100vh;
 }
 
 /* Header styles */
@@ -45,17 +46,16 @@ header {
 /* Container styles */
 .container {
     display: flex;
-    flex-wrap: wrap;
-    height: 100vh;
+    height: 100%;
 }
 
 
 /* Navigation styles */
 nav {
     flex-basis: 200px;
+    height: 100%;
     background-color: #333;
     color: #fff;
-    height: 100%;
     padding: 10px;
 }
 
@@ -150,4 +150,27 @@ footer {
     border-bottom: 2px solid red;
     border-left: 2px solid red;
     border-right: 2px solid red;
+}
+
+table thead:first-child {
+    color: white;
+    background: rgb(14, 14, 14)
+}
+
+table tr:nth-child(2n+2) {
+    background: #CCC;
+    color: #ff0000;
+}
+
+table {
+    height: fit-content;
+    flex-grow: 1;
+}
+
+table tr {
+    height: 40px;
+}
+
+table tfoot {
+    margin-top: 1px solid white;
 }

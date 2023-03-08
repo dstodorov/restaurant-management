@@ -1,110 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administration Page</title>
-    <style>
-        body{
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-        }
-        thead tr th{
-            padding: 0;
-            font-style: normal;
-            border-right: 1px solid rgb(85, 85, 85);
-            border-bottom: 1px solid rgb(85, 85, 85);
-            border-top: 1px solid rgb(85, 85, 85);
-            background-color: rgb(53, 53, 53);
-            border-left: 1px solid rgb(53, 53, 53);
-            color: white;
-        }
+    <link rel="stylesheet" href="styles.css">
 
-        table tr td {
-            border-right: 1px solid rgb(85, 85, 85);
-            border-bottom: 1px solid rgb(85, 85, 85);
-            border-top: 1px solid rgb(85, 85, 85);
-            border-left: 1px solid rgb(53, 53, 53);
-            text-align: center;
-        }
-        ul li{
-            text-decoration: none;
-        }
-        ul{
-            padding: 0;
-        }
-        table{
-            margin: 0;
-            border-collapse: collapse;
-            width: 90%;
-        }
-        aside {
-            width: 9%;
-            height: 100vh;
-            border-right: 1px solid rgb(85, 85, 85);
-            background-color: rgb(53, 53, 53);
-            color: white;
-        }
-        .action-cell{
-            width: 1%;
-            white-space: nowrap;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
-        header{
-            height: 50px;
-            background-color: rgb(53, 53, 53);
-            margin-bottom: 10px;
-        }
-
-        tr:nth-child(2n) {
-            background-color: rgb(199, 199, 199);
-        }
-        .new-user-button{
-        }
-
-        .button{
-            border: 0;
-            box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
-            margin: 5px 0;
-            height: 25px;
-        }
-
-        .button-edit{
-            background-color: rgb(92, 190, 255);
-            font-weight: bold;
-        }
-
-        .button-delete{
-            background-color: rgb(255, 123, 123);
-            color: white;
-            font-weight: bold;
-        }
-        .new-user-container{
-            text-align: right;
-            margin-right: 25px;
-            margin-top: 5px;
-        }
-        .button:hover{
-            background-color: black;
-        }
-    </style>
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/5daa8eb347.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-<header></header>
-<aside style="float:left;">
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="Logo" />
+    </div>
+    <div class="username">
+        <h1>Dimitar Todorov</h1>
+    </div>
+    <div class="text">
+        <p>Welcome to my page!</p>
+    </div>
+</header>
+<div class="container">
     <nav>
-        <ul style="margin-top: 2px">
-            <li>User Management</li>
-            <li>Logout</li>
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-user"></i>User management</a></li>
+            <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
         </ul>
     </nav>
-</aside>
-<main>
-    <table>
+    <table style="background-color: #555555DA;">
         <thead>
         <tr>
             <th>Username</th>
@@ -117,7 +43,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr class="user">
             <td>Multi</td>
             <td>Admin</td>
             <td>Dimitar</td>
@@ -129,7 +55,7 @@
                 <button type="button" class="button button-delete">DELETE</button>
             </td>
         </tr>
-        <tr>
+        <tr class="user">
             <td>Dobi</td>
             <td>Hostess</td>
             <td>Dobrina</td>
@@ -141,7 +67,7 @@
                 <button type="button" class="button button-delete">DELETE</button>
             </td>
         </tr>
-        <tr>
+        <tr class="user">
             <td>Krasima</td>
             <td>Cook</td>
             <td>Krasimira</td>
@@ -153,7 +79,7 @@
                 <button type="button" class="button button-delete">DELETE</button>
             </td>
         </tr>
-        <tr>
+        <tr class="user">
             <td>Zara</td>
             <td>Waiter</td>
             <td>Svetozara</td>
@@ -165,7 +91,103 @@
                 <button type="button" class="button button-delete">DELETE</button>
             </td>
         </tr>
-        <tr>
+        <tr class="user">
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr class="user">
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr class="user">
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr class="user">
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr class="user">
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr class="user">
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr class="user">
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr class="user">
+            <td>Teta</td>
+            <td>Warehouse Worker</td>
+            <td>Tea</td>
+            <td>Todorova</td>
+            <td>0897065558</td>
+            <td>18-07-2020</td>
+            <td class="action-cell">
+                <button type="button" class="button button-edit">EDIT</button>
+                <button type="button" class="button button-delete">DELETE</button>
+            </td>
+        </tr>
+        <tr class="user">
             <td>Teta</td>
             <td>Warehouse Worker</td>
             <td>Tea</td>
@@ -178,13 +200,15 @@
             </td>
         </tr>
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="7" style="margin-right: 0; text-align: center; border-top: 1px solid white;">
+                <button type="submit" style="width: 20%; margin-bottom: 10px;">ADD NEW</button>
+            </td>
+        </tr>
+        </tfoot>
     </table>
-
-    <div class="new-user-container">
-        <button type="button" class="new-user-button button">NEW</button>
-    </div>
-</main>
-<footer></footer>
-
+</div>
 </body>
+
 </html>
