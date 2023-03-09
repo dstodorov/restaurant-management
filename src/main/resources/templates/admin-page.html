@@ -1,36 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-
-    <title>Document</title>
-    <script src="https://kit.fontawesome.com/5daa8eb347.js" crossorigin="anonymous"></script>
+    <title>Users</title>
+    <th:block th:insert="~{/fragments/head-content}"></th:block>
 </head>
-
 <body>
-<header>
-    <div class="logo">
-        <img src="logo.png" alt="Logo" />
-    </div>
-    <div class="username">
-        <h1>Dimitar Todorov</h1>
-    </div>
-    <div class="text">
-        <p>Welcome to my page!</p>
-    </div>
-</header>
+<th:block th:insert="~{/fragments/header}"></th:block>
 <div class="container">
-    <nav>
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-user"></i>User management</a></li>
-            <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
-        </ul>
-    </nav>
-    <table style="background-color: #555555DA;">
+    <th:block th:insert="~{/fragments/navigation}"></th:block>
+    <table id="users-table">
         <thead>
         <tr>
             <th>Username</th>
@@ -163,52 +141,11 @@
                 <button type="button" class="button button-delete">DELETE</button>
             </td>
         </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
         </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="7" style="margin-right: 0; text-align: center; border-top: 1px solid white;">
-                <button type="submit" style="width: 20%; margin-bottom: 10px;">ADD NEW</button>
-            </td>
-        </tr>
-        </tfoot>
     </table>
 </div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
 </body>
-
 </html>

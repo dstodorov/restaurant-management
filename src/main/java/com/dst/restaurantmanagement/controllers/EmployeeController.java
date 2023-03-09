@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 @AllArgsConstructor
 public class EmployeeController {
 
@@ -55,6 +55,11 @@ public class EmployeeController {
         this.employeeService.saveEmployee(addEmployeeDTO);
 
         return "redirect:/employee/add";
+    }
+
+    @GetMapping
+    public String employeeDashboard() {
+        return "admin-page";
     }
 
 }

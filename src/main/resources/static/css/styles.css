@@ -8,9 +8,8 @@
 body {
     font-family: Arial, sans-serif;
     font-size: 16px;
-    background-image: url(../images/background.jpg);
+    background-image: url(../images/background.png);
     background-attachment: fixed;
-    height: 100vh;
 }
 
 /* Header styles */
@@ -18,9 +17,13 @@ header {
     background-color: #333;
     color: #fff;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
 }
 
 .logo {
@@ -46,17 +49,27 @@ header {
 /* Container styles */
 .container {
     display: flex;
-    height: 100%;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 
 /* Navigation styles */
 nav {
-    flex-basis: 200px;
-    height: 100%;
     background-color: #333;
     color: #fff;
-    padding: 10px;
+
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 50px;
+    bottom: 50px;
+    left: 0;
+    overflow-y: auto;
+
 }
 
 nav ul {
@@ -82,9 +95,10 @@ nav a:hover {
 
 /* Form styles */
 form {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #555555da;
+    flex: 1;
+    margin-left: 200px;
+    overflow-y: auto;
+    background-color: #8585858e;
 }
 
 .form-group {
@@ -95,6 +109,8 @@ label {
     display: block;
     margin-bottom: 5px;
     color: white;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 input[type="text"],
@@ -108,6 +124,7 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
 }
 
 button[type="submit"] {
@@ -119,6 +136,7 @@ button[type="submit"] {
     cursor: pointer;
     width: 30%;
     margin-top: 10px;
+    margin-left: 10px;
 }
 
 button[type="submit"]:hover {
@@ -131,8 +149,14 @@ footer {
     color: #fff;
     text-align: center;
     padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5%;
 }
 
+/* Pages styles */
 .fa-solid {
     font-size: 16px;
     color: white;
@@ -141,6 +165,7 @@ footer {
 }
 
 .error-field {
+    margin-left: 10px;
     font-size: 16px;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -152,25 +177,54 @@ footer {
     border-right: 2px solid red;
 }
 
-table thead:first-child {
-    color: white;
-    background: rgb(14, 14, 14)
+#users-table thead:first-child {
+    background: rgb(32, 32, 32);
+    color: rgb(255, 255, 255);
 }
 
-table tr:nth-child(2n+2) {
-    background: #CCC;
-    color: #ff0000;
+#users-table tr:nth-child(even) {
+    background: #0000003a;
 }
 
-table {
-    height: fit-content;
-    flex-grow: 1;
+#users-table {
+    flex: 1;
+    margin-left: 200px;
+    overflow-y: auto;
+    background-color: #8585858e;
+    color: #b2b2b2;
 }
 
-table tr {
+#users-table tr {
     height: 40px;
 }
 
-table tfoot {
-    margin-top: 1px solid white;
+.action-cell {
+    text-align: center;
+}
+
+tr td {
+    padding-left: 10px;
+}
+
+tr td button {
+    padding: 5px;
+    width: 40%;
+    box-shadow: 0 0 5px rgb(48, 48, 48);
+}
+
+.button-edit {
+    background-color: rgb(0, 173, 253);
+}
+tr td button:hover {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+.button-delete {
+    background-color: rgb(247, 74, 74);
+}
+
+.button-save {
+    margin-bottom: 10px;
 }
