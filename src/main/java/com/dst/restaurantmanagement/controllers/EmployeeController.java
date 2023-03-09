@@ -1,6 +1,7 @@
 package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.dto.AddEmployeeDTO;
+import com.dst.restaurantmanagement.models.dto.EmployeeInfoDTO;
 import com.dst.restaurantmanagement.models.entities.Role;
 import com.dst.restaurantmanagement.services.EmployeeService;
 import com.dst.restaurantmanagement.services.RoleService;
@@ -33,7 +34,6 @@ public class EmployeeController {
     @GetMapping("/add")
     public String addEmployeePage(Model model) {
 
-
         List<Role> employeeRoles = this.roleService.getEmployeeRoles();
 
         model.addAttribute("employeeRoles", employeeRoles);
@@ -49,16 +49,20 @@ public class EmployeeController {
             redirectAttributes.addFlashAttribute("addEmployeeDTO", addEmployeeDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addEmployeeDTO", bindingResult);
 
-            return "redirect:/employee/add";
+            return "redirect:/employees/add";
         }
 
         this.employeeService.saveEmployee(addEmployeeDTO);
 
-        return "redirect:/employee/add";
+        return "redirect:/employees";
     }
 
     @GetMapping
-    public String employeeDashboard() {
+    public String employeeList(Model model) {
+        List<EmployeeInfoDTO> employees = this.employeeService.getAllEmployees();
+
+        model.addAttribute("employees", employees);
+
         return "admin-page";
     }
 

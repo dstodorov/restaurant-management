@@ -2,6 +2,7 @@ package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.RoleType;
 import com.dst.restaurantmanagement.models.dto.AddEmployeeDTO;
+import com.dst.restaurantmanagement.models.dto.EmployeeInfoDTO;
 import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.models.entities.Role;
 import com.dst.restaurantmanagement.repositories.EmployeeRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -78,5 +80,23 @@ public class EmployeeService {
         Optional<Employee> admin = this.employeeRepository.findByUsernameAndPassword(this.adminUsername, this.adminPassword);
 
         return admin.isPresent();
+    }
+
+    public List<EmployeeInfoDTO> getAllEmployees() {
+        List<EmployeeInfoDTO> employeeInfoDTOS = this.employeeRepository.findAll().stream().map(this::mapToEmployeeInfoDTO).toList();
+
+        return employeeInfoDTOS;
+    }
+
+    private EmployeeInfoDTO mapToEmployeeInfoDTO(Employee employee) {
+        return new EmployeeInfoDTO(
+                employee.getId(),
+                employee.getFirstName(),
+                employee.getLastName(),
+                employee.getUsername(),
+                employee.getPhoneNumber(),
+                employee.getHireDate(),
+                employee.getRole().getRoleType().name()
+        );
     }
 }

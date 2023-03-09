@@ -8,7 +8,7 @@
 <th:block th:insert="~{/fragments/header}"></th:block>
 <div class="container">
     <th:block th:insert="~{/fragments/navigation}"></th:block>
-    <form th:action="@{/employee/add}" th:method="POST" th:object="${addEmployeeDTO}">
+    <form th:action="@{/employees/add}" th:method="POST" th:object="${addEmployeeDTO}">
         <div class="form-group">
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" th:value="*{firstName}"/>

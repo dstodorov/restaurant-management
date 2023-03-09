@@ -21,121 +21,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="user">
-            <td>Multi</td>
-            <td>Admin</td>
-            <td>Dimitar</td>
-            <td>Todorov</td>
-            <td>0897065558</td>
-            <td>28-08-1987</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Dobi</td>
-            <td>Hostess</td>
-            <td>Dobrina</td>
-            <td>Dimova</td>
-            <td>0897065558</td>
-            <td>30-08-1983</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Krasima</td>
-            <td>Cook</td>
-            <td>Krasimira</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>31-08-1962</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Zara</td>
-            <td>Waiter</td>
-            <td>Svetozara</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>20-05-2019</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
-            <td class="action-cell">
-                <button type="button" class="button button-edit">EDIT</button>
-                <button type="button" class="button button-delete">DELETE</button>
-            </td>
-        </tr>
-        <tr class="user">
-            <td>Teta</td>
-            <td>Warehouse Worker</td>
-            <td>Tea</td>
-            <td>Todorova</td>
-            <td>0897065558</td>
-            <td>18-07-2020</td>
+        <tr class="user" th:each="employee : ${employees}">
+            <td><span th:text="${employee.username}"/></td>
+            <td><span th:text="${employee.role}"/></td>
+            <td><span th:text="${employee.firstName}"/></td>
+            <td><span th:text="${employee.lastName}"/></td>
+            <td><span th:text="${employee.phoneNumber}"/></td>
+            <td><span th:text="${employee.hireDate}"/></td>
             <td class="action-cell">
                 <button type="button" class="button button-edit">EDIT</button>
                 <button type="button" class="button button-delete">DELETE</button>
