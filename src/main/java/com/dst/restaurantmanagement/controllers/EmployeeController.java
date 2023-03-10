@@ -1,6 +1,7 @@
 package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.dto.AddEmployeeDTO;
+import com.dst.restaurantmanagement.models.dto.EditEmployeeDTO;
 import com.dst.restaurantmanagement.models.dto.EmployeeInfoDTO;
 import com.dst.restaurantmanagement.models.entities.Role;
 import com.dst.restaurantmanagement.services.EmployeeService;
@@ -10,10 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -64,6 +62,27 @@ public class EmployeeController {
         model.addAttribute("employees", employees);
 
         return "admin-page";
+    }
+
+    @RequestMapping(value = "/{id}")
+    public String deleteEmployee(@PathVariable("id") Long id) {
+        System.out.println(id);
+        this.employeeService.delete(id);
+        return "redirect:/employees";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editEmployee(@PathVariable("id") Long id, Model model) {
+
+        EditEmployeeDTO employee = this.employeeService.getEmployee(id);
+
+        model.addAttribute("employee", employee);
+
+        List<Role> employeeRoles = this.roleService.getEmployeeRoles();
+
+        model.addAttribute("employeeRoles", employeeRoles);
+
+        return "admin-edit-employee";
     }
 
 }

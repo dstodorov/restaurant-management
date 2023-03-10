@@ -2,6 +2,7 @@ package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.RoleType;
 import com.dst.restaurantmanagement.models.dto.AddEmployeeDTO;
+import com.dst.restaurantmanagement.models.dto.EditEmployeeDTO;
 import com.dst.restaurantmanagement.models.dto.EmployeeInfoDTO;
 import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.models.entities.Role;
@@ -98,5 +99,15 @@ public class EmployeeService {
                 employee.getHireDate(),
                 employee.getRole().getRoleType().name()
         );
+    }
+
+    public void delete(Long id) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+    }
+
+    public EditEmployeeDTO getEmployee(Long id) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+
+        return mapper.map(employee.get(), EditEmployeeDTO.class);
     }
 }

@@ -127,7 +127,7 @@ select {
     margin-left: 10px;
 }
 
-button[type="submit"] {
+.button-save {
     background-color: #ff4800;
     color: #fff;
     border: none;
@@ -206,7 +206,7 @@ tr td {
     padding-left: 10px;
 }
 
-tr td button {
+tr td form button {
     padding: 5px;
     width: 40%;
     box-shadow: 0 0 5px rgb(48, 48, 48);
