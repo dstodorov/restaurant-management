@@ -1,6 +1,8 @@
 package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.RoleType;
+import com.dst.restaurantmanagement.exceptions.PhoneNumberDuplicationException;
+import com.dst.restaurantmanagement.exceptions.UsernameDuplicationException;
 import com.dst.restaurantmanagement.models.dto.AddEmployeeDTO;
 import com.dst.restaurantmanagement.models.dto.EditEmployeeDTO;
 import com.dst.restaurantmanagement.models.dto.EmployeeInfoDTO;
@@ -41,13 +43,17 @@ public class EmployeeService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Boolean saveEmployee(AddEmployeeDTO employeeDTO) {
+    public void saveEmployee(AddEmployeeDTO employeeDTO) {
 
         Optional<Employee> employeeByUsername = this.employeeRepository.getByUsername(employeeDTO.getUsername());
         Optional<Employee> employeeByPhoneNumber = this.employeeRepository.getByPhoneNumber(employeeDTO.getPhoneNumber());
 
-        if (employeeByUsername.isPresent() || employeeByPhoneNumber.isPresent()) {
-            return false;
+        if (employeeByUsername.isPresent()) {
+            throw new UsernameDuplicationException(String.format("User with username %s, already exists!", employeeDTO.getUsername()));
+        }
+
+        if (employeeByPhoneNumber.isPresent()) {
+            throw new PhoneNumberDuplicationException(String.format("User with phone number %s, already exists!", employeeDTO.getPhoneNumber()));
         }
 
         Role employeeRole = roleRepository.findByRoleType(RoleType.valueOf(employeeDTO.getRole()));
@@ -59,8 +65,6 @@ public class EmployeeService {
         employee.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
 
         this.employeeRepository.save(employee);
-
-        return true;
     }
 
     public void initAdministrator() {
@@ -86,9 +90,8 @@ public class EmployeeService {
     }
 
     public List<EmployeeInfoDTO> getAllEmployees() {
-        List<EmployeeInfoDTO> employeeInfoDTOS = this.employeeRepository.findAll().stream().map(this::mapToEmployeeInfoDTO).toList();
 
-        return employeeInfoDTOS;
+        return this.employeeRepository.findAll().stream().filter(e -> !e.getRole().getRoleType().equals(RoleType.ADMIN)).map(this::mapToEmployeeInfoDTO).toList();
     }
 
     private EmployeeInfoDTO mapToEmployeeInfoDTO(Employee employee) {
