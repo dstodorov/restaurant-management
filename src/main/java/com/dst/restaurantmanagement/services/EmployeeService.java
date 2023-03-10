@@ -112,4 +112,8 @@ public class EmployeeService {
 
         return mapper.map(employee.get(), EditEmployeeDTO.class);
     }
+
+    public Optional<Employee> getByUsername(String username) {
+        return this.employeeRepository.getByUsername(username);
+    }
 }

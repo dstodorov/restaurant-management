@@ -61,7 +61,7 @@ public class EmployeeController {
 
         model.addAttribute("employees", employees);
 
-        return "admin-page";
+        return "admin-employees";
     }
 
     @RequestMapping(value = "/{id}")

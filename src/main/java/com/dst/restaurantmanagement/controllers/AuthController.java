@@ -15,6 +15,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login() {
-        return "admin-page";
+        return "redirect:/";
     }
 }
