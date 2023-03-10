@@ -29,6 +29,11 @@ public class EmployeeController {
         return new AddEmployeeDTO();
     }
 
+    @ModelAttribute(name = "editEmployeeDTO")
+    public EditEmployeeDTO initEditEmployeeDTO() {
+        return new EditEmployeeDTO();
+    }
+
     @GetMapping("/add")
     public String addEmployeePage(Model model) {
 
@@ -72,17 +77,29 @@ public class EmployeeController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editEmployee(@PathVariable("id") Long id, Model model) {
+    public String editEmployeePage(@PathVariable("id") Long id, Model model) {
 
         EditEmployeeDTO employee = this.employeeService.getEmployee(id);
 
         model.addAttribute("employee", employee);
+        model.addAttribute("employeeId", id);
 
         List<Role> employeeRoles = this.roleService.getEmployeeRoles();
 
         model.addAttribute("employeeRoles", employeeRoles);
 
         return "admin-edit-employee";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editEmployee(@PathVariable("id") Long id, @Valid EditEmployeeDTO editEmployeeDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("editEmployeeDTO", editEmployeeDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editEmployeeDTO", bindingResult);
+
+            return "redirect:/employees/edit/{id}";
+        }
+        return "redirect:/employees";
     }
 
 }

@@ -112,8 +112,12 @@ public class EmployeeService {
 
     public EditEmployeeDTO getEmployee(Long id) {
         Optional<Employee> employee = employeeRepository.findById(id);
+        EditEmployeeDTO editEmployeeDTO = mapper.map(employee.get(), EditEmployeeDTO.class);
 
-        return mapper.map(employee.get(), EditEmployeeDTO.class);
+        editEmployeeDTO.setRole(employee.get().getRole().getRoleType().name());
+        editEmployeeDTO.setPassword("");
+
+        return editEmployeeDTO;
     }
 
     public Optional<Employee> getByUsername(String username) {

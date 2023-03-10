@@ -8,7 +8,7 @@
 <th:block th:insert="~{/fragments/header}"></th:block>
 <div class="container">
     <th:block th:insert="~{/fragments/navigation}"></th:block>
-    <form th:action="@{/employees/add}" th:method="POST" th:object="${addEmployeeDTO}">
+    <form th:action="@{/employees/edit/{id}(id=${employeeId})}" th:method="POST" th:object="${editEmployeeDTO}">
         <div class="form-group">
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" th:value="${employee.firstName}"/>
@@ -36,9 +36,9 @@
         </div>
         <div class="form-group">
             <label for="role">Role:</label>
-            <select id="role" name="role" th:value="${employee.role}">
+            <select id="role" name="role">
                 <option value="" selected>Select role</option>
-                <option th:each="role : ${employeeRoles}" th:value="${role.roleType.name()}" th:text="${role.roleType.name()}" th:selected="${employee.role}"/>
+                <option th:each="role : ${employeeRoles}" th:value="${role.roleType.name()}" th:text="${role.roleType.name()}" th:selected="${role.roleType.name() == employee.role}"/>
             </select>
             <div id="roleError" th:if="${#fields.hasErrors('role')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>You must select a role of the employee!</div>
         </div>
