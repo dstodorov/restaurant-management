@@ -47,20 +47,20 @@
           <div class="col-lg-7 px-5 pt-5">
             <h1 class="font-weight-bold py-3">Restaurant Manager</h1>
             <h4>Sign into your account</h4>
-            <form action="" class="form-row">
+            <form th:method="POST" th:action="@{/auth/login}" class="form-row">
               <div class="form-row">
                 <div class="col-lg-7">
-                  <input type="email" placeholder="email" class="form-control my-3 p-2">
+                  <input type="text" th:name="username" placeholder="username" class="form-control my-3 p-2">
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-lg-7">
-                  <input type="password" placeholder="password" class="form-control my-3 p-2">
+                  <input type="password" th:name="password" placeholder="password" class="form-control my-3 p-2">
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-lg-7">
-                  <button type="button" class="loginButton mt-3 mb-5">LOGIN</button>
+                  <button type="submit" class="loginButton mt-3 mb-5">LOGIN</button>
                 </div>
               </div>
             </form>

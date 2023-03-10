@@ -89,6 +89,31 @@ nav a {
     color: #fff;
 }
 
+.logout {
+    padding: 5px;
+    text-decoration: none;
+    color: #fff;
+    border: 0;
+    background-color: #333;
+}
+
+.logout-form {
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+
+.logout-form:hover{
+    background-color: #555;
+    cursor: pointer;
+}
+
+.logout {
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
 nav a:hover {
     background-color: #555;
 }

@@ -10,6 +10,7 @@ import com.dst.restaurantmanagement.repositories.EmployeeRepository;
 import com.dst.restaurantmanagement.repositories.RoleRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -31,11 +32,13 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final RoleRepository roleRepository;
     private final ModelMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public EmployeeService(EmployeeRepository employeeRepository, RoleRepository roleRepository, ModelMapper mapper) {
+    public EmployeeService(EmployeeRepository employeeRepository, RoleRepository roleRepository, ModelMapper mapper, PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
         this.roleRepository = roleRepository;
         this.mapper = mapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Boolean saveEmployee(AddEmployeeDTO employeeDTO) {
@@ -53,8 +56,7 @@ public class EmployeeService {
 
         employee.setRole(employeeRole);
 
-        //TODO: encrypted password
-        employee.setPassword(employeeDTO.getPassword());
+        employee.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
 
         this.employeeRepository.save(employee);
 
@@ -68,7 +70,7 @@ public class EmployeeService {
                 adminFirstName,
                 adminLastName,
                 adminUsername,
-                adminPassword,
+                passwordEncoder.encode(adminPassword),
                 adminPhoneNumber,
                 LocalDate.now(),
                 role
@@ -78,9 +80,9 @@ public class EmployeeService {
     }
 
     public Boolean isAdministratorInitialized() {
-        Optional<Employee> admin = this.employeeRepository.findByUsernameAndPassword(this.adminUsername, this.adminPassword);
+        Optional<Employee> admin = this.employeeRepository.findByUsername(this.adminUsername);
 
-        return admin.isPresent();
+        return admin.isPresent() && passwordEncoder.matches(adminPassword, admin.get().getPassword());
     }
 
     public List<EmployeeInfoDTO> getAllEmployees() {
