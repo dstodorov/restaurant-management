@@ -28,6 +28,7 @@ public class AppSecurityConfig {
                 .requestMatchers("/", "/auth/login", "/auth/login-error").permitAll()
                 .requestMatchers("/employees", "/employees/add").hasRole(RoleType.ADMIN.name())
                 .requestMatchers("/cook").hasRole(RoleType.COOK.name())
+                .requestMatchers("/manage/**").hasRole(RoleType.MANAGER.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

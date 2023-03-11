@@ -9,53 +9,17 @@
 <div class="container">
     <th:block th:insert="~{/fragments/navigation}"></th:block>
     <main class="main-content">
-        <div class="restaurant-table">
-            <p class="table-number">N-1</p>
+        <div class="restaurant-table" th:each="table : ${allTables}">
+            <p class="table-number">N-<span th:text="${table.id}"/></p>
             <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i>5</div>
+            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i><span
+                    th:text="${table.seats}"/></div>
         </div>
-        <div class="restaurant-table">
-            <p class="table-number">N-2</p>
-            <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i>3</div>
+        <div class="restaurant-table-add" th:onclick="'javascript:window.location=\'/manage/tables/add\''">
+            <p class="table-number" style="color: rgba(13,110,253,0)">ID</p>
+            <img class="table-img" th:src="@{/images/table-add.png}">
+            <div class="table-seats" style="color: rgba(13,110,253,0)">SEATS</div>
         </div>
-        <div class="restaurant-table">
-            <p class="table-number">N-3</p>
-            <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i>2</div>
-        </div>
-        <div class="restaurant-table">
-            <p class="table-number">N-4</p>
-            <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i>4</div>
-        </div>
-        <div class="restaurant-table">
-            <p class="table-number">N-5</p>
-            <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i>5</div>
-        </div>
-        <div class="restaurant-table">
-            <p class="table-number">N-6</p>
-            <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i>2</div>
-        </div>
-        <div class="restaurant-table">
-            <p class="table-number">N-7</p>
-            <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i>3</div>
-        </div>
-        <div class="restaurant-table">
-            <p class="table-number">N-8</p>
-            <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i>5</div>
-        </div>
-        <form id="add-table-form" style="margin: 0; padding: 0; display: inline" th:action="@{/manage/tables/add}" th:method="POST">
-            <div class="restaurant-table-add" th:onclick="submitForm()">
-                <p class="table-number" style="color: rgba(13,110,253,0)">ID</p>
-                <img class="table-img" th:src="@{/images/table-add.png}">
-                <div class="table-seats" style="color: rgba(13,110,253,0)">SEATS</div>
-            </div>
-        </form>
     </main>
 </div>
 <script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Add table</title>
+    <th:block th:insert="~{/fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{/fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{/fragments/navigation}"></th:block>
+    <form th:action="@{/manage/tables/add}" th:method="POST" th:object="${addTableDTO}">
+        <div class="form-group">
+            <label for="seats">Number of seats:</label>
+            <input type="number" id="seats" name="seats" th:value="*{seats}"/>
+            <div id="seatsError" th:if="${#fields.hasErrors('seats')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>Seats must be between 2 and 5!</div>
+        </div>
+        <button type="submit" class="button-save">SAVE</button>
+    </form>
+</div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
+<script type="text/javascript" src="/js/addTableErrorStylize.js"></script>
+</body>
+</html>
