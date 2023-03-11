@@ -108,6 +108,8 @@ public class EmployeeService {
 
     public void delete(Long id) {
         Optional<Employee> employee = employeeRepository.findById(id);
+
+        employee.ifPresent(this.employeeRepository::delete);
     }
 
     public EditEmployeeDTO getEmployee(Long id) {
