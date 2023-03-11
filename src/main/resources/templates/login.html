@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" lang="EN">
+<html xmlns:th="http://www.thymeleaf.org" lang="EN" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="utf-8">
 
@@ -60,7 +60,8 @@
               </div>
               <div class="form-row">
                 <div class="col-lg-7">
-                  <button type="submit" class="loginButton mt-3 mb-5">LOGIN</button>
+                  <button type="submit" class="loginButton mt-3 mb-3">LOGIN</button>
+                  <p class="text-danger" style="font-weight: bold; font-size: 1.2em" th:if="${bad_credentials}">Wrong username or password!</p>
                 </div>
               </div>
             </form>
