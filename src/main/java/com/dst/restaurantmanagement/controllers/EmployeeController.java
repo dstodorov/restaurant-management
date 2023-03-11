@@ -71,8 +71,9 @@ public class EmployeeController {
 
     @RequestMapping(value = "/{id}")
     public String deleteEmployee(@PathVariable("id") Long id) {
-        System.out.println(id);
+
         this.employeeService.delete(id);
+
         return "redirect:/employees";
     }
 
@@ -99,6 +100,9 @@ public class EmployeeController {
 
             return "redirect:/employees/edit/{id}";
         }
+
+
+
         return "redirect:/employees";
     }
 

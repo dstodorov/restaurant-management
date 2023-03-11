@@ -20,24 +20,25 @@ public class HomeController {
 
     @GetMapping
     public String home(Authentication authentication) {
-        Employee loggedUser = this.employeeService.getByUsername(authentication.getName()).get();
+        if (authentication != null) {
+            Employee loggedUser = this.employeeService.getByUsername(authentication.getName()).get();
+            switch (loggedUser.getRole().getRoleType()) {
 
-        switch (loggedUser.getRole().getRoleType()) {
-
-            case COOK -> {
-                return "redirect:/cook";
-            }
-            case WAITER -> {
-            }
-            case MANAGER -> {
-            }
-            case WAREHOUSE_WORKER -> {
-            }
-            case ADMIN -> {
-                return "redirect:/employees";
+                case COOK -> {
+                    return "redirect:/cook";
+                }
+                case WAITER -> {
+                }
+                case MANAGER -> {
+                }
+                case WAREHOUSE_WORKER -> {
+                }
+                case ADMIN -> {
+                    return "redirect:/employees";
+                }
             }
         }
 
-        return "error";
+        return "login";
     }
 }

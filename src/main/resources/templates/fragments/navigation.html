@@ -1,7 +1,7 @@
-<nav>
+<nav xmlns:sec="http://www.w3.org/1999/xhtml">
   <ul>
-    <li><a href="/employees"><i class="fa-solid fa-user"></i>Employees</a></li>
-    <li><a href="/employees/add"><i class="fa-solid fa-plus"></i>Add employee</a></li>
+    <li sec:authorize="hasRole('ADMIN')"><a href="/employees"><i class="fa-solid fa-user"></i>Employees</a></li>
+    <li sec:authorize="hasRole('ADMIN')"><a href="/employees/add"><i class="fa-solid fa-plus"></i>Add employee</a></li>
     <li>
       <form th:action="@{/auth/logout}" th:method="POST" class="logout-form">
         <button class="logout" type="submit"><i class="fa-solid fa-right-from-bracket"></i>Logout</button>
