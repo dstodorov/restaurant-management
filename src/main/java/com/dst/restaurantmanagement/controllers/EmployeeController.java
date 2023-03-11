@@ -101,7 +101,7 @@ public class EmployeeController {
             return "redirect:/employees/edit/{id}";
         }
 
-
+        this.employeeService.editEmployee(id, editEmployeeDTO);
 
         return "redirect:/employees";
     }

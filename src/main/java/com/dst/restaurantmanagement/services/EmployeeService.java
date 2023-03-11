@@ -45,16 +45,8 @@ public class EmployeeService {
 
     public void saveEmployee(AddEmployeeDTO employeeDTO) {
 
-        Optional<Employee> employeeByUsername = this.employeeRepository.getByUsername(employeeDTO.getUsername());
-        Optional<Employee> employeeByPhoneNumber = this.employeeRepository.getByPhoneNumber(employeeDTO.getPhoneNumber());
-
-        if (employeeByUsername.isPresent()) {
-            throw new UsernameDuplicationException(String.format("User with username %s, already exists!", employeeDTO.getUsername()));
-        }
-
-        if (employeeByPhoneNumber.isPresent()) {
-            throw new PhoneNumberDuplicationException(String.format("User with phone number %s, already exists!", employeeDTO.getPhoneNumber()));
-        }
+        // Throw duplication exception in case of unique constraint error
+        validateUsernameAndPhoneNumber(employeeDTO.getUsername(), employeeDTO.getPhoneNumber());
 
         Role employeeRole = roleRepository.findByRoleType(RoleType.valueOf(employeeDTO.getRole()));
 
@@ -124,5 +116,58 @@ public class EmployeeService {
 
     public Optional<Employee> getByUsername(String username) {
         return this.employeeRepository.getByUsername(username);
+    }
+
+    public void editEmployee(Long employeeId, EditEmployeeDTO editEmployeeDTO) {
+
+        // Throw duplication exception in case of unique constraint error for a different employee
+        validateUsernameAndPhoneNumber(employeeId, editEmployeeDTO.getUsername(), editEmployeeDTO.getPhoneNumber());
+
+        // Valid data
+        Optional<Employee> employee = this.employeeRepository.findById(employeeId);
+        Role role = this.roleRepository.findByRoleType(RoleType.valueOf(editEmployeeDTO.getRole()));
+
+        employee.ifPresent(e -> {
+            e.setFirstName(editEmployeeDTO.getFirstName());
+            e.setLastName(editEmployeeDTO.getLastName());
+            e.setUsername(editEmployeeDTO.getUsername());
+            e.setPhoneNumber(editEmployeeDTO.getPhoneNumber());
+            e.setRole(role);
+            e.setHireDate(editEmployeeDTO.getHireDate());
+
+            // Change password, only if the password field in the DTO is not empty
+            if (!editEmployeeDTO.getPassword().isEmpty()) {
+                e.setPassword(passwordEncoder.encode(editEmployeeDTO.getPassword()));
+            }
+
+            this.employeeRepository.saveAndFlush(e);
+        });
+    }
+
+    //TODO: CALL BASE FUNCTION
+    private void validateUsernameAndPhoneNumber(Long employeeId, String username, String phoneNumber) {
+        Optional<Employee> employeeByUsername = this.employeeRepository.getByUsername(username);
+        Optional<Employee> employeeByPhoneNumber = this.employeeRepository.getByPhoneNumber(phoneNumber);
+
+        if (employeeByUsername.isPresent() && employeeByUsername.get().getId() != employeeId) {
+            throw new UsernameDuplicationException(String.format("User with username %s, already exists!", username));
+        }
+
+        if (employeeByPhoneNumber.isPresent() && employeeByPhoneNumber.get().getId() != employeeId) {
+            throw new PhoneNumberDuplicationException(String.format("User with phone number %s, already exists!", phoneNumber));
+        }
+    }
+
+    private void validateUsernameAndPhoneNumber(String username, String phoneNumber) {
+        Optional<Employee> employeeByUsername = this.employeeRepository.getByUsername(username);
+        Optional<Employee> employeeByPhoneNumber = this.employeeRepository.getByPhoneNumber(phoneNumber);
+
+        if (employeeByUsername.isPresent()) {
+            throw new UsernameDuplicationException(String.format("User with username %s, already exists!", username));
+        }
+
+        if (employeeByPhoneNumber.isPresent()) {
+            throw new PhoneNumberDuplicationException(String.format("User with phone number %s, already exists!", phoneNumber));
+        }
     }
 }
