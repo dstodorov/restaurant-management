@@ -4,7 +4,12 @@
     <title>Tables</title>
     <th:block th:insert="~{/fragments/head-content}"></th:block>
 </head>
-<body>
+<body th:if="${manageTablesRefresh}">
+<script th:inline="javascript">
+    location.reload();
+</script>
+</body>
+<body th:unless="${manageTablesRefresh}">
 <th:block th:insert="~{/fragments/header}"></th:block>
 <div class="container">
     <th:block th:insert="~{/fragments/navigation}"></th:block>
@@ -22,11 +27,6 @@
         </div>
     </main>
 </div>
-<script>
-    function submitForm() {
-        document.getElementById("add-table-form").submit();
-    }
-</script>
 <footer>
     <p>&copy; 2023 My Page</p>
 </footer>

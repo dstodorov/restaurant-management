@@ -36,9 +36,9 @@
         </div>
         <div class="form-group">
             <label for="role">Role:</label>
-            <select id="role" name="role" th:value="*{role}">
+            <select id="role" name="role">
                 <option value="" selected>Select role</option>
-                <option th:each="role : ${employeeRoles}" th:value="${role.roleType.name()}" th:text="${role.roleType.name()}" th:selected="*{role}"/>
+                <option th:each="role : ${employeeRoles}" th:value="${role.roleType.name()}" th:text="${role.roleType.name()}" th:selected="${role.roleType.name() == addEmployeeDTO.role}"/>
             </select>
             <div id="roleError" th:if="${#fields.hasErrors('role')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>You must select a role of the employee!</div>
         </div>
