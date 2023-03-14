@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -37,6 +38,15 @@ public class RestaurantTableService {
 
     public void deleteTable(Long id) {
         this.restaurantTableRepository.deleteById(id);
+    }
+
+    public void accommodateTable(Long id) {
+        Optional<RestaurantTable> restaurantTable = this.restaurantTableRepository.findById(id);
+
+        restaurantTable.ifPresent(table -> {
+            table.setStatus(TableStatus.PENDING);
+            this.restaurantTableRepository.saveAndFlush(table);
+        });
     }
 }
 

@@ -28,7 +28,7 @@ public class HomeController {
                     return "redirect:/cook";
                 }
                 case WAITER -> {
-
+                    return "redirect:/service";
                 }
                 case MANAGER -> {
                     return "redirect:/manage";

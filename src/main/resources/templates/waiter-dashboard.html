@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Users</title>
+    <th:block th:insert="~{/fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{/fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{/fragments/navigation}"></th:block>
+    <main class="main-content">
+        <div class="waiter-dashboard">
+            <div class="pending-tables-container">
+                <p>first table</p>
+<!--                <table class="pending-tables">-->
+
+<!--                </table>-->
+            </div>
+            <div class="my-tables-container">
+                <p>second table</p>
+<!--                <table class="my-tables">-->
+
+<!--                </table>-->
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
+</body>
+</html>

@@ -43,7 +43,8 @@ public class HostController {
 
     @GetMapping("/accommodate")
     public String accommodate(@RequestParam Long id) {
-        System.out.println(id);
+
+        this.restaurantTableService.accommodateTable(id);
 
         return "redirect:/host/accommodation";
     }
