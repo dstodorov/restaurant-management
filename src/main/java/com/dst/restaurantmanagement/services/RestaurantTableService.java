@@ -27,8 +27,12 @@ public class RestaurantTableService {
         applicationEventPublisher.publishEvent(new SaveTableEvent(this));
     }
 
-    public List<RestaurantTable> getAllTables() {
+    public List<RestaurantTable> getTables() {
         return this.restaurantTableRepository.findAll();
+    }
+
+    public List<RestaurantTable> getTables(Integer seats) {
+        return this.restaurantTableRepository.findAllBySeats(seats);
     }
 
     public void deleteTable(Long id) {

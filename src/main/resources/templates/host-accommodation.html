@@ -9,16 +9,23 @@
 <div class="container">
     <th:block th:insert="~{/fragments/navigation}"></th:block>
     <main class="main-content">
-        <div class="restaurant-table" th:each="table : ${allTables}">
-            <p class="table-number">N-<span th:text="${table.id}"/> <a th:href="@{/manage/tables/delete/(id=${table.id})}"><i class="fa-solid fa-trash" style="color: #ff0000; font-size: 0.75em;"></i></a> </p>
+
+        <form th:action="@{/host/accommodation/table}" style="margin: 0; padding: 0">
+            <label style="font-size: 1.25em">Search table:</label>
+            <input type="text" placeholder="seats" name="seats" th:value="${seats}">
+            <button type="submit" class="button-save" th:text="SEARCH"/>
+        </form>
+
+        <p style="margin: 20px; color: white; font-size: 1.5em; font-weight: bold">Free tables: </p>
+        <div class="restaurant-table" th:each="table : ${tables}">
+            <p class="table-number">N-<span th:text="${table.id}"/></p>
             <img class="table-img" th:src="@{/images/table.png}">
             <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i><span
                     th:text="${table.seats}"/></div>
-        </div>
-        <div class="restaurant-table-add" th:onclick="'javascript:window.location=\'/manage/tables/add\''">
-            <p class="table-number" style="color: rgba(13,110,253,0)">ID</p>
-            <img class="table-img" th:src="@{/images/table-add.png}">
-            <div class="table-seats" style="color: rgba(13,110,253,0)">SEATS</div>
+            <a class="btn-accommodate"
+               th:href="@{/host/accommodate(id=${table.id})}">
+                Accommodate
+            </a>
         </div>
     </main>
 </div>

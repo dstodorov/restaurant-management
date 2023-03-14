@@ -29,6 +29,7 @@ public class AppSecurityConfig {
                 .requestMatchers("/employees", "/employees/add").hasRole(RoleType.ADMIN.name())
                 .requestMatchers("/cook").hasRole(RoleType.COOK.name())
                 .requestMatchers("/manage/**").hasRole(RoleType.MANAGER.name())
+                .requestMatchers("/host/**").hasRole(RoleType.HOST.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

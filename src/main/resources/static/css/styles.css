@@ -10,6 +10,7 @@ body {
     font-size: 16px;
     background-image: url(../images/background.png);
     background-attachment: fixed;
+    background-size: cover;
 }
 
 /* Header styles */
@@ -312,3 +313,23 @@ tr td button:hover {
     margin-bottom: 10px;
 }
 
+.btn-accommodate {
+    margin: 10px auto;
+    width: 80%;
+    height: 35px;
+    font-size: 1em;
+    color: white;
+    border-radius: 25px;
+    background-color: #2d2d2d;
+    border: 1px solid white;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+
+.btn-accommodate:hover {
+    background-color: #838383;
+    cursor: pointer;
+    border: 1px solid #ff0000;
+}

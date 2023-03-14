@@ -28,14 +28,19 @@ public class HomeController {
                     return "redirect:/cook";
                 }
                 case WAITER -> {
+
                 }
                 case MANAGER -> {
                     return "redirect:/manage";
                 }
                 case WAREHOUSE_WORKER -> {
+
                 }
                 case ADMIN -> {
                     return "redirect:/employees";
+                }
+                case HOST -> {
+                    return "redirect:/host";
                 }
             }
         }

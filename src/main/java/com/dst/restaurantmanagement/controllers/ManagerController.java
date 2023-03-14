@@ -1,12 +1,10 @@
 package com.dst.restaurantmanagement.controllers;
 
-import com.dst.restaurantmanagement.events.SaveTableEvent;
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,7 +32,7 @@ public class ManagerController {
 
     @GetMapping("/tables")
     public String getTables(Model model) {
-        List<RestaurantTable> allTables = this.restaurantTableService.getAllTables();
+        List<RestaurantTable> allTables = this.restaurantTableService.getTables();
 
         model.addAttribute("allTables", allTables);
 
