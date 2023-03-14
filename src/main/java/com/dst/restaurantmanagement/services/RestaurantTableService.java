@@ -30,5 +30,9 @@ public class RestaurantTableService {
     public List<RestaurantTable> getAllTables() {
         return this.restaurantTableRepository.findAll();
     }
+
+    public void deleteTable(Long id) {
+        this.restaurantTableRepository.deleteById(id);
+    }
 }
 
