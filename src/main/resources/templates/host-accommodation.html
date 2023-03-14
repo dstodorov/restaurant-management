@@ -12,11 +12,11 @@
 
         <form th:action="@{/host/accommodation/table}" style="margin: 0; padding: 0">
             <label style="font-size: 1.25em">Search table:</label>
-            <input type="text" placeholder="seats" name="seats" th:value="${seats}">
+            <input type="number" placeholder="seats" name="seats" th:value="${seats}" min="2" max="5">
             <button type="submit" class="button-save" th:text="SEARCH"/>
         </form>
 
-        <p style="margin: 20px; color: white; font-size: 1.5em; font-weight: bold">Free tables: </p>
+        <p style="margin: 20px; color: white; font-size: 1.5em; font-weight: bold">Free tables: <span th:if="${tables.size() == 0}">NONE</span></p>
         <div class="restaurant-table" th:each="table : ${tables}">
             <p class="table-number">N-<span th:text="${table.id}"/></p>
             <img class="table-img" th:src="@{/images/table.png}">

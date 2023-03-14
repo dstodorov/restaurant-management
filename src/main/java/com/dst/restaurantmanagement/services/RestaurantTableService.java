@@ -28,11 +28,11 @@ public class RestaurantTableService {
     }
 
     public List<RestaurantTable> getTables() {
-        return this.restaurantTableRepository.findAll();
+        return this.restaurantTableRepository.findAllByStatus(TableStatus.FREE);
     }
 
     public List<RestaurantTable> getTables(Integer seats) {
-        return this.restaurantTableRepository.findAllBySeats(seats);
+        return this.restaurantTableRepository.findAllBySeatsAndStatus(seats, TableStatus.FREE);
     }
 
     public void deleteTable(Long id) {
