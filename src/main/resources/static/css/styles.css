@@ -204,12 +204,12 @@ footer {
     border-right: 2px solid red;
 }
 
-#users-table thead:first-child {
+#users-table thead:first-child, .app-table thead:first-child {
     background: rgb(32, 32, 32);
     color: rgb(255, 255, 255);
 }
 
-#users-table tr:nth-child(even) {
+#users-table tr:nth-child(even), .app-table tr:nth-child(even) {
     background: #0000003a;
 }
 
@@ -221,7 +221,7 @@ footer {
     color: #b2b2b2;
 }
 
-#users-table tr {
+#users-table tr, .app-table tr {
     height: 40px;
 }
 
@@ -239,7 +239,7 @@ tr td form button {
     box-shadow: 0 0 5px rgb(48, 48, 48);
 }
 
-.button-edit {
+.app-edit {
     background-color: rgb(0, 173, 253);
 }
 
@@ -332,4 +332,34 @@ tr td button:hover {
     background-color: #838383;
     cursor: pointer;
     border: 1px solid #ff0000;
+}
+
+.waiter-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.dashboard-container {
+    flex-basis: 33%;
+}
+
+@media only screen and (max-width: 1280px) {
+    .dashboard-container {
+        flex-basis: 95%;
+    }
+}
+
+
+
+.app-table {
+    background-color: #8585858e;
+    color: #b2b2b2;
+}
+
+.table-label {
+    font-size: 1.5em;
+    color: white;
+    margin: 15px 0;
 }
