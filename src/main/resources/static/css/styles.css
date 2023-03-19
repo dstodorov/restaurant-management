@@ -337,12 +337,12 @@ tr td button:hover {
 .waiter-dashboard {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
     padding: 10px;
 }
 
 .dashboard-container {
-    flex-basis: 33%;
+    flex-basis: auto;
+    margin: 15px;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -351,11 +351,39 @@ tr td button:hover {
     }
 }
 
-
-
 .app-table {
     background-color: #8585858e;
     color: #b2b2b2;
+}
+
+.pending-tables {
+    min-width: 400px;
+}
+
+.pending-tables button {
+    padding: 5px;
+    width: 80%;
+    box-shadow: 0 0 5px rgb(48, 48, 48);
+}
+
+.my-tables {
+    min-width: 400px;
+}
+
+.my-tables button {
+    padding: 5px;
+    width: 45%;
+    box-shadow: 0 0 5px rgb(48, 48, 48);
+}
+
+.orders {
+    min-width: 400px;
+}
+
+.orders button {
+    padding: 5px;
+    width: 90%;
+    box-shadow: 0 0 5px rgb(48, 48, 48);
 }
 
 .table-label {

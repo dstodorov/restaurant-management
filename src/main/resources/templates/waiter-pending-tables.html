@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>Pending tables</title>
+  <th:block th:insert="~{/fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{/fragments/header}"></th:block>
+<div class="container">
+  <th:block th:insert="~{/fragments/navigation}"></th:block>
+  <main class="main-content">
+    <div class="waiter-dashboard">
+      <div class="dashboard-container">
+        <p class="table-label">Pending tables: </p>
+        <table class="pending-tables app-table">
+          <thead>
+          <tr>
+            <th style="max-width: 20%">Table</th>
+            <th class="">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="user">
+            <td>N-1</td>
+            <td class="action-cell">
+              <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
+                <button type="submit" class="button app-edit">Take for service</button>
+              </form>
+            </td>
+          </tr>
+          <tr class="user">
+            <td>N-1</td>
+            <td class="action-cell">
+              <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
+                <button type="submit" class="button app-edit">Take for service</button>
+              </form>
+            </td>
+          </tr>
+          <tr class="user">
+            <td>N-1</td>
+            <td class="action-cell">
+              <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
+                <button type="submit" class="button app-edit">Take for service</button>
+              </form>
+            </td>
+          </tr>
+          <tr class="user">
+            <td>N-1</td>
+            <td class="action-cell">
+              <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
+                <button type="submit" class="button app-edit">Take for service</button>
+              </form>
+            </td>
+          </tr>
+          <tr class="user">
+            <td>N-1</td>
+            <td class="action-cell">
+              <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
+                <button type="submit" class="button app-edit">Take for service</button>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+<footer>
+  <p>&copy; 2023 My Page</p>
+</footer>
+</body>
+</html>

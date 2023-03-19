@@ -12,11 +12,11 @@ public class WaiterController {
 
     @GetMapping
     public String waiterPage() {
-        return "redirect:/service/dashboard";
+        return "waiter-dashboard";
     }
 
-    @GetMapping("/dashboard")
-    public String getDashboard() {
-        return "waiter-dashboard";
+    @GetMapping("/pending")
+    public String pendingTables() {
+        return "waiter-pending-tables";
     }
 }

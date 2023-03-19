@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Users</title>
+    <title>Service</title>
     <th:block th:insert="~{/fragments/head-content}"></th:block>
 </head>
 <body>
@@ -11,64 +11,11 @@
     <main class="main-content">
         <div class="waiter-dashboard">
             <div class="dashboard-container">
-                <p class="table-label">Pending tables: </p>
-                <table class="pending-tables app-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 20%">Table Number</th>
-                            <th class="">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="user">
-                            <td>N-1</td>
-                            <td class="action-cell">
-                                <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                    <button type="submit" class="button app-edit">Take for service</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr class="user">
-                            <td>N-1</td>
-                            <td class="action-cell">
-                                <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                    <button type="submit" class="button app-edit">Take for service</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr class="user">
-                            <td>N-1</td>
-                            <td class="action-cell">
-                                <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                    <button type="submit" class="button app-edit">Take for service</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr class="user">
-                            <td>N-1</td>
-                            <td class="action-cell">
-                                <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                    <button type="submit" class="button app-edit">Take for service</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr class="user">
-                            <td>N-1</td>
-                            <td class="action-cell">
-                                <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                    <button type="submit" class="button app-edit">Take for service</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="dashboard-container">
-                <p class="table-label">Pending tables: </p>
-                <table class="pending-tables app-table">
+                <p class="table-label my-tables">My tables: </p>
+                <table class="my-tables app-table">
                     <thead>
                     <tr>
-                        <th style="width: 20%">Table Number</th>
+                        <th style="width: 15%">Table</th>
                         <th class="">Actions</th>
                     </tr>
                     </thead>
@@ -77,39 +24,29 @@
                         <td>N-1</td>
                         <td class="action-cell">
                             <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <button type="submit" class="button app-edit">Take for service</button>
+                                <button type="submit" class="button app-edit">Add food / drink</button>
+                                <button type="submit" class="button app-edit">Complete order</button>
                             </form>
                         </td>
                     </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dashboard-container">
+                <p class="table-label my-tables">Orders: </p>
+                <table class="orders app-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 15%">Table</th>
+                        <th class="">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <tr class="user">
                         <td>N-1</td>
                         <td class="action-cell">
                             <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <button type="submit" class="button app-edit">Take for service</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr class="user">
-                        <td>N-1</td>
-                        <td class="action-cell">
-                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <button type="submit" class="button app-edit">Take for service</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr class="user">
-                        <td>N-1</td>
-                        <td class="action-cell">
-                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <button type="submit" class="button app-edit">Take for service</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr class="user">
-                        <td>N-1</td>
-                        <td class="action-cell">
-                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <button type="submit" class="button app-edit">Take for service</button>
+                                <button type="submit" class="button app-edit">Serve</button>
                             </form>
                         </td>
                     </tr>

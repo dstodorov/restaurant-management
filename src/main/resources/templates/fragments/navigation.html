@@ -4,7 +4,8 @@
     <li sec:authorize="hasRole('ADMIN')"><a href="/employees/add"><i class="fa-solid fa-plus"></i>Add employee</a></li>
     <li sec:authorize="hasRole('MANAGER')"><a href="/manage/tables"><i class="fa-solid fa-utensils"></i>Tables</a></li>
     <li sec:authorize="hasRole('HOST')"><a href="/host/accommodation"><i class="fa-solid fa-chair"></i>Accommodation</a></li>
-    <li sec:authorize="hasRole('WAITER')"><a href="/service/dashboard"><i class="fa-solid fa-table-columns"></i>Dashboard</a></li>
+    <li sec:authorize="hasRole('WAITER')"><a href="/service"><i class="fa-solid fa-table-columns"></i>Service</a></li>
+    <li sec:authorize="hasRole('WAITER')"><a href="/service/pending"><i class="fa-solid fa-table-columns"></i>Pending tables</a></li>
     <li>
       <form th:action="@{/auth/logout}" th:method="POST" class="logout-form">
         <button class="logout" type="submit"><i class="fa-solid fa-right-from-bracket"></i>Logout</button>
