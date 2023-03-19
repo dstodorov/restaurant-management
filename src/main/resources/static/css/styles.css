@@ -8,7 +8,8 @@
 body {
     font-family: Arial, sans-serif;
     font-size: 16px;
-    background-image: url(../images/background.png);
+    background-color: #3d3d3d;
+    background-image: url(../images/background.jpg);
     background-attachment: fixed;
     background-size: cover;
 }
@@ -377,7 +378,7 @@ tr td button:hover {
 }
 
 .orders {
-    min-width: 400px;
+    min-width: 600px;
 }
 
 .orders button {

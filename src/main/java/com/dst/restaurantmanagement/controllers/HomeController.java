@@ -20,7 +20,7 @@ public class HomeController {
 
     @GetMapping
     public String home(Authentication authentication) {
-        if (authentication != null) {
+        if (authentication.isAuthenticated()) {
             Employee loggedUser = this.employeeService.getByUsername(authentication.getName()).get();
             switch (loggedUser.getRole().getRoleType()) {
 
