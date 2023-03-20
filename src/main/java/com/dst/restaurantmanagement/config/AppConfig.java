@@ -1,10 +1,8 @@
 package com.dst.restaurantmanagement.config;
 
 import com.dst.restaurantmanagement.interceptors.AuditingInterceptor;
-import com.dst.restaurantmanagement.models.repositories.LogEntryRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

@@ -1,7 +1,7 @@
 package com.dst.restaurantmanagement.interceptors;
 
 import com.dst.restaurantmanagement.models.entities.LogEntry;
-import com.dst.restaurantmanagement.models.repositories.LogEntryRepository;
+import com.dst.restaurantmanagement.repositories.LogEntryRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;

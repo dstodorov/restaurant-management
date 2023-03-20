@@ -3,7 +3,7 @@ package com.dst.restaurantmanagement.services;
 import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.models.entities.Role;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
-import com.dst.restaurantmanagement.models.repositories.EmployeeRepository;
+import com.dst.restaurantmanagement.repositories.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

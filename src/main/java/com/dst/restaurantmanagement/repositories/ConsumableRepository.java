@@ -1,4 +1,4 @@
-package com.dst.restaurantmanagement.models.repositories;
+package com.dst.restaurantmanagement.repositories;
 
 import com.dst.restaurantmanagement.models.entities.Consumable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.dst.restaurantmanagement.models.repositories;
+package com.dst.restaurantmanagement.repositories;
 
 import com.dst.restaurantmanagement.enums.TableStatus;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;

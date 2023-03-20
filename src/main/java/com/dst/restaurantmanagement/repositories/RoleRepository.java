@@ -1,4 +1,4 @@
-package com.dst.restaurantmanagement.models.repositories;
+package com.dst.restaurantmanagement.repositories;
 
 import com.dst.restaurantmanagement.enums.RoleType;
 import com.dst.restaurantmanagement.models.entities.Role;

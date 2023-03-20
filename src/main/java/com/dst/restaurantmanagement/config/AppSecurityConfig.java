@@ -1,7 +1,7 @@
 package com.dst.restaurantmanagement.config;
 
 import com.dst.restaurantmanagement.enums.RoleType;
-import com.dst.restaurantmanagement.models.repositories.EmployeeRepository;
+import com.dst.restaurantmanagement.repositories.EmployeeRepository;
 import com.dst.restaurantmanagement.services.AppUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
