@@ -2,10 +2,11 @@ package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.TableStatus;
 import com.dst.restaurantmanagement.events.SaveTableEvent;
+import com.dst.restaurantmanagement.initializers.InitRestaurantTablesData;
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.repositories.RestaurantTableRepository;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class RestaurantTableService {
     private final RestaurantTableRepository restaurantTableRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
+
+    @Value("#{new Boolean('${app.init.tables}')}")
+    private Boolean initTables;
+
+    public RestaurantTableService(RestaurantTableRepository restaurantTableRepository, ApplicationEventPublisher applicationEventPublisher) {
+        this.restaurantTableRepository = restaurantTableRepository;
+        this.applicationEventPublisher = applicationEventPublisher;
+    }
 
     public void saveTable(AddTableDTO addTableDTO) {
         RestaurantTable table = new RestaurantTable();
@@ -25,7 +33,7 @@ public class RestaurantTableService {
 
         this.restaurantTableRepository.save(table);
 
-        applicationEventPublisher.publishEvent(new SaveTableEvent(this));
+        //applicationEventPublisher.publishEvent(new SaveTableEvent(this));
     }
 
     public List<RestaurantTable> getTables() {
@@ -47,6 +55,15 @@ public class RestaurantTableService {
             table.setStatus(TableStatus.PENDING);
             this.restaurantTableRepository.saveAndFlush(table);
         });
+    }
+
+    public void initTables() {
+
+        if (initTables) {
+            List<AddTableDTO> tables = InitRestaurantTablesData.getTables();
+
+            tables.forEach(this::saveTable);
+        }
     }
 }
 
