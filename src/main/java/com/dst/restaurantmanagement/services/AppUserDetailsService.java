@@ -1,10 +1,9 @@
 package com.dst.restaurantmanagement.services;
 
-import com.dst.restaurantmanagement.enums.RoleType;
 import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.models.entities.Role;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
-import com.dst.restaurantmanagement.repositories.EmployeeRepository;
+import com.dst.restaurantmanagement.models.repositories.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,9 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 public class AppUserDetailsService implements UserDetailsService {

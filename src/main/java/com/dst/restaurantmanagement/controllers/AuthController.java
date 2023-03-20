@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AuthController {
     @GetMapping("/login")
     public String loginPage(Authentication authentication) {
-        if (authentication.isAuthenticated()) {
+        if (authentication != null && authentication.isAuthenticated()) {
             return "redirect:/";
         }
         return "login";

@@ -4,7 +4,7 @@ import com.dst.restaurantmanagement.enums.TableStatus;
 import com.dst.restaurantmanagement.events.SaveTableEvent;
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
-import com.dst.restaurantmanagement.repositories.RestaurantTableRepository;
+import com.dst.restaurantmanagement.models.repositories.RestaurantTableRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;

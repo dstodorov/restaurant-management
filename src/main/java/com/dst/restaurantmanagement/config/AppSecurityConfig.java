@@ -1,7 +1,7 @@
 package com.dst.restaurantmanagement.config;
 
 import com.dst.restaurantmanagement.enums.RoleType;
-import com.dst.restaurantmanagement.repositories.EmployeeRepository;
+import com.dst.restaurantmanagement.models.repositories.EmployeeRepository;
 import com.dst.restaurantmanagement.services.AppUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -26,8 +26,8 @@ public class AppSecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers("/", "/auth/login", "/auth/login-error").permitAll()
-                .requestMatchers("/employees", "/employees/add").hasRole(RoleType.ADMIN.name())
-                .requestMatchers("/cook").hasRole(RoleType.COOK.name())
+                .requestMatchers("/employees/**").hasRole(RoleType.ADMIN.name())
+                .requestMatchers("/cook/**").hasRole(RoleType.COOK.name())
                 .requestMatchers("/manage/**").hasRole(RoleType.MANAGER.name())
                 .requestMatchers("/host/**").hasRole(RoleType.HOST.name())
                 .requestMatchers("/service/**").hasRole(RoleType.WAITER.name())

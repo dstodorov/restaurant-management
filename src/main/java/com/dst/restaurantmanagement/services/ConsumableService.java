@@ -1,6 +1,6 @@
 package com.dst.restaurantmanagement.services;
 
-import com.dst.restaurantmanagement.repositories.ConsumableRepository;
+import com.dst.restaurantmanagement.models.repositories.ConsumableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

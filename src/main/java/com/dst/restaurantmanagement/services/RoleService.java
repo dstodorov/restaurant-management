@@ -2,7 +2,7 @@ package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.RoleType;
 import com.dst.restaurantmanagement.models.entities.Role;
-import com.dst.restaurantmanagement.repositories.RoleRepository;
+import com.dst.restaurantmanagement.models.repositories.RoleRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
