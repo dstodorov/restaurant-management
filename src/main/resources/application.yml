@@ -21,3 +21,6 @@ app:
     firstName: Dimitar
     lastName: Todorov
     phoneNumber: 0897065558
+  init:
+    users: true
+    tables: true

@@ -1,14 +1,18 @@
 package com.dst.restaurantmanagement.initializers;
 
+import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.services.EmployeeService;
 import com.dst.restaurantmanagement.services.RoleService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @AllArgsConstructor
-public class RoleInitializer implements CommandLineRunner, AppInitializer {
+public class AppInitializerImpl implements CommandLineRunner, AppInitializer {
 
     private final RoleService roleService;
     private final EmployeeService employeeService;
@@ -17,6 +21,7 @@ public class RoleInitializer implements CommandLineRunner, AppInitializer {
     public void run(String... args) {
         initRoles();
         initAdmin();
+        initUsers();
     }
 
     @Override
@@ -31,5 +36,15 @@ public class RoleInitializer implements CommandLineRunner, AppInitializer {
         if (!this.employeeService.isAdministratorInitialized()) {
             this.employeeService.initAdministrator();
         }
+    }
+
+    @Override
+    public void initUsers() {
+        this.employeeService.initUsers();
+    }
+
+    @Override
+    public void initTables() {
+
     }
 }

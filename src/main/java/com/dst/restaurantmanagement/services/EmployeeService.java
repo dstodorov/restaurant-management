@@ -3,6 +3,7 @@ package com.dst.restaurantmanagement.services;
 import com.dst.restaurantmanagement.enums.RoleType;
 import com.dst.restaurantmanagement.exceptions.PhoneNumberDuplicationException;
 import com.dst.restaurantmanagement.exceptions.UsernameDuplicationException;
+import com.dst.restaurantmanagement.initializers.InitUsersData;
 import com.dst.restaurantmanagement.models.dto.AddEmployeeDTO;
 import com.dst.restaurantmanagement.models.dto.EditEmployeeDTO;
 import com.dst.restaurantmanagement.models.dto.EmployeeInfoDTO;
@@ -31,6 +32,9 @@ public class EmployeeService {
     private String adminLastName;
     @Value("${app.admin.phoneNumber}")
     private String adminPhoneNumber;
+
+    @Value("#{new Boolean('${app.init.users}')}")
+    private Boolean initUsers;
     private final EmployeeRepository employeeRepository;
     private final RoleRepository roleRepository;
     private final ModelMapper mapper;
@@ -168,6 +172,14 @@ public class EmployeeService {
 
         if (employeeByPhoneNumber.isPresent()) {
             throw new PhoneNumberDuplicationException(String.format("User with phone number %s, already exists!", phoneNumber));
+        }
+    }
+
+    public void initUsers() {
+        if(initUsers) {
+            List<AddEmployeeDTO> employees = InitUsersData.getEmployees();
+
+            employees.forEach(this::saveEmployee);
         }
     }
 }

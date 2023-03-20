@@ -2,15 +2,15 @@ package com.dst.restaurantmanagement.models.dto;
 
 import com.dst.restaurantmanagement.enums.RoleType;
 import jakarta.validation.constraints.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AddEmployeeDTO {
     @NotBlank
     @Size(min = 3, max = 20)
