@@ -6,6 +6,7 @@ import com.dst.restaurantmanagement.initializers.InitRestaurantTablesData;
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.repositories.RestaurantTableRepository;
+import org.hibernate.mapping.Table;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,14 @@ public class RestaurantTableService {
 
             tables.forEach(this::saveTable);
         }
+    }
+
+    public List<RestaurantTable> getAllPendingTables() {
+        return this.restaurantTableRepository.findAllByStatus(TableStatus.PENDING);
+    }
+
+    public Optional<RestaurantTable> findById(Long tableId) {
+        return this.restaurantTableRepository.findById(tableId);
     }
 }
 
