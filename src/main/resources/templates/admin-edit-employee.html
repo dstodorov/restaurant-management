@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Add employee</title>
-    <th:block th:insert="~{/fragments/head-content}"></th:block>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
 </head>
 <body>
-<th:block th:insert="~{/fragments/header}"></th:block>
+<th:block th:insert="~{fragments/header}"></th:block>
 <div class="container">
-    <th:block th:insert="~{/fragments/navigation}"></th:block>
+    <th:block th:insert="~{fragments/navigation}"></th:block>
     <form th:action="@{/employees/edit/{id}(id=${employeeId})}" th:method="POST" th:object="${editEmployeeDTO}">
         <div class="form-group">
             <label for="firstName">First Name:</label>

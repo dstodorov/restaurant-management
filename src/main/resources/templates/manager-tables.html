@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Tables</title>
-    <th:block th:insert="~{/fragments/head-content}"></th:block>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
 </head>
 <body>
-<th:block th:insert="~{/fragments/header}"></th:block>
+<th:block th:insert="~{fragments/header}"></th:block>
 <div class="container">
-    <th:block th:insert="~{/fragments/navigation}"></th:block>
+    <th:block th:insert="~{fragments/navigation}"></th:block>
     <main class="main-content">
         <div class="restaurant-table" th:each="table : ${allTables}">
             <p class="table-number">N-<span th:text="${table.id}"/> <a th:href="@{/manage/tables/delete/(id=${table.id})}"><i class="fa-solid fa-trash" style="color: #ff0000; font-size: 0.75em;"></i></a> </p>
