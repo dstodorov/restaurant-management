@@ -1,10 +1,11 @@
 package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
+import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.services.OrderService;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,11 @@ public class WaiterController {
     private final OrderService orderService;
 
     @GetMapping
-    public String waiterPage(Model model, Principal principal) {
+    public String waiterPage(Model model, @AuthenticationPrincipal RMUserDetails userDetails) {
+
+        List<Long> currentUserUsedTablesIds = this.orderService.getCurrentUserUsedTablesIds(userDetails);
+
+        model.addAttribute("usedTables", currentUserUsedTablesIds);
 
         return "waiter-dashboard";
     }
@@ -43,5 +48,10 @@ public class WaiterController {
         this.orderService.startService(tableId, user);
 
         return "redirect:/service/pending";
+    }
+
+    @GetMapping("/{tableId}/add")
+    public String addConsumablePage(@PathVariable Long tableId) {
+        return "waiter-add-to-order";
     }
 }

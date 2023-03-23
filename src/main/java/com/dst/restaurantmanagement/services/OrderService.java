@@ -5,16 +5,16 @@ import com.dst.restaurantmanagement.enums.TableStatus;
 import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.models.entities.Order;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
+import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.repositories.OrderRepository;
 import com.dst.restaurantmanagement.repositories.RestaurantTableRepository;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,14 +32,15 @@ public class OrderService {
 
         restaurantTableRepository.saveAndFlush(table.get());
 
-        Order order = Order.builder()
-                .waiter(employee.get())
-                .table(table.get())
-                .orderTime(LocalDateTime.now())
-                .consumables(new ArrayList<>())
-                .status(OrderStatus.OPEN)
-                .build();
+        Order order = Order.builder().waiter(employee.get()).table(table.get()).orderTime(LocalDateTime.now()).consumables(new ArrayList<>()).status(OrderStatus.OPEN).build();
 
         this.orderRepository.save(order);
+    }
+
+    public List<Long> getCurrentUserUsedTablesIds(RMUserDetails userDetails) {
+        return this.orderRepository.findAllByWaiterIdAndStatus(userDetails.getId(), OrderStatus.OPEN)
+                .stream()
+                .map(o -> o.getTable().getId())
+                .toList();
     }
 }

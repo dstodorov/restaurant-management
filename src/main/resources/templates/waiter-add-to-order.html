@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Add to order</title>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{fragments/navigation}"></th:block>
+    <form th:action="@{/service/id/add}" th:method="POST">
+        <div class="form-group">
+            <label for="role">Product:</label>
+            <select id="role" name="role">
+                <option value="" selected>Select dish/drink</option>
+                <optgroup label="Drinks">
+                    <option>Drink 1</option>
+                    <option>Drink 2</option>
+                    <option>Drink 3</option>
+                    <option>Drink 4</option>
+                </optgroup>
+                <optgroup label="Dishes">
+                    <option>Dish 1</option>
+                    <option>Dish 2</option>
+                    <option>Dish 3</option>
+                    <option>Dish 4</option>
+                </optgroup>
+            </select>
+        </div>
+        <button type="submit" class="button-save">ADD</button>
+    </form>
+</div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
+<script type="text/javascript" src="/js/addEmployeeErrorStylize.js"></script>
+</body>
+</html>
