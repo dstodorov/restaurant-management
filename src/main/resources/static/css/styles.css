@@ -335,19 +335,19 @@ tr td button:hover {
     border: 1px solid #ff0000;
 }
 
-.waiter-dashboard {
+.employee-container {
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
 }
 
-.dashboard-container {
+.flex-container {
     flex-basis: auto;
     margin: 15px;
 }
 
 @media only screen and (max-width: 1280px) {
-    .dashboard-container {
+    .flex-container {
         flex-basis: 95%;
     }
 }

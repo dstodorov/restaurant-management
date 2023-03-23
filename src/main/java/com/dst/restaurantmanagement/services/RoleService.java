@@ -25,7 +25,7 @@ public class RoleService {
     }
 
     public List<Role> getEmployeeRoles() {
-        return this.roleRepository.findAll();
+        return this.roleRepository.findAll().stream().filter(r -> !r.getRoleType().equals(RoleType.ADMIN)).toList();
     }
 
 }

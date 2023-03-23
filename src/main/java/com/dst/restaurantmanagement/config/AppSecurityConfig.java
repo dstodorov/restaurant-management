@@ -31,6 +31,7 @@ public class AppSecurityConfig {
                 .requestMatchers("/manage/**").hasRole(RoleType.MANAGER.name())
                 .requestMatchers("/host/**").hasRole(RoleType.HOST.name())
                 .requestMatchers("/service/**").hasRole(RoleType.WAITER.name())
+                .requestMatchers("/inventory/**").hasRole(RoleType.WAREHOUSE_WORKER.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

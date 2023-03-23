@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Pending tables</title>
+    <title>Inventory</title>
     <th:block th:insert="~{fragments/head-content}"></th:block>
 </head>
 <body>
@@ -11,22 +11,24 @@
     <main class="main-content">
         <div class="employee-container">
             <div class="flex-container">
-                <p class="table-label">Pending tables: </p>
-                <table class="pending-tables app-table">
+                <p class="table-label my-tables">Dishes: </p>
+                <table class="my-tables app-table">
                     <thead>
                     <tr>
-                        <th style="max-width: 20%">Table</th>
+                        <th style="width: 15%">Table</th>
                         <th class="">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="user" th:each="table : ${pendingTables}">
-                        <td>N-<span th:text="${table.id}"/></td>
+                    <tr class="user" th:each="tableId : ${usedTables}">
+                        <td>N-<span th:text="${tableId}"></span></td>
                         <td class="action-cell">
-                            <a th:href="@{/service/{tableId}/take(tableId=${table.id})}">
-                                <button type="button" class="button app-edit">Take for service</button>
-                            </a>
+                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
+                                <a th:href="@{/service/{tableId}/add(tableId=${tableId})}"> <button type="button" class="button app-edit">Add food / drink</button></a>
+                                <button type="button" class="button app-edit">Complete order</button>
+                            </form>
                         </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

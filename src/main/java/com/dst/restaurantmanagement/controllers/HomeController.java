@@ -30,7 +30,7 @@ public class HomeController {
                     return "redirect:/manage";
                 }
                 case WAREHOUSE_WORKER -> {
-
+                    return "redirect:/inventory";
                 }
                 case ADMIN -> {
                     return "redirect:/employees";

@@ -16,7 +16,7 @@ public final class InitUsersData {
                 .lastName("Waiterov")
                 .hireDate(LocalDate.now().plusDays(10))
                 .username("waiter")
-                .password("12345")
+                .password("1234")
                 .role("WAITER")
                 .phoneNumber("12345")
                 .build();
@@ -26,7 +26,7 @@ public final class InitUsersData {
                 .lastName("Cookerov")
                 .hireDate(LocalDate.now().plusDays(10))
                 .username("cook")
-                .password("12345")
+                .password("1234")
                 .role("COOK")
                 .phoneNumber("123456")
                 .build();

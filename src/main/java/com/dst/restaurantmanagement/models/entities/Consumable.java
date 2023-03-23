@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
@@ -19,6 +20,12 @@ public class Consumable extends BaseEntity {
     private String name;
     @Enumerated(EnumType.STRING)
     private ConsumableType type;
+    @Column(name = "purchase_price", nullable = false)
+    private BigDecimal purchasePrice;
+    @Column(name = "sale_price", nullable = false)
+    private BigDecimal salePrice;
+    @Column(nullable = false)
+    private Integer quantity;
     @Column(name = "expire_date", nullable = false)
     private LocalDate expireDate;
 }
