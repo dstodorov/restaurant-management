@@ -1,5 +1,5 @@
 package com.dst.restaurantmanagement.enums;
 
 public enum ConsumableType {
-    DISH, DRINK
+    DISH, DRINK, SALAD, APPETIZER, DESSERT
 }

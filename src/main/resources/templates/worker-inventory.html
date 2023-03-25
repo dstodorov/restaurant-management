@@ -10,22 +10,30 @@
     <th:block th:insert="~{fragments/navigation}"></th:block>
     <main class="main-content">
         <div class="employee-container">
-            <div class="flex-container">
-                <p class="table-label my-tables">Dishes: </p>
-                <table class="my-tables app-table">
+            <div class="products-container">
+                <table class="products-table app-table">
                     <thead>
                     <tr>
-                        <th style="width: 15%">Table</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Purchase price</th>
+                        <th>Sale price</th>
+                        <th>Quantity</th>
+                        <th>Expiry date</th>
                         <th class="">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="user" th:each="tableId : ${usedTables}">
-                        <td>N-<span th:text="${tableId}"></span></td>
+                    <tr th:each="consumable : ${consumables}" th:object="${consumable}" class="user">
+                        <td><span th:text="*{name}"/></td>
+                        <td><span th:text="*{type}"/></td>
+                        <td><span th:text="*{purchasePrice}"/></td>
+                        <td><span th:text="*{salePrice}"/></td>
+                        <td><span th:text="*{currentQuantity}"/>/<span th:text="*{purchasedQuantity}"/></td>
+                        <td><span th:text="*{expiryDate}"/></td>
                         <td class="action-cell">
                             <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <a th:href="@{/service/{tableId}/add(tableId=${tableId})}"> <button type="button" class="button app-edit">Add food / drink</button></a>
-                                <button type="button" class="button app-edit">Complete order</button>
+                                <a th:href="@{/inventory/{productId}/waste(productId=*{id})}"> <button type="button" class="button button-delete">WASTE</button></a>
                             </form>
                         </td>
                     </tr>

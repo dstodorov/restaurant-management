@@ -24,8 +24,10 @@ public class Consumable extends BaseEntity {
     private BigDecimal purchasePrice;
     @Column(name = "sale_price", nullable = false)
     private BigDecimal salePrice;
-    @Column(nullable = false)
-    private Integer quantity;
-    @Column(name = "expire_date", nullable = false)
-    private LocalDate expireDate;
+    @Column(name = "current_quantity", nullable = false)
+    private Integer currentQuantity;
+    @Column(name = "purchased_quantity", nullable = false)
+    private Integer purchasedQuantity;
+    @Column(name = "expiry_date", nullable = false)
+    private LocalDate expiryDate;
 }

@@ -219,7 +219,7 @@ footer {
     margin-left: 200px;
     overflow-y: auto;
     background-color: #8585858e;
-    color: #b2b2b2;
+    color: #e1e1e1;
 }
 
 #users-table tr, .app-table tr {
@@ -346,6 +346,10 @@ tr td button:hover {
     margin: 15px;
 }
 
+.products-container {
+    flex-basis: 100%;
+}
+
 @media only screen and (max-width: 1280px) {
     .flex-container {
         flex-basis: 95%;
@@ -354,7 +358,7 @@ tr td button:hover {
 
 .app-table {
     background-color: #8585858e;
-    color: #b2b2b2;
+    color: #e1e1e1;
 }
 
 .pending-tables {
@@ -369,6 +373,10 @@ tr td button:hover {
 
 .my-tables {
     min-width: 400px;
+}
+
+.products-table {
+    width: 100%;
 }
 
 .my-tables button {
