@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Expiring products</title>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{fragments/navigation}"></th:block>
+    <main class="main-content">
+        <div class="employee-container">
+            <select id="menuItems">
+                <option value="dishes">Dishes</option>
+                <option value="appetizers">Appetizers</option>
+                <option value="desserts">Desserts</option>
+                <option value="drinks">Drinks</option>
+                <option value="salads">Salads</option>
+            </select>
+            <div class="products-container">
+                <p class="table-label">Expiring products: <span th:if="${menuItems.size() == 0}">NONE</span></p>
+                <table class="products-table app-table" th:if="${menuItems.size() > 0}">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Purchase price</th>
+                        <th>Sale price</th>
+                        <th>Quantity</th>
+                        <th>Expiry date</th>
+                        <th class="">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="menuItem : ${menuItems}" th:object="${menuItem}" class="user">
+                        <td><span th:text="*{name}"/></td>
+                        <td><span th:text="*{type}"/></td>
+                        <td><span th:text="*{purchasePrice}"/></td>
+                        <td><span th:text="*{salePrice}"/></td>
+                        <td><span th:text="*{currentQuantity}"/>/<span th:text="*{purchasedQuantity}"/></td>
+                        <td><span th:text="*{expiryDate}"/></td>
+                        <td class="action-cell">
+                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)" th:if="${menuItem.expiryDate < localDate}">
+                                <a th:href="@{/inventory/{productId}/waste(productId=*{id})}"> <button type="button" class="button button-delete">WASTE</button></a>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
+</body>
+</html>

@@ -32,7 +32,7 @@ public class OrderService {
 
         restaurantTableRepository.saveAndFlush(table.get());
 
-        Order order = Order.builder().waiter(employee.get()).table(table.get()).orderTime(LocalDateTime.now()).consumables(new ArrayList<>()).status(OrderStatus.OPEN).build();
+        Order order = Order.builder().waiter(employee.get()).table(table.get()).orderTime(LocalDateTime.now()).menuItems(new ArrayList<>()).status(OrderStatus.OPEN).build();
 
         this.orderRepository.save(order);
     }

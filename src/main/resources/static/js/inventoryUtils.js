@@ -1,4 +1,4 @@
-const consumables = document.getElementById("consumables");
+const consumables = document.getElementById("menuItems");
 const dishes = document.getElementById("dishes");
 const appetizers = document.getElementById("appetizers");
 const desserts = document.getElementById("desserts");

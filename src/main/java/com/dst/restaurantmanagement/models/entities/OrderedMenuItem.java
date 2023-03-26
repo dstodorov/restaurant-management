@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "t_ordered_dishes")
-public class OrderedConsumable extends BaseEntity{
+@Table(name = "t_ordered_menu_items")
+public class OrderedMenuItem extends BaseEntity{
     @OneToOne
-    private Consumable consumable;
+    private MenuItem menuItem;
     @Column(nullable = false)
     private LocalDateTime orderTime;
     @Enumerated

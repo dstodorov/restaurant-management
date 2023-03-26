@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AddConsumableDTO {
+public class AddMenuItemDTO {
     @NotBlank
     @Size(min = 3, max = 20)
     private String name;

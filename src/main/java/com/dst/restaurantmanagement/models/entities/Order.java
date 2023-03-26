@@ -1,7 +1,6 @@
 package com.dst.restaurantmanagement.models.entities;
 
 import com.dst.restaurantmanagement.enums.OrderStatus;
-import com.dst.restaurantmanagement.enums.TableStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +17,7 @@ import java.util.List;
 public class Order extends BaseEntity {
     private LocalDateTime orderTime;
     @OneToMany
-    private List<OrderedConsumable> consumables;
+    private List<OrderedMenuItem> menuItems;
     @ManyToOne
     private RestaurantTable table;
     @ManyToOne

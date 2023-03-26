@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Add consumable</title>
+    <title>Add menuItem</title>
     <th:block th:insert="~{fragments/head-content}"></th:block>
 </head>
 <body>
 <th:block th:insert="~{fragments/header}"></th:block>
 <div class="container">
     <th:block th:insert="~{fragments/navigation}"></th:block>
-    <form th:action="@{/inventory/add}" th:method="POST" th:object="${addConsumableDTO}">
+    <form th:action="@{/inventory/add}" th:method="POST" th:object="${addMenuItemDTO}">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" th:value="*{name}"/>
@@ -21,7 +21,7 @@
             <label for="type">Type:</label>
             <select id="type" name="type">
                 <option value="" selected>Select type</option>
-                <option th:each="t : ${consumableTypes}" th:text="${t}" th:selected="${t == addConsumableDTO.type}"></option>
+                <option th:each="t : ${menuItemTypes}" th:text="${t}" th:selected="${t == addMenuItemDTO.type}"></option>
             </select>
             <div id="typeError" th:if="${#fields.hasErrors('type')}" class="error-field"><i
                     class="fa-solid fa-triangle-exclamation"></i>You must select a type of the product!

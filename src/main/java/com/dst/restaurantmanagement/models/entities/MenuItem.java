@@ -1,6 +1,6 @@
 package com.dst.restaurantmanagement.models.entities;
 
-import com.dst.restaurantmanagement.enums.ConsumableType;
+import com.dst.restaurantmanagement.enums.ItemType;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -14,12 +14,12 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "t_consumables")
-public class Consumable extends BaseEntity {
+@Table(name = "t_menu_items")
+public class MenuItem extends BaseEntity {
     @Column(nullable = false)
     private String name;
     @Enumerated(EnumType.STRING)
-    private ConsumableType type;
+    private ItemType type;
     @Column(name = "purchase_price", nullable = false)
     private BigDecimal purchasePrice;
     @Column(name = "sale_price", nullable = false)

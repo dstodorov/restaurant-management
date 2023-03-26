@@ -10,44 +10,13 @@
     <th:block th:insert="~{fragments/navigation}"></th:block>
     <main class="main-content">
         <div class="employee-container">
-            <select id="consumables">
+            <select id="menuItems">
                 <option value="dishes">Dishes</option>
                 <option value="appetizers">Appetizers</option>
                 <option value="desserts">Desserts</option>
                 <option value="drinks">Drinks</option>
                 <option value="salads">Salads</option>
             </select>
-            <div class="products-container">
-                <p class="table-label">Expiring products: <span th:if="${consumables.size() == 0}">NONE</span></p>
-                <table class="products-table app-table" th:if="${consumables.size() > 0}">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Purchase price</th>
-                        <th>Sale price</th>
-                        <th>Quantity</th>
-                        <th>Expiry date</th>
-                        <th class="">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="consumable : ${consumables}" th:object="${consumable}" class="user">
-                        <td><span th:text="*{name}"/></td>
-                        <td><span th:text="*{type}"/></td>
-                        <td><span th:text="*{purchasePrice}"/></td>
-                        <td><span th:text="*{salePrice}"/></td>
-                        <td><span th:text="*{currentQuantity}"/>/<span th:text="*{purchasedQuantity}"/></td>
-                        <td><span th:text="*{expiryDate}"/></td>
-                        <td class="action-cell">
-                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)" th:if="${consumable.expiryDate < localDate}">
-                                <a th:href="@{/inventory/{productId}/waste(productId=*{id})}"> <button type="button" class="button button-delete">WASTE</button></a>
-                            </form>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
             <div class="products-container" id="dishes">
                 <p class="table-label">Dishes: <span th:if="${dishes.size() == 0}">NONE</span></p>
                 <table class="products-table app-table" th:if="${dishes.size() > 0}">
@@ -62,7 +31,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="consumable : ${dishes}" th:object="${consumable}" class="user">
+                    <tr th:each="menuItem : ${dishes}" th:object="${menuItem}" class="user">
                         <td><span th:text="*{name}"/></td>
                         <td><span th:text="*{type}"/></td>
                         <td><span th:text="*{purchasePrice}"/></td>
@@ -87,7 +56,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="consumable : ${appetizers}" th:object="${consumable}" class="user">
+                    <tr th:each="menuItem : ${appetizers}" th:object="${menuItem}" class="user">
                         <td><span th:text="*{name}"/></td>
                         <td><span th:text="*{type}"/></td>
                         <td><span th:text="*{purchasePrice}"/></td>
@@ -112,7 +81,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="consumable : ${desserts}" th:object="${consumable}" class="user">
+                    <tr th:each="menuItem : ${desserts}" th:object="${menuItem}" class="user">
                         <td><span th:text="*{name}"/></td>
                         <td><span th:text="*{type}"/></td>
                         <td><span th:text="*{purchasePrice}"/></td>
@@ -137,7 +106,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="consumable : ${drinks}" th:object="${consumable}" class="user">
+                    <tr th:each="menuItem : ${drinks}" th:object="${menuItem}" class="user">
                         <td><span th:text="*{name}"/></td>
                         <td><span th:text="*{type}"/></td>
                         <td><span th:text="*{purchasePrice}"/></td>
@@ -162,7 +131,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="consumable : ${salads}" th:object="${consumable}" class="user">
+                    <tr th:each="menuItem : ${salads}" th:object="${menuItem}" class="user">
                         <td><span th:text="*{name}"/></td>
                         <td><span th:text="*{type}"/></td>
                         <td><span th:text="*{purchasePrice}"/></td>

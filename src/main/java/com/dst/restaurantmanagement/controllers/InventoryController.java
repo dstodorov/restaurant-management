@@ -1,9 +1,9 @@
 package com.dst.restaurantmanagement.controllers;
 
-import com.dst.restaurantmanagement.enums.ConsumableType;
-import com.dst.restaurantmanagement.models.dto.AddConsumableDTO;
-import com.dst.restaurantmanagement.models.entities.Consumable;
-import com.dst.restaurantmanagement.services.ConsumableService;
+import com.dst.restaurantmanagement.enums.ItemType;
+import com.dst.restaurantmanagement.models.dto.AddMenuItemDTO;
+import com.dst.restaurantmanagement.models.entities.MenuItem;
+import com.dst.restaurantmanagement.services.MenuItemService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,24 +24,24 @@ import java.util.List;
 @AllArgsConstructor
 public class InventoryController {
 
-    private final ConsumableService consumableService;
+    private final MenuItemService menuItemService;
 
-    @ModelAttribute(name = "addConsumableDTO")
-    public AddConsumableDTO initAddConsumableDTO() {
-        return new AddConsumableDTO();
+    @ModelAttribute(name = "addMenuItemDTO")
+    public AddMenuItemDTO initAddMenuItemDTO() {
+        return new AddMenuItemDTO();
     }
 
     @GetMapping
     public String inventoryPage(Model model) {
 
-        List<Consumable> consumables = this.consumableService.getExpiringConsumables();
-        List<Consumable> appetizers = this.consumableService.getConsumablesByType(ConsumableType.APPETIZER);
-        List<Consumable> drinks = this.consumableService.getConsumablesByType(ConsumableType.DRINK);
-        List<Consumable> dishes = this.consumableService.getConsumablesByType(ConsumableType.DISH);
-        List<Consumable> salads = this.consumableService.getConsumablesByType(ConsumableType.SALAD);
-        List<Consumable> desserts = this.consumableService.getConsumablesByType(ConsumableType.DESSERT);
 
-        model.addAttribute("consumables", consumables);
+        List<MenuItem> appetizers = this.menuItemService.getMenuItemsByType(ItemType.APPETIZER);
+        List<MenuItem> drinks = this.menuItemService.getMenuItemsByType(ItemType.DRINK);
+        List<MenuItem> dishes = this.menuItemService.getMenuItemsByType(ItemType.DISH);
+        List<MenuItem> salads = this.menuItemService.getMenuItemsByType(ItemType.SALAD);
+        List<MenuItem> desserts = this.menuItemService.getMenuItemsByType(ItemType.DESSERT);
+
+
         model.addAttribute("localDate", LocalDate.now());
         model.addAttribute("appetizers", appetizers);
         model.addAttribute("drinks", drinks);
@@ -52,27 +52,36 @@ public class InventoryController {
         return "worker-inventory";
     }
 
+    @GetMapping("/expiring")
+    public String expiringMenuItems(Model model) {
+        List<MenuItem> menuItems = this.menuItemService.getExpiringMenuItems();
+        model.addAttribute("menuItems", menuItems);
+        model.addAttribute("localDate", LocalDate.now());
+        
+        return "worker-inventory-expiring";
+    }
+
     @GetMapping("/add")
-    public String addConsumablePage(Model model) {
+    public String addMenuItemPage(Model model) {
 
-        List<String> consumableTypes = Arrays.stream(ConsumableType.values()).map(ConsumableType::name).toList();
+        List<String> menuItemTypes = Arrays.stream(ItemType.values()).map(ItemType::name).toList();
 
-        model.addAttribute("consumableTypes", consumableTypes);
+        model.addAttribute("menuItemTypes", menuItemTypes);
 
         return "worker-inventory-add";
     }
 
     @PostMapping("/add")
-    public String addConsumable(@Valid AddConsumableDTO addConsumableDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String addMenuItem(@Valid AddMenuItemDTO addMenuItemDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("addConsumableDTO", addConsumableDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addConsumableDTO", bindingResult);
+            redirectAttributes.addFlashAttribute("addMenuItemDTO", addMenuItemDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addMenuItemDTO", bindingResult);
 
             return "redirect:/inventory/add";
         }
 
-        this.consumableService.saveConsumable(addConsumableDTO);
+        this.menuItemService.saveMenuItem(addMenuItemDTO);
 
         return "redirect:/inventory";
     }
