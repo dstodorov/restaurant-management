@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,8 +34,20 @@ public class InventoryController {
     @GetMapping
     public String inventoryPage(Model model) {
 
-        List<Consumable> consumables = this.consumableService.getAllConsumables();
+        List<Consumable> consumables = this.consumableService.getExpiringConsumables();
+        List<Consumable> appetizers = this.consumableService.getConsumablesByType(ConsumableType.APPETIZER);
+        List<Consumable> drinks = this.consumableService.getConsumablesByType(ConsumableType.DRINK);
+        List<Consumable> dishes = this.consumableService.getConsumablesByType(ConsumableType.DISH);
+        List<Consumable> salads = this.consumableService.getConsumablesByType(ConsumableType.SALAD);
+        List<Consumable> desserts = this.consumableService.getConsumablesByType(ConsumableType.DESSERT);
+
         model.addAttribute("consumables", consumables);
+        model.addAttribute("localDate", LocalDate.now());
+        model.addAttribute("appetizers", appetizers);
+        model.addAttribute("drinks", drinks);
+        model.addAttribute("dishes", dishes);
+        model.addAttribute("salads", salads);
+        model.addAttribute("desserts", desserts);
 
         return "worker-inventory";
     }

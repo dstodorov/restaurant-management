@@ -379,6 +379,10 @@ tr td button:hover {
     width: 100%;
 }
 
+.products-table td, th {
+    width: 15%;
+}
+
 .my-tables button {
     padding: 5px;
     width: 45%;
@@ -399,4 +403,8 @@ tr td button:hover {
     font-size: 1.5em;
     color: white;
     margin: 15px 0;
+}
+
+#appetizers, #desserts, #drinks, #salads {
+    display: none;
 }

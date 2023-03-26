@@ -3,13 +3,14 @@ package com.dst.restaurantmanagement.services;
 import com.dst.restaurantmanagement.enums.ConsumableType;
 import com.dst.restaurantmanagement.models.dto.AddConsumableDTO;
 import com.dst.restaurantmanagement.models.entities.Consumable;
-import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.repositories.ConsumableRepository;
+import com.dst.restaurantmanagement.util.AppConstants;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,15 +29,24 @@ public class ConsumableService {
         this.consumableRepository.save(consumable);
     }
 
-    public List<Consumable> getAllConsumables() {
+    public List<Consumable> getExpiringConsumables() {
 
-        // Comparators for sorting, first by expiry date, then by  Consumable type
-        Comparator<Consumable> compareByConsumableType = Comparator.comparing(Consumable::getType);
-        Comparator<Consumable> compareByExpiryDate = Comparator.comparing(Consumable::getExpiryDate);
-        Comparator<Consumable> compareByName= Comparator.comparing(Consumable::getExpiryDate);
+        // Return all products which have expiry date closed to the current date and have more than 0 product left
 
-        Comparator<Consumable> compareByConsumableExpiryDateAndType = compareByExpiryDate.thenComparing(compareByConsumableType).thenComparing(compareByName);
+        return this.consumableRepository
+                .getExpiringConsumables(LocalDate.now().plusDays(AppConstants.EXPIRE_DAYS_WARNING))
+                .stream()
+                .sorted(Comparator.comparing(Consumable::getExpiryDate))
+                .filter(c -> c.getCurrentQuantity() >= AppConstants.MINIMUM_QUANTITY)
+                .toList();
+    }
 
-        return this.consumableRepository.findAll().stream().sorted(compareByConsumableExpiryDateAndType).toList();
+    public List<Consumable> getConsumablesByType(ConsumableType type) {
+        return this.consumableRepository
+                .getNonExpiringConsumablesByType(LocalDate.now().plusDays(AppConstants.EXPIRE_DAYS_WARNING), type)
+                .stream()
+                .sorted(Comparator.comparing(Consumable::getExpiryDate))
+                .filter(c -> c.getCurrentQuantity() >= AppConstants.MINIMUM_QUANTITY)
+                .toList();
     }
 }
