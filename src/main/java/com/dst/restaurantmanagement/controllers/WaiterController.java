@@ -1,7 +1,10 @@
 package com.dst.restaurantmanagement.controllers;
 
+import com.dst.restaurantmanagement.models.dto.AvailableMenuItemsDTO;
+import com.dst.restaurantmanagement.models.dto.MenuItemDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
+import com.dst.restaurantmanagement.services.MenuItemService;
 import com.dst.restaurantmanagement.services.OrderService;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
 import lombok.AllArgsConstructor;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @AllArgsConstructor
@@ -22,6 +26,7 @@ public class WaiterController {
 
     private final RestaurantTableService restaurantTableService;
     private final OrderService orderService;
+    private final MenuItemService menuItemService;
 
     @GetMapping
     public String waiterPage(Model model, @AuthenticationPrincipal RMUserDetails userDetails) {
@@ -51,7 +56,12 @@ public class WaiterController {
     }
 
     @GetMapping("/{tableId}/add")
-    public String addConsumablePage(@PathVariable Long tableId) {
+    public String addConsumablePage(@PathVariable Long tableId, Model model) {
+
+        Map<String, List<MenuItemDTO>> availableMenuItems = this.menuItemService.getAvailableMenuItems();
+
+        model.addAttribute("availableMenuItems", availableMenuItems);
+
         return "waiter-add-to-order";
     }
 }

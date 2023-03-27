@@ -2,6 +2,8 @@ package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.ItemType;
 import com.dst.restaurantmanagement.models.dto.AddMenuItemDTO;
+import com.dst.restaurantmanagement.models.dto.AvailableMenuItemsDTO;
+import com.dst.restaurantmanagement.models.dto.MenuItemDTO;
 import com.dst.restaurantmanagement.models.entities.MenuItem;
 import com.dst.restaurantmanagement.repositories.MenuItemRepository;
 import com.dst.restaurantmanagement.util.AppConstants;
@@ -10,9 +12,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -57,5 +58,30 @@ public class MenuItemService {
             menuItem.setWasted(true);
             this.menuItemRepository.saveAndFlush(menuItem);
         });
+    }
+
+    public Map<String, List<MenuItemDTO>> getAvailableMenuItems() {
+        Map<String, List<MenuItemDTO>> menuItems = new TreeMap<>();
+
+        // Put all menu item types in to the menu
+        Arrays.stream(ItemType.values()).forEach(t -> {
+            menuItems.put(t.name(), new ArrayList<>());
+        });
+
+        // Add all menu items on their category in the menu
+        this.menuItemRepository
+                .getAvailableMenuItems(LocalDate.now()).forEach(menuItem -> {
+                    String itemType = menuItem.getType().name();
+                    if (menuItems.containsKey(itemType)) {
+                        menuItems.get(itemType).add(MenuItemDTO.
+                                builder()
+                                .id(menuItem.getId())
+                                .name(menuItem.getName())
+                                .build());
+                    }
+                });
+
+        return menuItems;
+
     }
 }
