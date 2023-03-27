@@ -2,6 +2,7 @@ package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.dto.AvailableMenuItemsDTO;
 import com.dst.restaurantmanagement.models.dto.MenuItemDTO;
+import com.dst.restaurantmanagement.models.dto.UserOpenOrderDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.services.MenuItemService;
@@ -31,9 +32,9 @@ public class WaiterController {
     @GetMapping
     public String waiterPage(Model model, @AuthenticationPrincipal RMUserDetails userDetails) {
 
-        List<Long> currentUserUsedTablesIds = this.orderService.getCurrentUserUsedTablesIds(userDetails);
+        List<UserOpenOrderDTO> userOrders = this.orderService.getCurrentUserUsedTablesIds(userDetails);
 
-        model.addAttribute("usedTables", currentUserUsedTablesIds);
+        model.addAttribute("userOrders", userOrders);
 
         return "waiter-dashboard";
     }
@@ -55,12 +56,14 @@ public class WaiterController {
         return "redirect:/service/pending";
     }
 
-    @GetMapping("/{tableId}/add")
-    public String addConsumablePage(@PathVariable Long tableId, Model model) {
+    @GetMapping("/{orderId}/add")
+    public String addConsumablePage(@PathVariable Long orderId, Model model) {
 
         Map<String, List<MenuItemDTO>> availableMenuItems = this.menuItemService.getAvailableMenuItems();
 
         model.addAttribute("availableMenuItems", availableMenuItems);
+
+        System.out.println(orderId);
 
         return "waiter-add-to-order";
     }

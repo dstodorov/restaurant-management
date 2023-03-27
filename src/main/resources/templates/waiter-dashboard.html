@@ -20,11 +20,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="user" th:each="tableId : ${usedTables}">
-                        <td>N-<span th:text="${tableId}"></span></td>
+                    <tr class="user" th:each="order : ${userOrders}">
+                        <td>N-<span th:text="${order.tableId}"></span></td>
                         <td class="action-cell">
                             <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <a th:href="@{/service/{tableId}/add(tableId=${tableId})}"> <button type="button" class="button app-edit">Add food / drink</button></a>
+                                <a th:href="@{/service/{orderId}/add(orderId=${order.orderId})}"> <button type="button" class="button app-edit">Add food / drink</button></a>
                                 <button type="button" class="button app-edit">Complete order</button>
                             </form>
                         </td>

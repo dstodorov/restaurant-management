@@ -2,6 +2,7 @@ package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.OrderStatus;
 import com.dst.restaurantmanagement.enums.TableStatus;
+import com.dst.restaurantmanagement.models.dto.UserOpenOrderDTO;
 import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.models.entities.Order;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
@@ -37,10 +38,13 @@ public class OrderService {
         this.orderRepository.save(order);
     }
 
-    public List<Long> getCurrentUserUsedTablesIds(RMUserDetails userDetails) {
+    public List<UserOpenOrderDTO> getCurrentUserUsedTablesIds(RMUserDetails userDetails) {
         return this.orderRepository.findAllByWaiterIdAndStatus(userDetails.getId(), OrderStatus.OPEN)
                 .stream()
-                .map(o -> o.getTable().getId())
+                .map(o -> UserOpenOrderDTO.builder()
+                        .orderId(o.getId())
+                        .tableId(o.getTable().getId())
+                        .build())
                 .toList();
     }
 }
