@@ -30,4 +30,6 @@ public class MenuItem extends BaseEntity {
     private Integer purchasedQuantity;
     @Column(name = "expiry_date", nullable = false)
     private LocalDate expiryDate;
+    @Basic
+    private Boolean wasted = false;
 }
