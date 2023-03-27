@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
-    @Query("SELECT c FROM MenuItem c WHERE c.expiryDate < :expiryDate")
+    @Query("SELECT c FROM MenuItem c WHERE c.wasted = false and c.expiryDate < :expiryDate")
     List<MenuItem> getExpiringMenuItems(LocalDate expiryDate);
 
     @Query("SELECT c FROM MenuItem c WHERE c.expiryDate >= :expiryDate AND c.type = :cType")

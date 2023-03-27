@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -42,10 +43,19 @@ public class MenuItemService {
 
     public List<MenuItem> getMenuItemsByType(ItemType type) {
         return this.menuItemRepository
-                .getNonExpiringMenuItemsByType(LocalDate.now().plusDays(AppConstants.EXPIRE_DAYS_WARNING), type)
+                .getNonExpiringMenuItemsByType(LocalDate.now(), type)
                 .stream()
                 .sorted(Comparator.comparing(MenuItem::getExpiryDate))
                 .filter(c -> c.getCurrentQuantity() >= AppConstants.MINIMUM_QUANTITY)
                 .toList();
+    }
+
+    public void wasteMenuItem(Long id) {
+        Optional<MenuItem> menuItemById = this.menuItemRepository.findById(id);
+
+        menuItemById.ifPresent(menuItem -> {
+            menuItem.setWasted(true);
+            this.menuItemRepository.saveAndFlush(menuItem);
+        });
     }
 }
