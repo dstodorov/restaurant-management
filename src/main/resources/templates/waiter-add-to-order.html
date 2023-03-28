@@ -8,12 +8,13 @@
 <th:block th:insert="~{fragments/header}"></th:block>
 <div class="container">
     <th:block th:insert="~{fragments/navigation}"></th:block>
-    <form th:action="@{/service/id/add}" th:method="POST">
+    <form th:action="@{/service/{orderId}/add(orderId=${orderId})}" th:method="POST">
         <div class="form-group">
-            <label for="role">Product:</label>
-            <select id="role" name="role">
+            <label for="itemId">Product:</label>
+            <select id="itemId" name="itemId">
                 <option value="" selected>Select menu item</option>
-                <optgroup th:each="type : ${availableMenuItems}"  th:attr="label=${type.getKey()}, title=${type.getKey()}" >
+                <optgroup th:each="type : ${availableMenuItems}"
+                          th:attr="label=${type.getKey()}, title=${type.getKey()}">
                     <option th:each="item : ${type.getValue()}" th:text="${item.name}" th:value="${item.id}"></option>
                 </optgroup>
             </select>
@@ -24,6 +25,6 @@
 <footer>
     <p>&copy; 2023 My Page</p>
 </footer>
-<script type="text/javascript" src="/js/addEmployeeErrorStylize.js"></script>
+<script type="text/javascript" src="/js/addItemToOrderErrorStylize.js"></script>
 </body>
 </html>

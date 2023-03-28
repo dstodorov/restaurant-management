@@ -1,7 +1,7 @@
 package com.dst.restaurantmanagement.controllers;
 
-import com.dst.restaurantmanagement.models.dto.AvailableMenuItemsDTO;
 import com.dst.restaurantmanagement.models.dto.MenuItemDTO;
+import com.dst.restaurantmanagement.models.dto.OrderedItemDTO;
 import com.dst.restaurantmanagement.models.dto.UserOpenOrderDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
@@ -12,9 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -23,18 +22,22 @@ import java.util.Map;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/service")
+@Validated
 public class WaiterController {
 
     private final RestaurantTableService restaurantTableService;
     private final OrderService orderService;
     private final MenuItemService menuItemService;
 
+
     @GetMapping
     public String waiterPage(Model model, @AuthenticationPrincipal RMUserDetails userDetails) {
 
         List<UserOpenOrderDTO> userOrders = this.orderService.getCurrentUserUsedTablesIds(userDetails);
+        List<OrderedItemDTO> orderedItems = this.orderService.getOrderedItemsByUser(userDetails);
 
         model.addAttribute("userOrders", userOrders);
+        model.addAttribute("orderedItems", orderedItems);
 
         return "waiter-dashboard";
     }
@@ -57,14 +60,28 @@ public class WaiterController {
     }
 
     @GetMapping("/{orderId}/add")
-    public String addConsumablePage(@PathVariable Long orderId, Model model) {
+    public String addItemPage(@PathVariable Long orderId, Model model) {
 
         Map<String, List<MenuItemDTO>> availableMenuItems = this.menuItemService.getAvailableMenuItems();
 
         model.addAttribute("availableMenuItems", availableMenuItems);
-
-        System.out.println(orderId);
+        model.addAttribute("orderId", orderId);
 
         return "waiter-add-to-order";
+    }
+
+    @PostMapping("/{orderId}/add")
+    public String addItem(@RequestParam Long itemId, @PathVariable Long orderId) {
+
+        this.orderService.addToOrder(orderId, itemId);
+
+        return "redirect:/service/{orderId}/add";
+    }
+
+    @GetMapping("/serve")
+    public String serveOrderedItem(@RequestParam Long id) {
+
+        this.orderService.serve(id);
+        return "redirect:/service";
     }
 }

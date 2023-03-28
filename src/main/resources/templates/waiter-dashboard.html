@@ -24,7 +24,9 @@
                         <td>N-<span th:text="${order.tableId}"></span></td>
                         <td class="action-cell">
                             <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <a th:href="@{/service/{orderId}/add(orderId=${order.orderId})}"> <button type="button" class="button app-edit">Add food / drink</button></a>
+                                <a th:href="@{/service/{orderId}/add(orderId=${order.orderId})}">
+                                    <button type="button" class="button app-edit">Add food / drink</button>
+                                </a>
                                 <button type="button" class="button app-edit">Complete order</button>
                             </form>
                         </td>
@@ -43,13 +45,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="user">
-                        <td>N-1</td>
-                        <td>MUSAKA</td>
+                    <tr class="user" th:each="orderedItem: ${orderedItems}">
+                        <td>N-<span th:text="${orderedItem.tableId}"></span></td>
+                        <td><span th:text="${orderedItem.menuItemName}"></span></td>
                         <td class="action-cell">
-                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
-                                <button type="submit" class="button app-edit">Serve</button>
-                            </form>
+                            <a th:href="@{/service/serve(id=${orderedItem.orderedItemId})}">
+                                <button type="button" class="button app-edit">Serve</button>
+                            </a>
                         </td>
                     </tr>
                     </tbody>

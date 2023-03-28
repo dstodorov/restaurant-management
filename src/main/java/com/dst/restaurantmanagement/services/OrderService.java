@@ -1,14 +1,18 @@
 package com.dst.restaurantmanagement.services;
 
+import com.dst.restaurantmanagement.enums.DishStatus;
+import com.dst.restaurantmanagement.enums.ItemType;
 import com.dst.restaurantmanagement.enums.OrderStatus;
 import com.dst.restaurantmanagement.enums.TableStatus;
+import com.dst.restaurantmanagement.models.dto.OrderedItemDTO;
 import com.dst.restaurantmanagement.models.dto.UserOpenOrderDTO;
-import com.dst.restaurantmanagement.models.entities.Employee;
-import com.dst.restaurantmanagement.models.entities.Order;
-import com.dst.restaurantmanagement.models.entities.RestaurantTable;
+import com.dst.restaurantmanagement.models.entities.*;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
+import com.dst.restaurantmanagement.repositories.MenuItemRepository;
 import com.dst.restaurantmanagement.repositories.OrderRepository;
+import com.dst.restaurantmanagement.repositories.OrderedMenuItemRepository;
 import com.dst.restaurantmanagement.repositories.RestaurantTableRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +28,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final EmployeeService employeeService;
     private final RestaurantTableRepository restaurantTableRepository;
+    private final MenuItemRepository menuItemRepository;
+    private final OrderedMenuItemRepository orderedMenuItemRepository;
 
     public void startService(Long tableId, Principal user) {
         Optional<Employee> employee = this.employeeService.getByUsername(user.getName());
@@ -46,5 +52,56 @@ public class OrderService {
                         .tableId(o.getTable().getId())
                         .build())
                 .toList();
+    }
+
+    @Transactional
+    public void addToOrder(Long orderId, Long itemId) {
+
+        Optional<Order> order = this.orderRepository.findById(orderId);
+
+        Optional<MenuItem> menuItem = menuItemRepository.findById(itemId);
+
+        order.ifPresent(o -> {
+            // Default - cook will get all items with ORDERED status for cooking
+            DishStatus status = DishStatus.ORDERED;
+
+            // Cook will not get this menu item for cooking if it's a drink
+            if (menuItem.get().getType().equals(ItemType.DRINK)) {
+                status = DishStatus.COOKED;
+            }
+
+            OrderedMenuItem orderedMenuItem = OrderedMenuItem.builder()
+                    .menuItem(menuItem.get())
+                    .orderTime(LocalDateTime.now())
+                    .status(status)
+                    .build();
+
+            this.orderedMenuItemRepository.save(orderedMenuItem);
+
+            order.get().getMenuItems().add(orderedMenuItem);
+
+            this.orderRepository.save(order.get());
+
+            int currentQuantity = menuItem.get().getCurrentQuantity();
+
+            menuItem.get().setCurrentQuantity(currentQuantity - 1);
+
+            this.menuItemRepository.save(menuItem.get());
+        });
+
+
+    }
+
+    public List<OrderedItemDTO> getOrderedItemsByUser(RMUserDetails userDetails) {
+        return this.orderRepository.findAllByWaiterId(userDetails.getId());
+    }
+
+    public void serve(Long id) {
+        Optional<OrderedMenuItem> orderedMenuItem = this.orderedMenuItemRepository.findById(id);
+
+        orderedMenuItem.ifPresent(item -> {
+            item.setStatus(DishStatus.DONE);
+            this.orderedMenuItemRepository.save(item);
+        });
     }
 }
