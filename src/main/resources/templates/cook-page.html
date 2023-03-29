@@ -9,7 +9,53 @@
 <div class="container">
     <th:block th:insert="~{fragments/navigation}"></th:block>
     <main class="main-content">
-        TEST
+        <div class="cook-container">
+            <div class="cook-section">
+                <table class="products-table app-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">Order ID</th>
+                        <th style="width: 60%">Name</th>
+                        <th class="action-cell" style="width: 30%">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 10%">123</td>
+                        <td style="width: 60%">Musaka</td>
+                        <td class="action-cell" style="width: 30%">
+                            <a href="#">
+                                <button type="button" class="button button-cook">Start cooking</button>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cook-section">
+                <table class="products-table app-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">Order ID</th>
+                        <th style="width: 60%">Name</th>
+                        <th class="action-cell" style="width: 30%">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 10%">123</td>
+                        <td style="width: 60%">Musaka</td>
+                        <td class="action-cell" style="width: 30%">
+                            <a href="#">
+                                <button type="button" class="button button-cook">Finish cooking</button>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </main>
 </div>
 <footer>

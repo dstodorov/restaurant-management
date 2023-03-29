@@ -167,6 +167,17 @@ select {
     margin-left: 10px;
 }
 
+.button-cook {
+    background-color: #ff4800;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 90%;
+    margin: 10px;
+}
+
 button[type="submit"]:hover {
     background-color: #555;
 }
@@ -350,9 +361,23 @@ tr td button:hover {
     flex-basis: 100%;
 }
 
+.cook-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.cook-section {
+    flex-basis: 50%;
+    margin: 10px;
+}
+
 @media only screen and (max-width: 1280px) {
     .flex-container {
         flex-basis: 95%;
+    }
+
+    .cook-container {
+        flex-direction: column;
     }
 }
 

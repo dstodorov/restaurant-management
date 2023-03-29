@@ -15,14 +15,12 @@ public class CookingController {
 
     @GetMapping("/start")
     public String startCooking(@RequestParam Long id){
-        System.out.println(id);
 
         return "redirect:/cook";
     }
 
     @GetMapping("/finish")
     public String finishCooking(@RequestParam Long id){
-        System.out.println(id);
 
         return "redirect:/cook";
     }
