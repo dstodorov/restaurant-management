@@ -84,4 +84,11 @@ public class WaiterController {
         this.orderService.serve(id);
         return "redirect:/service";
     }
+
+    @GetMapping("/close")
+    public String closeOrder(@RequestParam Long orderId) {
+
+        this.orderService.serve(orderId);
+        return "redirect:/service";
+    }
 }

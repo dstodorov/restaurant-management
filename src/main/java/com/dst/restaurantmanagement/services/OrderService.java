@@ -51,6 +51,7 @@ public class OrderService {
                 .map(o -> UserOpenOrderDTO.builder()
                         .orderId(o.getId())
                         .tableId(o.getTable().getId())
+                        .canBeClosed(hasNonServedItems(o.getId()))
                         .build())
                 .toList();
     }
@@ -78,7 +79,6 @@ public class OrderService {
             updateItemQuantity(menuItem);
         });
     }
-
 
 
     public List<OrderedItemDTO> getOrderedItemsByUser(RMUserDetails userDetails) {
@@ -118,5 +118,10 @@ public class OrderService {
         order.get().getMenuItems().add(orderedMenuItem);
 
         this.orderRepository.save(order.get());
+    }
+
+    private Boolean hasNonServedItems(Long orderId) {
+        Long countOfNonServedItems = this.orderRepository.countOfNonServedItems(orderId);
+        return countOfNonServedItems > 0;
     }
 }

@@ -10,4 +10,5 @@ import lombok.*;
 public class UserOpenOrderDTO {
     private Long tableId;
     private Long orderId;
+    private Boolean canBeClosed = false;
 }

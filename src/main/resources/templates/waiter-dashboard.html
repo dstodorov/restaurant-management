@@ -27,7 +27,11 @@
                                 <a th:href="@{/service/{orderId}/add(orderId=${order.orderId})}">
                                     <button type="button" class="button app-edit">Add food / drink</button>
                                 </a>
-                                <button type="button" class="button app-edit">Complete order</button>
+                                <a th:href="@{/service/close(orderId=${order.orderId})}">
+                                    <button type="button" class="button app-edit"
+                                            th:disabled="${order.canBeClosed eq true}">Complete order
+                                    </button>
+                                </a>
                             </form>
                         </td>
                     </tr>
