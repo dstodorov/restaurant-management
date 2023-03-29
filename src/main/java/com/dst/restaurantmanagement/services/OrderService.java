@@ -4,6 +4,7 @@ import com.dst.restaurantmanagement.enums.DishStatus;
 import com.dst.restaurantmanagement.enums.ItemType;
 import com.dst.restaurantmanagement.enums.OrderStatus;
 import com.dst.restaurantmanagement.enums.TableStatus;
+import com.dst.restaurantmanagement.models.dto.CookingItemDTO;
 import com.dst.restaurantmanagement.models.dto.OrderedItemDTO;
 import com.dst.restaurantmanagement.models.dto.UserOpenOrderDTO;
 import com.dst.restaurantmanagement.models.entities.*;
@@ -103,5 +104,10 @@ public class OrderService {
             item.setStatus(DishStatus.DONE);
             this.orderedMenuItemRepository.save(item);
         });
+    }
+
+
+    public List<CookingItemDTO> getOrderedItemsByStatus(DishStatus itemStatus) {
+        return this.orderRepository.findAllByOrderedItemStatus(itemStatus);
     }
 }

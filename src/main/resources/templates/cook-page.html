@@ -11,6 +11,7 @@
     <main class="main-content">
         <div class="cook-container">
             <div class="cook-section">
+                <p class="table-label">Ordered items:</p>
                 <table class="products-table app-table">
                     <thead>
                     <tr>
@@ -20,11 +21,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="width: 10%">123</td>
-                        <td style="width: 60%">Musaka</td>
+                    <tr th:each="item: ${orderedItems}">
+                        <td style="width: 10%"><span th:text="${item.orderId}"/></td>
+                        <td style="width: 60%"><span th:text="${item.itemName}"/></td>
                         <td class="action-cell" style="width: 30%">
-                            <a href="#">
+                            <a th:href="@{/cook/start(id=${item.orderedItemId})}">
                                 <button type="button" class="button button-cook">Start cooking</button>
                             </a>
                         </td>
@@ -33,6 +34,7 @@
                 </table>
             </div>
             <div class="cook-section">
+                <p class="table-label">Cooking items:</p>
                 <table class="products-table app-table">
                     <thead>
                     <tr>
@@ -42,11 +44,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td style="width: 10%">123</td>
-                        <td style="width: 60%">Musaka</td>
+                    <tr th:each="item: ${cookingItems}">
+                        <td style="width: 10%"><span th:text="${item.orderId}"/></td>
+                        <td style="width: 60%"><span th:text="${item.itemName}"/></td>
                         <td class="action-cell" style="width: 30%">
-                            <a href="#">
+                            <a th:href="@{/cook/finish(id=${item.orderedItemId})}">
                                 <button type="button" class="button button-cook">Finish cooking</button>
                             </a>
                         </td>
