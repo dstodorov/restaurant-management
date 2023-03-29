@@ -9,7 +9,7 @@
     <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory"><i class="fa-solid fa-warehouse"></i>Inventory</a></li>
     <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory/expiring"><i class="fa-solid fa-trash"></i>Expiring items</a></li>
     <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory/add"><i class="fa-solid fa-plus"></i>Add item</a></li>
-    <li sec:authorize="hasRole('COOK')"><a href="/cook"><i class="fa-solid fa-knife-kitchen"></i>Cooking</a></li>
+    <li sec:authorize="hasRole('COOK')"><a href="/cook"><i class="fa-solid fa-cookie-bite"></i>Cooking</a></li>
     <li>
       <form th:action="@{/auth/logout}" th:method="POST" class="logout-form">
         <button class="logout" type="submit" style="font-family: Arial, sans-serif; font-size: 16px;"><i class="fa-solid fa-right-from-bracket"></i>Logout</button>

@@ -71,27 +71,15 @@ public class OrderService {
                 status = DishStatus.COOKED;
             }
 
-            OrderedMenuItem orderedMenuItem = OrderedMenuItem.builder()
-                    .menuItem(menuItem.get())
-                    .orderTime(LocalDateTime.now())
-                    .status(status)
-                    .build();
+            // Update order with the added item
+            updateOrder(order, menuItem, status);
 
-            this.orderedMenuItemRepository.save(orderedMenuItem);
-
-            order.get().getMenuItems().add(orderedMenuItem);
-
-            this.orderRepository.save(order.get());
-
-            int currentQuantity = menuItem.get().getCurrentQuantity();
-
-            menuItem.get().setCurrentQuantity(currentQuantity - 1);
-
-            this.menuItemRepository.save(menuItem.get());
+            // Decrease item current quantity
+            updateItemQuantity(menuItem);
         });
-
-
     }
+
+
 
     public List<OrderedItemDTO> getOrderedItemsByUser(RMUserDetails userDetails) {
         return this.orderRepository.findAllByWaiterId(userDetails.getId());
@@ -106,8 +94,29 @@ public class OrderService {
         });
     }
 
-
     public List<CookingItemDTO> getOrderedItemsByStatus(DishStatus itemStatus) {
         return this.orderRepository.findAllByOrderedItemStatus(itemStatus);
+    }
+
+    private void updateItemQuantity(Optional<MenuItem> menuItem) {
+        int currentQuantity = menuItem.get().getCurrentQuantity();
+
+        menuItem.get().setCurrentQuantity(currentQuantity - 1);
+
+        this.menuItemRepository.save(menuItem.get());
+    }
+
+    private void updateOrder(Optional<Order> order, Optional<MenuItem> menuItem, DishStatus status) {
+        OrderedMenuItem orderedMenuItem = OrderedMenuItem.builder()
+                .menuItem(menuItem.get())
+                .orderTime(LocalDateTime.now())
+                .status(status)
+                .build();
+
+        this.orderedMenuItemRepository.save(orderedMenuItem);
+
+        order.get().getMenuItems().add(orderedMenuItem);
+
+        this.orderRepository.save(order.get());
     }
 }
