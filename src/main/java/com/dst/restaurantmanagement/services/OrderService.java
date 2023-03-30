@@ -160,9 +160,26 @@ public class OrderService {
                 .builder()
                 .currentTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))
                 .tableNumber(order.getTable().getId())
+                .orderId(order.getId())
                 .waiterName(String.format("%s %s", order.getWaiter().getFirstName(), order.getWaiter().getLastName()))
                 .items(items)
                 .totalAmount(totalAmount)
                 .build();
+    }
+
+    public void closeOrder(Long orderId) {
+        Optional<Order> orderById = this.orderRepository.findById(orderId);
+
+        orderById.ifPresent(order -> {
+            order.setOrderClosed(LocalDateTime.now());
+            order.setStatus(OrderStatus.CLOSED);
+            this.orderRepository.save(order);
+
+            RestaurantTable table = order.getTable();
+
+            table.setStatus(TableStatus.FREE);
+
+            this.restaurantTableRepository.save(table);
+        });
     }
 }

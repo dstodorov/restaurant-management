@@ -41,7 +41,7 @@
             <p style="text-align: right; margin: 10px;">Total: <span style="font-weight: bold">$<span
                     th:text="*{totalAmount.setScale(2)}"></span></span></p>
             <div>
-                <a href="#">
+                <a th:href="@{/service/close(orderId=*{orderId})}">
                     <button type="button" class="button button-order">Close order</button>
                 </a>
                 <a href="#">

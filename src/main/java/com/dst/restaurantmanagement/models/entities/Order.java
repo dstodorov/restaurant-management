@@ -15,7 +15,10 @@ import java.util.List;
 @Entity
 @Table(name = "t_orders")
 public class Order extends BaseEntity {
+    @Column(nullable = false)
     private LocalDateTime orderTime;
+    @Basic
+    private LocalDateTime orderClosed;
     @OneToMany
     private List<OrderedMenuItem> menuItems;
     @ManyToOne

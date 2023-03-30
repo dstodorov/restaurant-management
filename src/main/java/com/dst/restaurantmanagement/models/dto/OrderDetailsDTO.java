@@ -13,6 +13,7 @@ import java.util.Map;
 @Builder
 public class OrderDetailsDTO {
     private Long tableNumber;
+    private Long orderId;
     private String waiterName;
     private String currentTime;
     private Map<String, ItemDetails> items;

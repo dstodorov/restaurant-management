@@ -100,6 +100,8 @@ public class WaiterController {
     @GetMapping("/close")
     public String closeOrder(@RequestParam Long orderId) {
 
+        this.orderService.closeOrder(orderId);
+
         return "redirect:/service";
     }
 }
