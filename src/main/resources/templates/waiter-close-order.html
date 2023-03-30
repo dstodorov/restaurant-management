@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Close order</title>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{fragments/navigation}"></th:block>
+    <main class="main-content">
+        <div class="order-container" th:object="${order}">
+            <div style="width: 100%; margin-bottom:10px; display: flex">
+                <span style="text-align: left; flex-grow: 1">Table: <span style="font-weight: bold"
+                                                                          th:text="*{tableNumber}"></span></span>
+                <span style="text-align: center; flex-grow: 1">Waiter: <span style="font-weight: bold"
+                                                                             th:text="*{waiterName}"></span></span>
+                <span style="text-align: right; flex-grow: 1">Time: <span style="font-weight: bold"
+                                                                          th:text="*{currentTime}"></span></span>
+            </div>
+            <hr>
+            <table class="order-table">
+                <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : *{items.values()}">
+                    <td><span th:text="${item.name}"></span></td>
+                    <td><span th:text="${item.count}"></span></td>
+                    <td><span th:text="${item.pricePerItem.setScale(2)}"></span></td>
+                    <td><span th:text="${item.pricePerItem * item.count}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+            <hr>
+            <p style="text-align: right; margin: 10px;">Total: <span style="font-weight: bold">$<span
+                    th:text="*{totalAmount.setScale(2)}"></span></span></p>
+            <div>
+                <a href="#">
+                    <button type="button" class="button button-order">Close order</button>
+                </a>
+                <a href="#">
+                    <button type="button" class="button button-order">Print</button>
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
+</body>
+</html>

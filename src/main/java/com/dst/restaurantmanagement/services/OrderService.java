@@ -4,9 +4,7 @@ import com.dst.restaurantmanagement.enums.DishStatus;
 import com.dst.restaurantmanagement.enums.ItemType;
 import com.dst.restaurantmanagement.enums.OrderStatus;
 import com.dst.restaurantmanagement.enums.TableStatus;
-import com.dst.restaurantmanagement.models.dto.CookingItemDTO;
-import com.dst.restaurantmanagement.models.dto.OrderedItemDTO;
-import com.dst.restaurantmanagement.models.dto.UserOpenOrderDTO;
+import com.dst.restaurantmanagement.models.dto.*;
 import com.dst.restaurantmanagement.models.entities.*;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.repositories.MenuItemRepository;
@@ -17,11 +15,13 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -123,5 +123,46 @@ public class OrderService {
     private Boolean hasNonServedItems(Long orderId) {
         Long countOfNonServedItems = this.orderRepository.countOfNonServedItems(orderId);
         return countOfNonServedItems > 0;
+    }
+
+    public OrderDetailsDTO getOrderById(Long orderId) {
+
+        Optional<Order> orderById = this.orderRepository.findById(orderId);
+
+        Map<String, ItemDetails> items = new LinkedHashMap<>();
+        Order order = orderById.get();
+
+        order.getMenuItems().forEach(item -> {
+            ItemDetails itemDetails;
+
+            if (items.containsKey(item.getMenuItem().getName())) {
+                itemDetails = items.get(item.getMenuItem().getName());
+                itemDetails.setCount(itemDetails.getCount() + 1);
+
+            } else {
+                itemDetails = ItemDetails
+                        .builder()
+                        .name(item.getMenuItem().getName())
+                        .pricePerItem(item.getMenuItem().getSalePrice())
+                        .count(1)
+                        .build();
+
+            }
+            items.put(item.getMenuItem().getName(), itemDetails);
+        });
+
+        BigDecimal totalAmount = items.values()
+                .stream()
+                .map(item -> item.getPricePerItem().multiply(BigDecimal.valueOf(item.getCount())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return OrderDetailsDTO
+                .builder()
+                .currentTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))
+                .tableNumber(order.getTable().getId())
+                .waiterName(String.format("%s %s", order.getWaiter().getFirstName(), order.getWaiter().getLastName()))
+                .items(items)
+                .totalAmount(totalAmount)
+                .build();
     }
 }

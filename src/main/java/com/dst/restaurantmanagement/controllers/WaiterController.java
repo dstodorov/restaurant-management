@@ -1,6 +1,7 @@
 package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.dto.MenuItemDTO;
+import com.dst.restaurantmanagement.models.dto.OrderDetailsDTO;
 import com.dst.restaurantmanagement.models.dto.OrderedItemDTO;
 import com.dst.restaurantmanagement.models.dto.UserOpenOrderDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
@@ -82,13 +83,23 @@ public class WaiterController {
     public String serveOrderedItem(@RequestParam Long id) {
 
         this.orderService.serve(id);
+
         return "redirect:/service";
+    }
+
+    @GetMapping("/preview")
+    public String previewOrder(@RequestParam Long orderId, Model model) {
+
+        OrderDetailsDTO order = this.orderService.getOrderById(orderId);
+
+        model.addAttribute("order", order);
+
+        return "waiter-close-order";
     }
 
     @GetMapping("/close")
     public String closeOrder(@RequestParam Long orderId) {
 
-        this.orderService.serve(orderId);
         return "redirect:/service";
     }
 }

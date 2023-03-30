@@ -172,9 +172,20 @@ select {
     color: #fff;
     border: none;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     width: 90%;
+    margin: 10px;
+}
+
+.button-order {
+    background-color: #ff4800;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 45%;
     margin: 10px;
 }
 
@@ -255,7 +266,7 @@ tr td form button {
     background-color: rgb(0, 173, 253);
 }
 
-tr td button:hover {
+tr td button:hover, .button-order:hover {
     background-color: #333;
     color: white;
     cursor: pointer;
@@ -379,6 +390,15 @@ tr td button:hover {
     .cook-container {
         flex-direction: column;
     }
+
+    .order-container {
+        width: 100%;
+    }
+
+    .button-order {
+        width: 95%;
+    }
+
 }
 
 .app-table {
@@ -432,4 +452,26 @@ tr td button:hover {
 
 #appetizers, #desserts, #drinks, #salads {
     display: none;
+}
+
+.order-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 100px auto;
+    background-color: rgba(255, 255, 255, 0.74);
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 1);
+    padding: 15px;
+}
+
+.order-table {
+    width: 100%;
+    margin: 20px;
+}
+
+.order-container hr {
+    width: 100%;
+    margin: 0 auto;
 }
