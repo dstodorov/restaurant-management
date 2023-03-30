@@ -1,12 +1,9 @@
 package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.TableStatus;
-import com.dst.restaurantmanagement.events.SaveTableEvent;
-import com.dst.restaurantmanagement.initializers.InitRestaurantTablesData;
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.repositories.RestaurantTableRepository;
-import org.hibernate.mapping.Table;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -56,15 +53,6 @@ public class RestaurantTableService {
             table.setStatus(TableStatus.PENDING);
             this.restaurantTableRepository.saveAndFlush(table);
         });
-    }
-
-    public void initTables() {
-
-        if (initTables) {
-            List<AddTableDTO> tables = InitRestaurantTablesData.getTables();
-
-            tables.forEach(this::saveTable);
-        }
     }
 
     public List<RestaurantTable> getAllPendingTables() {

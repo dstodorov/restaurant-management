@@ -24,7 +24,6 @@ public class AppInitializerImpl implements CommandLineRunner, AppInitializer {
         initRoles();
         initAdmin();
         initUsers();
-        initTables();
     }
 
     @Override
@@ -46,8 +45,4 @@ public class AppInitializerImpl implements CommandLineRunner, AppInitializer {
         this.employeeService.initUsers();
     }
 
-    @Override
-    public void initTables() {
-        this.restaurantTableService.initTables();
-    }
 }

@@ -5,5 +5,4 @@ public interface AppInitializer {
     void initAdmin();
 
     void initUsers();
-    void initTables();
 }
