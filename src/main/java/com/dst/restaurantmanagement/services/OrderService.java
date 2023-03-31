@@ -64,7 +64,7 @@ public class OrderService {
     }
 
     @Transactional
-    public void addToOrder(Long orderId, Long itemId) {
+    public void addToOrder(Long orderId, Long itemId, RMUserDetails userDetails) {
 
         Optional<Order> order = this.orderRepository.findById(orderId);
 
@@ -80,7 +80,7 @@ public class OrderService {
             }
 
             // Update order with the added item
-            updateOrder(order, menuItem, status);
+            updateOrder(order, menuItem, status, userDetails);
 
             // Decrease item current quantity
             updateItemQuantity(menuItem);
@@ -92,12 +92,14 @@ public class OrderService {
         return this.orderRepository.findAllByWaiterId(userDetails.getId());
     }
 
-    public void serve(Long id) {
+    public void serve(Long id, RMUserDetails userDetails) {
         Optional<OrderedMenuItem> orderedMenuItem = this.orderedMenuItemRepository.findById(id);
 
         orderedMenuItem.ifPresent(item -> {
             item.setStatus(DishStatus.DONE);
-            this.orderedMenuItemRepository.save(item);
+            Long dishId = this.orderedMenuItemRepository.save(item).getId();
+
+            EventPublisher.publish(userDetails, dishId, this, EventType.COOKING_ITEM_STATE.name(), DishStatus.COOKED.name(), DishStatus.DONE.name());
         });
     }
 
@@ -113,14 +115,20 @@ public class OrderService {
         this.menuItemRepository.save(menuItem.get());
     }
 
-    private void updateOrder(Optional<Order> order, Optional<MenuItem> menuItem, DishStatus status) {
+    private void updateOrder(Optional<Order> order, Optional<MenuItem> menuItem, DishStatus status, RMUserDetails userDetails) {
         OrderedMenuItem orderedMenuItem = OrderedMenuItem.builder()
                 .menuItem(menuItem.get())
                 .orderTime(LocalDateTime.now())
                 .status(status)
                 .build();
 
-        this.orderedMenuItemRepository.save(orderedMenuItem);
+        Long orderedItemId = this.orderedMenuItemRepository.save(orderedMenuItem).getId();
+
+        if (status == DishStatus.ORDERED) {
+            EventPublisher.publish(userDetails, orderedItemId, this, EventType.COOKING_ITEM_STATE.name(), AppConstants.CREATED_OBJECT_STATUS, DishStatus.ORDERED.name());
+        } else if (status == DishStatus.COOKED) {
+            EventPublisher.publish(userDetails, orderedItemId, this, EventType.COOKING_ITEM_STATE.name(), AppConstants.CREATED_OBJECT_STATUS, DishStatus.COOKED.name());
+        }
 
         order.get().getMenuItems().add(orderedMenuItem);
 
@@ -180,7 +188,8 @@ public class OrderService {
         orderById.ifPresent(order -> {
             order.setOrderClosed(LocalDateTime.now());
             order.setStatus(OrderStatus.CLOSED);
-            this.orderRepository.save(order);
+            Long orderIdEvent = this.orderRepository.save(order).getId();
+            EventPublisher.publish(userDetails, orderIdEvent, this, EventType.ORDER_STATE.name(), OrderStatus.OPEN.name(), OrderStatus.CLOSED.name());
 
             RestaurantTable table = order.getTable();
 

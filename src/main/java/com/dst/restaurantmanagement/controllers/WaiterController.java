@@ -72,17 +72,17 @@ public class WaiterController {
     }
 
     @PostMapping("/{orderId}/add")
-    public String addItem(@RequestParam Long itemId, @PathVariable Long orderId) {
+    public String addItem(@RequestParam Long itemId, @PathVariable Long orderId, @AuthenticationPrincipal RMUserDetails userDetails) {
 
-        this.orderService.addToOrder(orderId, itemId);
+        this.orderService.addToOrder(orderId, itemId, userDetails);
 
         return "redirect:/service/{orderId}/add";
     }
 
     @GetMapping("/serve")
-    public String serveOrderedItem(@RequestParam Long id) {
+    public String serveOrderedItem(@RequestParam Long id, @AuthenticationPrincipal RMUserDetails userDetails) {
 
-        this.orderService.serve(id);
+        this.orderService.serve(id, userDetails);
 
         return "redirect:/service";
     }

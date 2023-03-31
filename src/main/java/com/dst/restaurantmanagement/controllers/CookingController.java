@@ -2,9 +2,11 @@ package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.enums.DishStatus;
 import com.dst.restaurantmanagement.models.dto.CookingItemDTO;
+import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.services.OrderService;
 import com.dst.restaurantmanagement.services.OrderedMenuItemService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,17 +36,17 @@ public class CookingController {
     }
 
     @GetMapping("/start")
-    public String startCooking(@RequestParam Long id) {
+    public String startCooking(@RequestParam Long id, @AuthenticationPrincipal RMUserDetails userDetails) {
 
-        orderedMenuItemService.startCook(id);
+        orderedMenuItemService.startCook(id, userDetails);
 
         return "redirect:/cook";
     }
 
     @GetMapping("/finish")
-    public String finishCooking(@RequestParam Long id) {
+    public String finishCooking(@RequestParam Long id, @AuthenticationPrincipal RMUserDetails userDetails) {
 
-        orderedMenuItemService.finishCook(id);
+        orderedMenuItemService.finishCook(id, userDetails);
 
         return "redirect:/cook";
     }
