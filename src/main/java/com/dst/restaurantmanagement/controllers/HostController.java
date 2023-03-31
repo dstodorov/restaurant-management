@@ -1,8 +1,10 @@
 package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
+import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,9 +44,9 @@ public class HostController {
     }
 
     @GetMapping("/accommodate")
-    public String accommodate(@RequestParam Long id) {
+    public String accommodate(@RequestParam Long id, @AuthenticationPrincipal RMUserDetails userDetails) {
 
-        this.restaurantTableService.accommodateTable(id);
+        this.restaurantTableService.accommodateTable(id, userDetails);
 
         return "redirect:/host/accommodation";
     }

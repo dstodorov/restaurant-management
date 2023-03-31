@@ -54,8 +54,8 @@ public class WaiterController {
     }
 
     @GetMapping("/{tableId}/take")
-    public String startServiceTable(@PathVariable Long tableId, Principal user) {
-        this.orderService.startService(tableId, user);
+    public String startServiceTable(@PathVariable Long tableId, @AuthenticationPrincipal RMUserDetails userDetails) {
+        this.orderService.startService(tableId, userDetails);
 
         return "redirect:/service/pending";
     }
@@ -98,9 +98,9 @@ public class WaiterController {
     }
 
     @GetMapping("/close")
-    public String closeOrder(@RequestParam Long orderId) {
+    public String closeOrder(@RequestParam Long orderId, @AuthenticationPrincipal RMUserDetails userDetails) {
 
-        this.orderService.closeOrder(orderId);
+        this.orderService.closeOrder(orderId, userDetails);
 
         return "redirect:/service";
     }

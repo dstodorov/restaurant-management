@@ -1,9 +1,6 @@
 package com.dst.restaurantmanagement.services;
 
-import com.dst.restaurantmanagement.enums.DishStatus;
-import com.dst.restaurantmanagement.enums.ItemType;
-import com.dst.restaurantmanagement.enums.OrderStatus;
-import com.dst.restaurantmanagement.enums.TableStatus;
+import com.dst.restaurantmanagement.enums.*;
 import com.dst.restaurantmanagement.models.dto.*;
 import com.dst.restaurantmanagement.models.entities.*;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
@@ -11,15 +8,14 @@ import com.dst.restaurantmanagement.repositories.MenuItemRepository;
 import com.dst.restaurantmanagement.repositories.OrderRepository;
 import com.dst.restaurantmanagement.repositories.OrderedMenuItemRepository;
 import com.dst.restaurantmanagement.repositories.RestaurantTableRepository;
+import com.dst.restaurantmanagement.util.AppConstants;
+import com.dst.restaurantmanagement.util.EventPublisher;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.security.Principal;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -32,17 +28,28 @@ public class OrderService {
     private final MenuItemRepository menuItemRepository;
     private final OrderedMenuItemRepository orderedMenuItemRepository;
 
-    public void startService(Long tableId, Principal user) {
-        Optional<Employee> employee = this.employeeService.getByUsername(user.getName());
+    public void startService(Long tableId, RMUserDetails userDetails) {
+        Optional<Employee> employee = this.employeeService.getByUsername(userDetails.getUsername());
         Optional<RestaurantTable> table = this.restaurantTableRepository.findById(tableId);
 
         table.get().setStatus(TableStatus.USED);
 
-        restaurantTableRepository.saveAndFlush(table.get());
+        Long tableObjectId = restaurantTableRepository.saveAndFlush(table.get()).getId();
 
-        Order order = Order.builder().waiter(employee.get()).table(table.get()).orderTime(LocalDateTime.now()).menuItems(new ArrayList<>()).status(OrderStatus.OPEN).build();
+        EventPublisher.publish(userDetails, tableObjectId, this, EventType.TABLE_STATE.name(), TableStatus.PENDING.name(), TableStatus.USED.name());
 
-        this.orderRepository.save(order);
+        Order order = Order
+                .builder()
+                .waiter(employee.get())
+                .table(table.get())
+                .orderTime(LocalDateTime.now())
+                .menuItems(new ArrayList<>())
+                .status(OrderStatus.OPEN)
+                .build();
+
+        Long newOrderId = this.orderRepository.save(order).getId();
+
+        EventPublisher.publish(userDetails, newOrderId, this, EventType.ORDER_STATE.name(), AppConstants.CREATED_OBJECT_STATUS, OrderStatus.OPEN.name());
     }
 
     public List<UserOpenOrderDTO> getCurrentUserUsedTablesIds(RMUserDetails userDetails) {
@@ -167,7 +174,7 @@ public class OrderService {
                 .build();
     }
 
-    public void closeOrder(Long orderId) {
+    public void closeOrder(Long orderId, RMUserDetails userDetails) {
         Optional<Order> orderById = this.orderRepository.findById(orderId);
 
         orderById.ifPresent(order -> {
@@ -179,7 +186,9 @@ public class OrderService {
 
             table.setStatus(TableStatus.FREE);
 
-            this.restaurantTableRepository.save(table);
+            Long tableId = this.restaurantTableRepository.save(table).getId();
+
+            EventPublisher.publish(userDetails, tableId, this, EventType.TABLE_STATE.name(), TableStatus.USED.name(), TableStatus.FREE.name());
         });
     }
 }

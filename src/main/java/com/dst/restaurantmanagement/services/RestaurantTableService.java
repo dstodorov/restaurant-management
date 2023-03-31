@@ -1,13 +1,19 @@
 package com.dst.restaurantmanagement.services;
 
+import com.dst.restaurantmanagement.enums.EventType;
 import com.dst.restaurantmanagement.enums.TableStatus;
+import com.dst.restaurantmanagement.events.ChangeStatusEvent;
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
+import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.repositories.RestaurantTableRepository;
+import com.dst.restaurantmanagement.util.AppConstants;
+import com.dst.restaurantmanagement.util.EventPublisher;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,14 +30,14 @@ public class RestaurantTableService {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    public void saveTable(AddTableDTO addTableDTO) {
+    public void saveTable(AddTableDTO addTableDTO, RMUserDetails userDetails) {
         RestaurantTable table = new RestaurantTable();
         table.setSeats(addTableDTO.getSeats());
         table.setStatus(TableStatus.FREE);
 
-        this.restaurantTableRepository.save(table);
+        Long tableId = this.restaurantTableRepository.save(table).getId();
 
-        //applicationEventPublisher.publishEvent(new SaveTableEvent(this));
+        EventPublisher.publish(userDetails, tableId, this, EventType.TABLE_STATE.name(), AppConstants.CREATED_OBJECT_STATUS, TableStatus.FREE.name());
     }
 
     public List<RestaurantTable> getTables() {
@@ -46,13 +52,14 @@ public class RestaurantTableService {
         this.restaurantTableRepository.deleteById(id);
     }
 
-    public void accommodateTable(Long id) {
+    public void accommodateTable(Long id, RMUserDetails userDetails) {
         Optional<RestaurantTable> restaurantTable = this.restaurantTableRepository.findById(id);
 
-        restaurantTable.ifPresent(table -> {
-            table.setStatus(TableStatus.PENDING);
-            this.restaurantTableRepository.saveAndFlush(table);
-        });
+        restaurantTable.get().setStatus(TableStatus.PENDING);
+        Long objectId = this.restaurantTableRepository.saveAndFlush(restaurantTable.get()).getId();
+
+        // Publish event for the updated status
+        EventPublisher.publish(userDetails, objectId, this, EventType.TABLE_STATE.name(), TableStatus.FREE.name(), TableStatus.PENDING.name());
     }
 
     public List<RestaurantTable> getAllPendingTables() {

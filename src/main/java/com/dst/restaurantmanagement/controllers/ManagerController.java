@@ -2,9 +2,11 @@ package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
+import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,7 +47,7 @@ public class ManagerController {
     }
 
     @PostMapping("/tables/add")
-    public String addTable(@Valid AddTableDTO addTableDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String addTable(@Valid AddTableDTO addTableDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal RMUserDetails userDetails) {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("addTableDTO", addTableDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addTableDTO", bindingResult);
@@ -53,7 +55,7 @@ public class ManagerController {
             return "redirect:/manage/tables/add";
         }
 
-        this.restaurantTableService.saveTable(addTableDTO);
+        this.restaurantTableService.saveTable(addTableDTO, userDetails);
 
         return "redirect:/manage/tables";
     }
