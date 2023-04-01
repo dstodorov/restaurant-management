@@ -1,5 +1,6 @@
 package com.dst.restaurantmanagement.controllers;
 
+import com.dst.restaurantmanagement.enums.TableStatus;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
@@ -26,7 +27,7 @@ public class HostController {
     @GetMapping("/accommodation")
     public String accommodationPage(Model model) {
 
-        List<RestaurantTable> tables = this.restaurantTableService.getTables();
+        List<RestaurantTable> tables = this.restaurantTableService.getTables(TableStatus.FREE);
 
         model.addAttribute("tables", tables);
 

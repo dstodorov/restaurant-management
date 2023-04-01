@@ -13,21 +13,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class RestaurantTableService {
     private final RestaurantTableRepository restaurantTableRepository;
-    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Value("#{new Boolean('${app.init.tables}')}")
     private Boolean initTables;
 
     public RestaurantTableService(RestaurantTableRepository restaurantTableRepository, ApplicationEventPublisher applicationEventPublisher) {
         this.restaurantTableRepository = restaurantTableRepository;
-        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     public void saveTable(AddTableDTO addTableDTO, RMUserDetails userDetails) {
@@ -41,7 +38,11 @@ public class RestaurantTableService {
     }
 
     public List<RestaurantTable> getTables() {
-        return this.restaurantTableRepository.findAllByStatus(TableStatus.FREE);
+        return this.restaurantTableRepository.findAll();
+    }
+
+    public List<RestaurantTable> getTables(TableStatus status) {
+        return this.restaurantTableRepository.findAllByStatus(status);
     }
 
     public List<RestaurantTable> getTables(Integer seats) {

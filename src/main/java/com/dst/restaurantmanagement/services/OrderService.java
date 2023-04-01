@@ -96,10 +96,10 @@ public class OrderService {
         Optional<OrderedMenuItem> orderedMenuItem = this.orderedMenuItemRepository.findById(id);
 
         orderedMenuItem.ifPresent(item -> {
-            item.setStatus(DishStatus.DONE);
+            item.setStatus(DishStatus.SERVED);
             Long dishId = this.orderedMenuItemRepository.save(item).getId();
 
-            EventPublisher.publish(userDetails, dishId, this, EventType.COOKING_ITEM_STATE.name(), DishStatus.COOKED.name(), DishStatus.DONE.name());
+            EventPublisher.publish(userDetails, dishId, this, EventType.COOKING_ITEM_STATE.name(), DishStatus.COOKED.name(), DishStatus.SERVED.name());
         });
     }
 

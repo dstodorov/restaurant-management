@@ -1,5 +1,5 @@
 package com.dst.restaurantmanagement.enums;
 
 public enum DishStatus {
-    ORDERED, COOKING, COOKED, DONE
+    ORDERED, COOKING, COOKED, SERVED
 }

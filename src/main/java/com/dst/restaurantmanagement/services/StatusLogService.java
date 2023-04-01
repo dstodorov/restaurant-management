@@ -22,6 +22,8 @@ public class StatusLogService {
 
         StatusLog statusLog = mapper.map(event, StatusLog.class);
 
+        statusLog.setId(0);
+
         this.statusLogRepository.save(statusLog);
     }
 }
