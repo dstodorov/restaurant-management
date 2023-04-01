@@ -420,7 +420,7 @@ tr td button:hover, .button-order:hover {
     min-width: 400px;
 }
 
-.products-table {
+.products-table, .status-table {
     width: 100%;
 }
 

@@ -43,4 +43,9 @@ public class HomeController {
 
         return "login";
     }
+
+    @GetMapping("/events")
+    public String getStatuses() {
+        return "status-change-events";
+    }
 }

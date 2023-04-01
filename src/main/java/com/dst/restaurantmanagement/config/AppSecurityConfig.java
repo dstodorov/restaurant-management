@@ -27,6 +27,7 @@ public class AppSecurityConfig {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers("/", "/auth/login", "/auth/login-error").permitAll()
                 .requestMatchers("/employees/**").hasRole(RoleType.ADMIN.name())
+                .requestMatchers("/events", "/api/statuses").hasRole(RoleType.ADMIN.name())
                 .requestMatchers("/cook/**").hasRole(RoleType.COOK.name())
                 .requestMatchers("/manage/**").hasRole(RoleType.MANAGER.name())
                 .requestMatchers("/host/**").hasRole(RoleType.HOST.name())

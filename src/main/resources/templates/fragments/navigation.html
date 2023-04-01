@@ -2,6 +2,7 @@
   <ul>
     <li sec:authorize="hasRole('ADMIN')"><a href="/employees"><i class="fa-solid fa-user"></i>Employees</a></li>
     <li sec:authorize="hasRole('ADMIN')"><a href="/employees/add"><i class="fa-solid fa-plus"></i>Add employee</a></li>
+    <li sec:authorize="hasRole('ADMIN')"><a href="/events"><i class="fa-solid fa-calendar"></i>Events</a></li>
     <li sec:authorize="hasRole('MANAGER')"><a href="/manage/tables"><i class="fa-solid fa-utensils"></i>Tables</a></li>
     <li sec:authorize="hasRole('HOST')"><a href="/host/accommodation"><i class="fa-solid fa-chair"></i>Accommodation</a></li>
     <li sec:authorize="hasRole('WAITER')"><a href="/service"><i class="fa-solid fa-table-columns"></i>Service</a></li>

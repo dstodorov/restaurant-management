@@ -10,6 +10,8 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class StatusLogService {
@@ -25,5 +27,9 @@ public class StatusLogService {
         statusLog.setId(0);
 
         this.statusLogRepository.save(statusLog);
+    }
+
+    public List<StatusLog> getAll() {
+        return this.statusLogRepository.findAll();
     }
 }

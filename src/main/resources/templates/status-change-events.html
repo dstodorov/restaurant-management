@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Statuses</title>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{fragments/navigation}"></th:block>
+    <main class="main-content">
+        <table class="app-table status-table">
+            <thead>
+            <tr>
+                <th>DateTime</th>
+                <th>User</th>
+                <th>Event Name</th>
+                <th>Old Status</th>
+                <th>New Status</th>
+                <th>Object ID</th>
+            </tr>
+            </thead>
+            <tbody id="status-section"></tbody>
+        </table>
+    </main>
+</div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
+<script type="text/javascript" src="/js/statuses.js"></script>
+</body>
+</html>
