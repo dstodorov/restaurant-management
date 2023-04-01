@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +23,7 @@ import java.util.Map;
 @AllArgsConstructor
 @RequestMapping("/service")
 @Validated
-public class WaiterController {
+public class ServiceController {
 
     private final RestaurantTableService restaurantTableService;
     private final OrderService orderService;

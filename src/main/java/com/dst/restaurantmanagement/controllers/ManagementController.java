@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/manage")
-public class ManagerController {
+public class ManagementController {
 
     private final RestaurantTableService restaurantTableService;
 

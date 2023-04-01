@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/employees")
 @AllArgsConstructor
-public class EmployeeController {
+public class UserController {
 
     private final RoleService roleService;
     private final EmployeeService employeeService;
