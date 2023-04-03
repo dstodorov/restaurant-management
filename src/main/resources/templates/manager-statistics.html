@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Statistics</title>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{fragments/navigation}"></th:block>
+    <main class="main-content">
+        <div class="restaurant-table" th:each="table : ${allTables}">
+            <p class="table-number">N-<span th:text="${table.id}"/> <a th:href="@{/manage/tables/delete/(id=${table.id})}"><i class="fa-solid fa-trash" style="color: #ff0000; font-size: 0.75em;"></i></a> </p>
+            <img class="table-img" th:src="@{/images/table.png}">
+            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i><span
+                    th:text="${table.seats}"/></div>
+        </div>
+        <div class="restaurant-table-add" th:onclick="'javascript:window.location=\'/manage/tables/add\''">
+            <p class="table-number" style="color: rgba(13,110,253,0)">ID</p>
+            <img class="table-img" th:src="@{/images/table-add.png}">
+            <div class="table-seats" style="color: rgba(13,110,253,0)">SEATS</div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>&copy; 2023 My Page</p>
+</footer>
+</body>
+</html>

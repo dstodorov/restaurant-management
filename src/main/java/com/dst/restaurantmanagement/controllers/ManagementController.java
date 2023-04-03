@@ -3,7 +3,9 @@ package com.dst.restaurantmanagement.controllers;
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
+import com.dst.restaurantmanagement.services.OrderService;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
+import com.dst.restaurantmanagement.services.StatisticsService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,6 +23,7 @@ import java.util.List;
 public class ManagementController {
 
     private final RestaurantTableService restaurantTableService;
+    private final StatisticsService statisticsService;
 
     @ModelAttribute(name = "addTableDTO")
     public AddTableDTO initAddTableDTO() {
@@ -64,5 +67,11 @@ public class ManagementController {
     public String deleteTable(@RequestParam Long id) {
         this.restaurantTableService.deleteTable(id);
         return "redirect:/manage/tables";
+    }
+
+    @GetMapping("/stats")
+    public String getStatsPage() {
+
+        return "manager-statistics";
     }
 }
