@@ -1,9 +1,11 @@
 package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
+import com.dst.restaurantmanagement.models.entities.Report;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.services.OrderService;
+import com.dst.restaurantmanagement.services.ReportingService;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
 import com.dst.restaurantmanagement.services.StatisticsService;
 import jakarta.validation.Valid;
@@ -23,7 +25,7 @@ import java.util.List;
 public class ManagementController {
 
     private final RestaurantTableService restaurantTableService;
-    private final StatisticsService statisticsService;
+    private final ReportingService reportingService;
 
     @ModelAttribute(name = "addTableDTO")
     public AddTableDTO initAddTableDTO() {
@@ -70,7 +72,11 @@ public class ManagementController {
     }
 
     @GetMapping("/stats")
-    public String getStatsPage() {
+    public String getStatsPage(Model model) {
+
+        List<Report> reports = this.reportingService.getAll();
+
+        model.addAttribute("reports", reports);
 
         return "manager-statistics";
     }

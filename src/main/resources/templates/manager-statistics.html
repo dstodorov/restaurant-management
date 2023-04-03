@@ -9,29 +9,29 @@
 <div class="container">
     <th:block th:insert="~{fragments/navigation}"></th:block>
     <main class="main-content">
-        <div class="report-container">
-            <p style="margin: 20px; color: white; font-weight: bold">Report for: 25/10/2023</p>
+        <div class="report-container" th:each="report : ${reports}">
+            <p style="margin: 20px; color: white; font-weight: bold">Report for: <span th:text="${report.reportDate}"/></p>
             <hr style="margin: 0 20px 20px 20px">
             <div class="report-items">
                 <div class="report-item" style="background-color: #e63946">
                     <p class="item-label" style="color: #ffffff;">Product of the day</p>
-                    <p class="item-value" style="color: #ffffff">Coca-Cola</p>
+                    <p class="item-value" style="color: #ffffff"><span th:text="${report.productOfTheDay}"/></p>
                 </div>
                 <div class="report-item" style="background-color: #f1faee">
                     <p class="item-label" style="color: black;">Most used table</p>
-                    <p class="item-value" style="color: #000000">N-2</p>
+                    <p class="item-value" style="color: #000000">N-<span th:text="${report.mostUsedTable}"/></p>
                 </div>
                 <div class="report-item" style="background-color: #a8dadc">
                     <p class="item-label" style="color: black;">Employee of the day</p>
-                    <p class="item-value" style="color: #000000">Dimitar Todorov</p>
+                    <p class="item-value" style="color: #000000"><span th:text="${report.employeeOfTheDay}"/></p>
                 </div>
                 <div class="report-item" style="background-color: #457b9d">
                     <p class="item-label" style="color: #ffffff;">Turnover</p>
-                    <p class="item-value" style="color: #ffffff">$50</p>
+                    <p class="item-value" style="color: #ffffff">$<span th:text="${report.dailyTurnover}"/></p>
                 </div>
                 <div class="report-item" style="background-color: #1d3557">
                     <p class="item-label" style="color: #ffffff;">Pure Profit</p>
-                    <p class="item-value" style="color: #ffffff">$25</p>
+                    <p class="item-value" style="color: #ffffff">$<span th:text="${report.dailyPureProfit}"/></p>
                 </div>
             </div>
         </div>
