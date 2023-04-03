@@ -35,4 +35,5 @@ Where we have all prerequisites for the restaurant to operate. This process incl
 1. Every change of status, no matter of the object (order, ordered item, table), generates event for 'change status'. Those status changes published as events and observed by event listener, which write log in the database. Those logs are previewed in **Admin** page trough async fetch request
 2. Every ordered product, reduces the quantity this product in the warehouse. When there is no available units in the warehouse, the item will not appear in the menu.
 3. **Warehouse worker** can track the expired items in the inventory and if there is any, those items will not appear in the menu, and employee have the functionality to waste the product, which will mark the product in the database as waisted.
-4. ... TODO
+4. Everyday in 23:59 automatic report is generated, where **Manager** can check 'top sold product', 'most often used table', 'employee of the day', 'daily turnover' and 'daily pure profit'
+5. ... TODO

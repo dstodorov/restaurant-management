@@ -17,7 +17,7 @@ public class StatisticsService {
     private final ReportingRepository reportingRepository;
 
 
-    @Scheduled(cron = "0 59 23 * * *")
+    @Scheduled(cron = "0 39 22 * * *")
     private void generateReport() {
         String productOfTheDay = getProductOfTheDay();
         String mostUsedTable = getMostUsedTable();
