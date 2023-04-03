@@ -9,16 +9,31 @@
 <div class="container">
     <th:block th:insert="~{fragments/navigation}"></th:block>
     <main class="main-content">
-        <div class="restaurant-table" th:each="table : ${allTables}">
-            <p class="table-number">N-<span th:text="${table.id}"/> <a th:href="@{/manage/tables/delete/(id=${table.id})}"><i class="fa-solid fa-trash" style="color: #ff0000; font-size: 0.75em;"></i></a> </p>
-            <img class="table-img" th:src="@{/images/table.png}">
-            <div class="table-seats"><i class="fa-solid fa-chair" style="font-size: 0.85em"></i><span
-                    th:text="${table.seats}"/></div>
-        </div>
-        <div class="restaurant-table-add" th:onclick="'javascript:window.location=\'/manage/tables/add\''">
-            <p class="table-number" style="color: rgba(13,110,253,0)">ID</p>
-            <img class="table-img" th:src="@{/images/table-add.png}">
-            <div class="table-seats" style="color: rgba(13,110,253,0)">SEATS</div>
+        <div class="report-container">
+            <p style="margin: 20px; color: white; font-weight: bold">Report for: 25/10/2023</p>
+            <hr style="margin: 0 20px 20px 20px">
+            <div class="report-items">
+                <div class="report-item" style="background-color: #e63946">
+                    <p class="item-label" style="color: #ffffff;">Product of the day</p>
+                    <p class="item-value" style="color: #ffffff">Coca-Cola</p>
+                </div>
+                <div class="report-item" style="background-color: #f1faee">
+                    <p class="item-label" style="color: black;">Most used table</p>
+                    <p class="item-value" style="color: #000000">N-2</p>
+                </div>
+                <div class="report-item" style="background-color: #a8dadc">
+                    <p class="item-label" style="color: black;">Employee of the day</p>
+                    <p class="item-value" style="color: #000000">Dimitar Todorov</p>
+                </div>
+                <div class="report-item" style="background-color: #457b9d">
+                    <p class="item-label" style="color: #ffffff;">Turnover</p>
+                    <p class="item-value" style="color: #ffffff">$50</p>
+                </div>
+                <div class="report-item" style="background-color: #1d3557">
+                    <p class="item-label" style="color: #ffffff;">Pure Profit</p>
+                    <p class="item-value" style="color: #ffffff">$25</p>
+                </div>
+            </div>
         </div>
     </main>
 </div>
