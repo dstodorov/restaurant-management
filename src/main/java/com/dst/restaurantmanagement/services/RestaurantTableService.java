@@ -20,9 +20,6 @@ import java.util.Optional;
 public class RestaurantTableService {
     private final RestaurantTableRepository restaurantTableRepository;
 
-    @Value("#{new Boolean('${app.init.tables}')}")
-    private Boolean initTables;
-
     public RestaurantTableService(RestaurantTableRepository restaurantTableRepository, ApplicationEventPublisher applicationEventPublisher) {
         this.restaurantTableRepository = restaurantTableRepository;
     }

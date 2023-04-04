@@ -58,6 +58,8 @@ public class EmployeeService {
 
         employee.setRole(employeeRole);
 
+        employee.setEnabled(true);
+
         employee.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
 
         this.employeeRepository.save(employee);
@@ -73,7 +75,7 @@ public class EmployeeService {
                 passwordEncoder.encode(adminPassword),
                 adminPhoneNumber,
                 LocalDate.now(),
-                false,
+                true,
                 role
         );
 
