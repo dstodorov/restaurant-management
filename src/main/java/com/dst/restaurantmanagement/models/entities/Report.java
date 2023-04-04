@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table
+@Table(name = "t_reports")
 public class Report extends BaseEntity {
     @Column(name = "report_date", nullable = false)
     private LocalDate reportDate;
