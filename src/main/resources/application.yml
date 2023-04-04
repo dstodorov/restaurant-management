@@ -16,11 +16,10 @@ server:
   port: 8080
 app:
   admin:
-    username: ADMIN
-    password: PASSWORD
+    username: admin
+    password: password
     firstName: Dimitar
     lastName: Todorov
     phoneNumber: 0897065558
   init:
-    users: true
-    tables: true
+    users: false
