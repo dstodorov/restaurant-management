@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 public class AppUserDetailsService implements UserDetailsService {
@@ -21,8 +22,9 @@ public class AppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return employeeRepository.findByUsername(username)
-                .map(this::map)
+        Optional<Employee> user = employeeRepository.findByUsername(username);
+
+        return user.map(this::map)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("%s was not found!", username)));
     }
 
@@ -35,6 +37,7 @@ public class AppUserDetailsService implements UserDetailsService {
                 employee.getPassword(),
                 employee.getPhoneNumber(),
                 employee.getHireDate(),
+                employee.getEnabled(),
                 getRoleAsGrantedAuthority(employee.getRole())
         );
     }

@@ -72,7 +72,21 @@ public class UserController {
     @RequestMapping(value = "/{id}")
     public String deleteEmployee(@PathVariable("id") Long id) {
 
-        this.employeeService.delete(id);
+        this.employeeService.disableAccount(id);
+
+        return "redirect:/employees";
+    }
+
+    @GetMapping("/{id}/enable")
+    public String enableAccount(@PathVariable Long id) {
+        this.employeeService.enableAccount(id);
+
+        return "redirect:/employees";
+    }
+
+    @GetMapping("/{id}/disable")
+    public String disableAccount(@PathVariable Long id) {
+        this.employeeService.disableAccount(id);
 
         return "redirect:/employees";
     }

@@ -17,6 +17,7 @@ public class RMUserDetails implements UserDetails {
     private final String password;
     private final String phoneNumber;
     private final LocalDate hireDate;
+    private final Boolean enabled;
     private final Collection<GrantedAuthority> authorities;
 
     @Override
@@ -51,7 +52,7 @@ public class RMUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
     public Long getId() {

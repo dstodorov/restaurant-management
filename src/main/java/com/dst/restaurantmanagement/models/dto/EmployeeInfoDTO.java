@@ -18,5 +18,6 @@ public class EmployeeInfoDTO {
     private String username;
     private String phoneNumber;
     private LocalDate hireDate;
+    private Boolean enabled;
     private String role;
 }

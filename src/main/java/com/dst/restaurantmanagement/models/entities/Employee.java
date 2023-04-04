@@ -28,6 +28,8 @@ public class Employee extends BaseEntity {
     private String phoneNumber;
     @Column(nullable = false, name = "hire_date")
     private LocalDate hireDate;
+    @Column(nullable = false)
+    private Boolean enabled = true;
     @ManyToOne
     private Role role;
 

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
+</head>
+<body class="released-body">
+<div class="released-container">
+    <h1 style="color: white; margin-bottom: 5px">Employee account <span style="color: #00d2ff" th:text="${username}"/> is currently disabled!</h1>
+    <hr style="width: 100%">
+    <a href="/"><button class="error-page-btn">back</button></a>
+</div>
+</body>
+</html>

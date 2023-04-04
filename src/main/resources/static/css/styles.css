@@ -256,7 +256,7 @@ tr td {
     padding-left: 10px;
 }
 
-tr td form button {
+tr td button {
     padding: 5px;
     width: 40%;
     box-shadow: 0 0 5px rgb(48, 48, 48);
@@ -274,6 +274,14 @@ tr td button:hover, .button-order:hover {
 
 .button-delete {
     background-color: rgb(247, 74, 74);
+}
+
+.button-disable {
+    background-color: rgb(247, 74, 74);
+}
+
+.button-enable {
+    background-color: rgb(158, 247, 74);
 }
 
 .button-save {
@@ -541,4 +549,25 @@ tr td button:hover, .button-order:hover {
     margin: 0 auto;
 }
 
+.released-container {
+    position: absolute;
+    top: 50%;
+    width: 95%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
+.error-page-btn {
+    width: 100px;
+    height: 30px;
+    margin: 10px 0;
+    background-color: #00d2ff;
+    font-size: 1em;
+    border: 0;
+}
+
+.error-page-btn:hover {
+    cursor: pointer;
+    background-color: #697a8c;
+    color: white;
+}

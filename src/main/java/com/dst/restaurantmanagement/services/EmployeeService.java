@@ -73,6 +73,7 @@ public class EmployeeService {
                 passwordEncoder.encode(adminPassword),
                 adminPhoneNumber,
                 LocalDate.now(),
+                false,
                 role
         );
 
@@ -87,7 +88,11 @@ public class EmployeeService {
 
     public List<EmployeeInfoDTO> getAllEmployees() {
 
-        return this.employeeRepository.findAll().stream().filter(e -> !e.getRole().getRoleType().equals(RoleType.ADMIN)).map(this::mapToEmployeeInfoDTO).toList();
+        return this.employeeRepository
+                .findAll()
+                .stream()
+                .filter(e -> !e.getRole().getRoleType().equals(RoleType.ADMIN))
+                .map(this::mapToEmployeeInfoDTO).toList();
     }
 
     private EmployeeInfoDTO mapToEmployeeInfoDTO(Employee employee) {
@@ -98,14 +103,18 @@ public class EmployeeService {
                 employee.getUsername(),
                 employee.getPhoneNumber(),
                 employee.getHireDate(),
+                employee.getEnabled(),
                 employee.getRole().getRoleType().name()
         );
     }
 
-    public void delete(Long id) {
+    public void disableAccount(Long id) {
         Optional<Employee> employee = employeeRepository.findById(id);
 
-        employee.ifPresent(this.employeeRepository::delete);
+        employee.ifPresent(e -> {
+            e.setEnabled(false);
+            this.employeeRepository.save(e);
+        });
     }
 
     public EditEmployeeDTO getEmployee(Long id) {
@@ -176,10 +185,19 @@ public class EmployeeService {
     }
 
     public void initUsers() {
-        if(initUsers) {
+        if (initUsers) {
             List<AddEmployeeDTO> employees = InitUsersData.getEmployees();
 
             employees.forEach(this::saveEmployee);
         }
+    }
+
+    public void enableAccount(Long id) {
+        Optional<Employee> employee = employeeRepository.findById(id);
+
+        employee.ifPresent(e -> {
+            e.setEnabled(true);
+            this.employeeRepository.save(e);
+        });
     }
 }

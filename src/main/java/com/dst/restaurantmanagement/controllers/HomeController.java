@@ -18,6 +18,7 @@ public class HomeController {
     public String home(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
             Employee loggedUser = this.employeeService.getByUsername(authentication.getName()).get();
+
             switch (loggedUser.getRole().getRoleType()) {
 
                 case COOK -> {

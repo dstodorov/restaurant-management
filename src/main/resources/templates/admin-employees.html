@@ -11,12 +11,12 @@
     <table id="users-table">
         <thead>
         <tr>
-            <th>Username</th>
+            <th style="width: fit-content">Username</th>
             <th>Role</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Phone number</th>
-            <th>Hire date</th>
+            <th style="width: fit-content">First name</th>
+            <th style="width: fit-content">Last name</th>
+            <th style="width: fit-content">Phone number</th>
+            <th style="width: fit-content">Hire date</th>
             <th class="action-cell">Actions</th>
         </tr>
         </thead>
@@ -28,20 +28,16 @@
             <td><span th:text="${employee.lastName}"/></td>
             <td><span th:text="${employee.phoneNumber}"/></td>
             <td><span th:text="${employee.hireDate}"/></td>
-            <td class="action-cell">
-                <!--                <button type="button" class="button button-edit">EDIT</button>-->
-                <form th:action="@{/employees/{id}(id=${employee.id})}" style="margin: 0; padding: 0; display: inline">
-                    <input type="hidden" th:name="method" th:value="DELETE"/>
-                    <button type="submit"
-                            th:data-confirm-delete="|Are you sure you want to delete this employee ${employee.username}?|"
-                            onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
-                            class="button button-delete">Delete
-                    </button>
-                </form>
-                <form th:action="@{/employees/edit/{id}(id=${employee.id})}" style="margin:0; padding: 0; display: inline;">
-                    <button type="submit" class="button app-edit">Edit</button>
-                </form>
-                <!--                <button type="button" class="button button-delete">DELETE</button>-->
+            <td class="action-cell flex-cell">
+                <a th:href="@{/employees/{id}/disable(id=${employee.id})}" th:if="${employee.enabled}" >
+                    <button type="button" class="button button-disable">Disable</button>
+                </a>
+                <a th:href="@{/employees/{id}/enable(id=${employee.id})}" th:if="${employee.enabled == false}">
+                    <button type="button" class="button button-enable">Enable</button>
+                </a>
+                <a th:href="@{/employees/edit/{id}(id=${employee.id})}">
+                    <button type="button" class="button app-edit" style="width: 40%">Edit</button>
+                </a>
             </td>
         </tr>
         </tbody>
