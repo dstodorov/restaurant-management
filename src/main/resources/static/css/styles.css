@@ -575,3 +575,7 @@ tr td button:hover, .button-order:hover {
 .active-menu-item {
     background-color: #555;
 }
+
+.stat {
+    margin: 10px 0;
+}

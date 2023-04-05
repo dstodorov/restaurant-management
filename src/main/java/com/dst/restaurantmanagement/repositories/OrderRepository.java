@@ -42,4 +42,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT SUM(omi.menuItem.salePrice) - SUM(omi.menuItem.purchasePrice) FROM Order o JOIN o.menuItems omi WHERE DATE(o.orderTime) = CURDATE()")
     BigDecimal getDailyPureProfit();
+
+    @Query("SELECT SUM(omi.menuItem.salePrice) FROM Order o JOIN o.menuItems omi")
+    BigDecimal getTotalTurnover();
+
+    @Query("SELECT SUM(omi.menuItem.salePrice) - SUM(omi.menuItem.purchasePrice) FROM Order o JOIN o.menuItems omi")
+    BigDecimal getTotalPureProfit();
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Statistics</title>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{fragments/navigation}"></th:block>
+    <main class="main-content">
+        <div class="report-container">
+            <div style="margin: 15px; color: white" th:object="${stats}">
+                <h1><p>Interesting Stats</p></h1>
+                <p class="stat">Employees: <span th:text="*{employees}"></span></p>
+                <p class="stat">Tables: <span th:text="*{tables}"></span></p>
+                <p class="stat">Menu items: <span th:text="*{menuItems}"></span></p>
+                <p class="stat">Orders: <span th:text="*{orders}"></span></p>
+                <p class="stat">Wasted items: <span th:text="*{waistedItems}"></span></p>
+                <p class="stat">Total turnover: <span th:text="*{totalTurnover}"></span></p>
+                <p class="stat">Total profit: <span th:text="*{totalProfit}"></span></p>
+            </div>
+        </div>
+    </main>
+</div>
+<th:block th:insert="~{fragments/footer}"></th:block>
+</body>
+</html>

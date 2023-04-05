@@ -5,6 +5,7 @@
     <li sec:authorize="hasRole('ADMIN')"><a href="/events" th:class="${events_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-calendar"></i>Events</a></li>
     <li sec:authorize="hasRole('MANAGER')"><a href="/manage/tables" th:class="${tables_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-utensils"></i>Tables</a></li>
     <li sec:authorize="hasRole('MANAGER')"><a href="/manage/reports" th:class="${reports_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-chart-simple"></i>Reports</a></li>
+    <li sec:authorize="hasRole('MANAGER')"><a href="/manage/stats" th:class="${stats_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-chart-simple"></i>Stats</a></li>
     <li sec:authorize="hasRole('HOST')"><a href="/host/accommodation" th:class="${accommodation_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-chair"></i>Accommodation</a></li>
     <li sec:authorize="hasRole('WAITER')"><a href="/service" th:class="${service_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-table-columns"></i>Service</a></li>
     <li sec:authorize="hasRole('WAITER')"><a href="/service/pending" th:class="${service_pending_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-table-columns"></i>Pending tables</a></li>

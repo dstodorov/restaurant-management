@@ -1,11 +1,13 @@
 package com.dst.restaurantmanagement.controllers;
 
 import com.dst.restaurantmanagement.models.dto.AddTableDTO;
+import com.dst.restaurantmanagement.models.dto.StatsDTO;
 import com.dst.restaurantmanagement.models.entities.Report;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.services.ReportingService;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
+import com.dst.restaurantmanagement.services.StatisticsService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,6 +26,7 @@ public class ManagementController {
 
     private final RestaurantTableService restaurantTableService;
     private final ReportingService reportingService;
+    private final StatisticsService statisticsService;
 
     @ModelAttribute(name = "addTableDTO")
     public AddTableDTO initAddTableDTO() {
@@ -78,6 +81,20 @@ public class ManagementController {
         model.addAttribute("reports", reports);
         model.addAttribute("reports_menu", true);
 
-        return "manager-statistics";
+        return "manager-reports";
+    }
+
+    @GetMapping("/stats")
+    public String getStatsPage(Model model) {
+
+        List<Report> reports = this.reportingService.getAll();
+
+        StatsDTO stats = this.statisticsService.getStats();
+
+        model.addAttribute("reports", reports);
+        model.addAttribute("stats_menu", true);
+        model.addAttribute("stats", stats);
+
+        return "manager-stats";
     }
 }

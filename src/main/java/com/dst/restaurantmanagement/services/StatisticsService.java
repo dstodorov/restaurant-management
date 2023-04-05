@@ -1,8 +1,10 @@
 package com.dst.restaurantmanagement.services;
 
+import com.dst.restaurantmanagement.enums.OrderStatus;
+import com.dst.restaurantmanagement.models.dto.StatsDTO;
+import com.dst.restaurantmanagement.models.entities.MenuItem;
 import com.dst.restaurantmanagement.models.entities.Report;
-import com.dst.restaurantmanagement.repositories.OrderRepository;
-import com.dst.restaurantmanagement.repositories.ReportingRepository;
+import com.dst.restaurantmanagement.repositories.*;
 import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,10 @@ import java.time.LocalDate;
 public class StatisticsService {
     private final OrderRepository orderRepository;
     private final ReportingRepository reportingRepository;
+    private final EmployeeRepository employeeRepository;
+    private final RestaurantTableRepository restaurantTableRepository;
+    private final MenuItemRepository menuItemRepository;
+    private final OrderedMenuItemRepository orderedMenuItemRepository;
 
 
     @Scheduled(cron = "0 59 23 * * *")
@@ -37,6 +43,27 @@ public class StatisticsService {
         this.reportingRepository.save(report);
 
         System.out.println("Report generated!");
+    }
+
+    public StatsDTO getStats() {
+        Long employees = this.employeeRepository.count();
+        Long tables = this.restaurantTableRepository.count();
+        Long menuItems = this.menuItemRepository.count();
+        Long orders = this.orderRepository.findAll().stream().filter(o -> o.getStatus().equals(OrderStatus.CLOSED)).count();
+        Long waistedItems = this.menuItemRepository.findAll().stream().filter(MenuItem::getWasted).mapToLong(MenuItem::getCurrentQuantity).sum();
+        BigDecimal totalTurnover = this.orderRepository.getTotalTurnover();
+        BigDecimal totalPureProfit = this.orderRepository.getTotalPureProfit();
+
+        return StatsDTO
+                .builder()
+                .employees(employees)
+                .tables(tables)
+                .menuItems(menuItems)
+                .orders(orders)
+                .waistedItems(waistedItems)
+                .totalTurnover(totalTurnover)
+                .totalProfit(totalPureProfit)
+                .build();
     }
 
     private String getMostUsedTable() {
