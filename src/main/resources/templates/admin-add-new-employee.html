@@ -48,6 +48,7 @@
             <div id="phoneNumberError" th:if="${#fields.hasErrors('phoneNumber')}" class="error-field"><i class="fa-solid fa-triangle-exclamation"></i>You must enter phone number!</div>
         </div>
         <button type="submit" class="button-save">SAVE</button>
+        <p style="margin: 10px;"><span th:if="${errorMessage != null}" th:text="${errorMessage}" style="color: #ff0000; font-weight: bold; background-color: #313131"></span></p>
     </form>
 </div>
 <footer>

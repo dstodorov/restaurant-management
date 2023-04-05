@@ -55,7 +55,15 @@ public class UserController {
             return "redirect:/employees/add";
         }
 
-        this.employeeService.saveEmployee(addEmployeeDTO);
+        String errorMessage = this.employeeService.saveEmployee(addEmployeeDTO);
+
+        if (this.employeeService.saveEmployee(addEmployeeDTO) != null) {
+            redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
+            redirectAttributes.addFlashAttribute("addEmployeeDTO", addEmployeeDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addEmployeeDTO", bindingResult);
+
+            return "redirect:/employees/add";
+        }
 
         return "redirect:/employees";
     }

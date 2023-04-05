@@ -47,10 +47,18 @@ public class EmployeeService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void saveEmployee(AddEmployeeDTO employeeDTO) {
+    public String saveEmployee(AddEmployeeDTO employeeDTO) {
 
-        // Throw duplication exception in case of unique constraint error
-        validateUsernameAndPhoneNumber(employeeDTO.getUsername(), employeeDTO.getPhoneNumber());
+        Optional<Employee> employeeByUsername = this.employeeRepository.getByUsername(employeeDTO.getUsername());
+        Optional<Employee> employeeByPhoneNumber = this.employeeRepository.getByPhoneNumber(employeeDTO.getPhoneNumber());
+
+        if (employeeByUsername.isPresent()) {
+            return String.format("User with username %s, already exists!", employeeDTO.getUsername());
+        }
+
+        if (employeeByPhoneNumber.isPresent()) {
+            return String.format("User with phone number %s, already exists!", employeeDTO.getPhoneNumber());
+        }
 
         Role employeeRole = roleRepository.findByRoleType(RoleType.valueOf(employeeDTO.getRole()));
 
@@ -63,6 +71,8 @@ public class EmployeeService {
         employee.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
 
         this.employeeRepository.save(employee);
+
+        return null;
     }
 
     public void initAdministrator() {
@@ -174,16 +184,7 @@ public class EmployeeService {
     }
 
     private void validateUsernameAndPhoneNumber(String username, String phoneNumber) {
-        Optional<Employee> employeeByUsername = this.employeeRepository.getByUsername(username);
-        Optional<Employee> employeeByPhoneNumber = this.employeeRepository.getByPhoneNumber(phoneNumber);
 
-        if (employeeByUsername.isPresent()) {
-            throw new UsernameDuplicationException(String.format("User with username %s, already exists!", username));
-        }
-
-        if (employeeByPhoneNumber.isPresent()) {
-            throw new PhoneNumberDuplicationException(String.format("User with phone number %s, already exists!", phoneNumber));
-        }
     }
 
     public void initUsers() {
