@@ -21,4 +21,6 @@ public class OrderedMenuItem extends BaseEntity{
     private LocalDateTime orderTime;
     @Enumerated(EnumType.STRING)
     private DishStatus status;
+    @ManyToOne
+    private Employee cook;
 }

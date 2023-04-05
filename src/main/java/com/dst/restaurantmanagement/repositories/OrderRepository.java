@@ -22,6 +22,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     @Query("SELECT new com.dst.restaurantmanagement.models.dto.CookingItemDTO(o.id, mi.menuItem.name, mi.id) FROM Order o JOIN o.menuItems mi WHERE mi.status = :itemStatus")
     List<CookingItemDTO> findAllByOrderedItemStatus(DishStatus itemStatus);
 
+    @Query("SELECT new com.dst.restaurantmanagement.models.dto.CookingItemDTO(o.id, mi.menuItem.name, mi.id) FROM Order o JOIN o.menuItems mi WHERE mi.status = :itemStatus AND mi.cook.id = :cookId")
+    List<CookingItemDTO> findAllByOrderedItemsByStatusAndCook(DishStatus itemStatus, Long cookId);
+
     @Query("SELECT COUNT(o) FROM Order o JOIN o.menuItems mi WHERE o.id = :orderId AND mi.status <> 'SERVED'")
     Long countOfNonServedItems(Long orderId);
 

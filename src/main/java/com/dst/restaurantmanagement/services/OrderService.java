@@ -200,4 +200,8 @@ public class OrderService {
             EventPublisher.publish(userDetails, tableId, this, EventType.TABLE_STATE.name(), TableStatus.USED.name(), TableStatus.FREE.name());
         });
     }
+
+    public List<CookingItemDTO> getOrderedItemsByStatusAndCook(DishStatus itemStatus, RMUserDetails userDetails) {
+        return this.orderRepository.findAllByOrderedItemsByStatusAndCook(itemStatus, userDetails.getId());
+    }
 }

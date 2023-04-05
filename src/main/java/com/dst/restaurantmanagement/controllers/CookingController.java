@@ -24,10 +24,10 @@ public class CookingController {
     private final OrderedMenuItemService orderedMenuItemService;
 
     @GetMapping
-    public String getCookingPage(Model model) {
+    public String getCookingPage(Model model, @AuthenticationPrincipal RMUserDetails userDetails) {
 
         List<CookingItemDTO> orderedItems = this.orderService.getOrderedItemsByStatus(DishStatus.ORDERED);
-        List<CookingItemDTO> cookingItems = this.orderService.getOrderedItemsByStatus(DishStatus.COOKING);
+        List<CookingItemDTO> cookingItems = this.orderService.getOrderedItemsByStatusAndCook(DishStatus.COOKING, userDetails);
 
         model.addAttribute("orderedItems", orderedItems);
         model.addAttribute("cookingItems", cookingItems);
