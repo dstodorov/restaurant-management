@@ -51,9 +51,7 @@
         <p style="margin: 10px;"><span th:if="${errorMessage != null}" th:text="${errorMessage}" style="color: #ff0000; font-weight: bold; background-color: #313131"></span></p>
     </form>
 </div>
-<footer>
-    <p>&copy; 2023 My Page</p>
-</footer>
+<th:block th:insert="~{fragments/footer}"></th:block>
 <script type="text/javascript" src="/js/addEmployeeErrorStylize.js"></script>
 </body>
 </html>
