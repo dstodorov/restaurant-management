@@ -8,6 +8,7 @@ import com.dst.restaurantmanagement.models.entities.MenuItem;
 import com.dst.restaurantmanagement.repositories.MenuItemRepository;
 import com.dst.restaurantmanagement.util.AppConstants;
 import lombok.AllArgsConstructor;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -70,13 +71,21 @@ public class MenuItemService {
 
         // Add all menu items on their category in the menu
         this.menuItemRepository
-                .getAvailableMenuItems(LocalDate.now()).forEach(menuItem -> {
+                .getAvailableMenuItems(LocalDate.now())
+                .forEach(menuItem -> {
                     String itemType = menuItem.getType().name();
                     if (menuItems.containsKey(itemType)) {
-                        menuItems.get(itemType).add(MenuItemDTO.
+                        List<MenuItemDTO> items = menuItems.get(itemType);
+
+                        // Remove item from the menu in case if there is the same item but with closer expiry date
+                        // This is needed to avoid product duplication in the menu
+                        items.removeIf(innerItem -> menuItem.getName().equals(innerItem.getName()) && menuItem.getExpiryDate().isBefore(innerItem.getExpiryDate()));
+
+                        items.add(MenuItemDTO.
                                 builder()
                                 .id(menuItem.getId())
                                 .name(menuItem.getName())
+                                .expiryDate(menuItem.getExpiryDate())
                                 .build());
                     }
                 });
