@@ -33,9 +33,9 @@
                         <td><span th:text="*{currentQuantity}"/>/<span th:text="*{purchasedQuantity}"/></td>
                         <td><span th:text="*{expiryDate}"/></td>
                         <td class="action-cell">
-                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)" th:if="${menuItem.expiryDate < localDate}">
-                                <a th:href="@{/inventory/{productId}/waste(productId=*{id})}"> <button type="button" class="button button-delete">WASTE</button></a>
-                            </form>
+                            <a th:href="@{/inventory/{productId}/waste(productId=*{id})}" th:if="${menuItem.expiryDate < localDate}">
+                                <button type="button" class="button button-delete">WASTE</button>
+                            </a>
                         </td>
                     </tr>
                     </tbody>
