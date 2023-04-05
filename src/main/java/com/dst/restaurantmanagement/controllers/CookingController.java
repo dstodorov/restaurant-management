@@ -31,6 +31,7 @@ public class CookingController {
 
         model.addAttribute("orderedItems", orderedItems);
         model.addAttribute("cookingItems", cookingItems);
+        model.addAttribute("cooking_menu", true);
 
         return "cook-page";
     }

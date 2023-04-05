@@ -40,6 +40,7 @@ public class UserController {
         List<Role> employeeRoles = this.roleService.getEmployeeRoles();
 
         model.addAttribute("employeeRoles", employeeRoles);
+        model.addAttribute("add_employee_menu", true);
 
 
         return "admin-add-new-employee";
@@ -73,6 +74,7 @@ public class UserController {
         List<EmployeeInfoDTO> employees = this.employeeService.getAllEmployees();
 
         model.addAttribute("employees", employees);
+        model.addAttribute("employees_menu", true);
 
         return "admin-employees";
     }

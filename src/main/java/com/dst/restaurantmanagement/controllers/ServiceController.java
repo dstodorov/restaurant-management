@@ -38,6 +38,7 @@ public class ServiceController {
 
         model.addAttribute("userOrders", userOrders);
         model.addAttribute("orderedItems", orderedItems);
+        model.addAttribute("service_menu", true);
 
         return "waiter-dashboard";
     }
@@ -48,6 +49,7 @@ public class ServiceController {
         List<RestaurantTable> pendingTables = this.restaurantTableService.getAllPendingTables();
 
         model.addAttribute("pendingTables", pendingTables);
+        model.addAttribute("service_pending_menu", true);
 
         return "waiter-pending-tables";
     }

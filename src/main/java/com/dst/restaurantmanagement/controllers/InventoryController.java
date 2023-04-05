@@ -38,13 +38,14 @@ public class InventoryController {
         List<MenuItem> salads = this.menuItemService.getMenuItemsByType(ItemType.SALAD);
         List<MenuItem> desserts = this.menuItemService.getMenuItemsByType(ItemType.DESSERT);
 
-
         model.addAttribute("localDate", LocalDate.now());
         model.addAttribute("appetizers", appetizers);
         model.addAttribute("drinks", drinks);
         model.addAttribute("dishes", dishes);
         model.addAttribute("salads", salads);
         model.addAttribute("desserts", desserts);
+
+        model.addAttribute("inventory_menu", true);
 
         return "worker-inventory";
     }
@@ -54,7 +55,8 @@ public class InventoryController {
         List<MenuItem> menuItems = this.menuItemService.getExpiringMenuItems();
         model.addAttribute("menuItems", menuItems);
         model.addAttribute("localDate", LocalDate.now());
-        
+        model.addAttribute("inventory_expiring_menu", true);
+
         return "worker-inventory-expiring";
     }
 
@@ -64,6 +66,7 @@ public class InventoryController {
         List<String> menuItemTypes = Arrays.stream(ItemType.values()).map(ItemType::name).toList();
 
         model.addAttribute("menuItemTypes", menuItemTypes);
+        model.addAttribute("inventory_add_menu", true);
 
         return "worker-inventory-add";
     }

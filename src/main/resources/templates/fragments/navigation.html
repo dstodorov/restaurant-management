@@ -1,17 +1,17 @@
 <nav xmlns:sec="http://www.w3.org/1999/xhtml">
   <ul>
-    <li sec:authorize="hasRole('ADMIN')"><a href="/employees"><i class="fa-solid fa-user"></i>Employees</a></li>
-    <li sec:authorize="hasRole('ADMIN')"><a href="/employees/add"><i class="fa-solid fa-plus"></i>Add employee</a></li>
-    <li sec:authorize="hasRole('ADMIN')"><a href="/events"><i class="fa-solid fa-calendar"></i>Events</a></li>
-    <li sec:authorize="hasRole('MANAGER')"><a href="/manage/tables"><i class="fa-solid fa-utensils"></i>Tables</a></li>
-    <li sec:authorize="hasRole('MANAGER')"><a href="/manage/stats"><i class="fa-solid fa-chart-simple"></i>Stats</a></li>
-    <li sec:authorize="hasRole('HOST')"><a href="/host/accommodation"><i class="fa-solid fa-chair"></i>Accommodation</a></li>
-    <li sec:authorize="hasRole('WAITER')"><a href="/service"><i class="fa-solid fa-table-columns"></i>Service</a></li>
-    <li sec:authorize="hasRole('WAITER')"><a href="/service/pending"><i class="fa-solid fa-table-columns"></i>Pending tables</a></li>
-    <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory"><i class="fa-solid fa-warehouse"></i>Inventory</a></li>
-    <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory/expiring"><i class="fa-solid fa-trash"></i>Expiring items</a></li>
-    <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory/add"><i class="fa-solid fa-plus"></i>Add item</a></li>
-    <li sec:authorize="hasRole('COOK')"><a href="/cook"><i class="fa-solid fa-cookie-bite"></i>Cooking</a></li>
+    <li sec:authorize="hasRole('ADMIN')"><a href="/employees" th:class="${employees_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-user"></i>Employees</a></li>
+    <li sec:authorize="hasRole('ADMIN')"><a href="/employees/add" th:class="${add_employee_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-plus"></i>Add employee</a></li>
+    <li sec:authorize="hasRole('ADMIN')"><a href="/events" th:class="${events_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-calendar"></i>Events</a></li>
+    <li sec:authorize="hasRole('MANAGER')"><a href="/manage/tables" th:class="${tables_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-utensils"></i>Tables</a></li>
+    <li sec:authorize="hasRole('MANAGER')"><a href="/manage/reports" th:class="${reports_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-chart-simple"></i>Reports</a></li>
+    <li sec:authorize="hasRole('HOST')"><a href="/host/accommodation" th:class="${accommodation_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-chair"></i>Accommodation</a></li>
+    <li sec:authorize="hasRole('WAITER')"><a href="/service" th:class="${service_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-table-columns"></i>Service</a></li>
+    <li sec:authorize="hasRole('WAITER')"><a href="/service/pending" th:class="${service_pending_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-table-columns"></i>Pending tables</a></li>
+    <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory" th:class="${inventory_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-warehouse"></i>Inventory</a></li>
+    <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory/expiring" th:class="${inventory_expiring_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-trash"></i>Expiring items</a></li>
+    <li sec:authorize="hasRole('WAREHOUSE_WORKER')"><a href="/inventory/add" th:class="${inventory_add_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-plus"></i>Add item</a></li>
+    <li sec:authorize="hasRole('COOK')"><a href="/cook"  th:class="${cooking_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-cookie-bite"></i>Cooking</a></li>
     <li>
       <form th:action="@{/auth/logout}" th:method="POST" class="logout-form">
         <button class="logout" type="submit" style="font-family: Arial, sans-serif; font-size: 16px;"><i class="fa-solid fa-right-from-bracket"></i>Logout</button>

@@ -4,10 +4,8 @@ import com.dst.restaurantmanagement.models.dto.AddTableDTO;
 import com.dst.restaurantmanagement.models.entities.Report;
 import com.dst.restaurantmanagement.models.entities.RestaurantTable;
 import com.dst.restaurantmanagement.models.user.RMUserDetails;
-import com.dst.restaurantmanagement.services.OrderService;
 import com.dst.restaurantmanagement.services.ReportingService;
 import com.dst.restaurantmanagement.services.RestaurantTableService;
-import com.dst.restaurantmanagement.services.StatisticsService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -42,6 +40,7 @@ public class ManagementController {
         List<RestaurantTable> allTables = this.restaurantTableService.getTables();
 
         model.addAttribute("allTables", allTables);
+        model.addAttribute("tables_menu", true);
 
         return "manager-tables";
     }
@@ -71,12 +70,13 @@ public class ManagementController {
         return "redirect:/manage/tables";
     }
 
-    @GetMapping("/stats")
-    public String getStatsPage(Model model) {
+    @GetMapping("/reports")
+    public String getReportsPage(Model model) {
 
         List<Report> reports = this.reportingService.getAll();
 
         model.addAttribute("reports", reports);
+        model.addAttribute("reports_menu", true);
 
         return "manager-statistics";
     }

@@ -30,6 +30,7 @@ public class HostController {
         List<RestaurantTable> tables = this.restaurantTableService.getTables(TableStatus.FREE);
 
         model.addAttribute("tables", tables);
+        model.addAttribute("accommodation_menu", true);
 
         return "host-accommodation";
     }

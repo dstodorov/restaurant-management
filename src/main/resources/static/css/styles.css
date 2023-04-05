@@ -571,3 +571,7 @@ tr td button:hover, .button-order:hover {
     background-color: #697a8c;
     color: white;
 }
+
+.active-menu-item {
+    background-color: #555;
+}
