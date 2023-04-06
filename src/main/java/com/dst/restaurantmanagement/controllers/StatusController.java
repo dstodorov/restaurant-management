@@ -20,7 +20,7 @@ public class StatusController {
 
     @GetMapping
     public ResponseEntity<List<StatusLog>> getStatuses() {
-        List<StatusLog> statuses = this.statusLogService.getAll().stream().sorted(Comparator.comparing(StatusLog::getDateTime)).toList();
+        List<StatusLog> statuses = this.statusLogService.getAll().stream().sorted(Comparator.comparing(StatusLog::getDateTime).reversed()).toList();
 
         return ResponseEntity.ok(statuses);
     }
