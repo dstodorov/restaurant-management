@@ -11,36 +11,34 @@
     <main class="main-content">
         <div class="employee-container">
             <div class="flex-container">
-                <p class="table-label my-tables">My tables: </p>
-                <table class="my-tables app-table">
+                <p class="table-label my-tables">My tables: <span th:unless="${userOrders.size() > 0}">NONE</span></p>
+                <table class="my-tables app-table" th:if="${userOrders.size() > 0}">
                     <thead>
                     <tr>
-                        <th style="width: 15%">Table</th>
-                        <th class="">Actions</th>
+                        <th>Table</th>
+                        <th  style="width: 70%">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr class="user" th:each="order : ${userOrders}">
                         <td>N-<span th:text="${order.tableId}"></span></td>
-                        <td class="action-cell">
-                            <form style="margin: 0; padding: 0; background-color: rgba(255,255,255,0)">
+                        <td class="action-cell" style="width: 70%">
                                 <a th:href="@{/service/{orderId}/add(orderId=${order.orderId})}">
-                                    <button type="button" class="button app-edit">Add food / drink</button>
+                                    <button type="button" class="button app-edit">Add item</button>
                                 </a>
                                 <a th:href="@{/service/preview(orderId=${order.orderId})}">
                                     <button type="button" class="button app-edit"
                                             th:disabled="${order.canBeClosed eq true}">Complete order
                                     </button>
                                 </a>
-                            </form>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="flex-container">
-                <p class="table-label my-tables">Orders: </p>
-                <table class="orders app-table">
+                <p class="table-label my-tables">Orders: <span th:unless="${orderedItems.size() > 0}">NONE</span></p>
+                <table class="orders app-table" th:if="${orderedItems.size() > 0}">
                     <thead>
                     <tr>
                         <th style="width: 15%">Table</th>

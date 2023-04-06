@@ -11,8 +11,8 @@
     <main class="main-content">
         <div class="employee-container">
             <div class="flex-container">
-                <p class="table-label">Pending tables: </p>
-                <table class="pending-tables app-table">
+                <p class="table-label">Pending tables: <span th:unless="${pendingTables.size() > 0}">NONE</span></p>
+                <table class="pending-tables app-table" th:if="${pendingTables.size() > 0}">
                     <thead>
                     <tr>
                         <th style="max-width: 20%">Table</th>

@@ -11,7 +11,7 @@
     <main class="main-content">
         <div class="employee-container">
             <div class="products-container">
-                <p class="table-label">Expiring products: <span th:if="${menuItems.size() == 0}">NONE</span></p>
+                <p class="table-label">Expiring products: <span th:unless="${menuItems.size() > 0}">NONE</span></p>
                 <table class="products-table app-table" th:if="${menuItems.size() > 0}">
                     <thead>
                     <tr>

@@ -11,8 +11,8 @@
     <main class="main-content">
         <div class="cook-container">
             <div class="cook-section">
-                <p class="table-label">Ordered items:</p>
-                <table class="products-table app-table">
+                <p class="table-label">Ordered items: <span th:unless="${orderedItems.size() > 0}">NONE</span> </p>
+                <table class="products-table app-table" th:if="${orderedItems.size() > 0}">
                     <thead>
                     <tr>
                         <th style="width: 10%">Order ID</th>
@@ -34,8 +34,8 @@
                 </table>
             </div>
             <div class="cook-section">
-                <p class="table-label">Cooking items:</p>
-                <table class="products-table app-table">
+                <p class="table-label">Cooking items: <span th:unless="${cookingItems.size() > 0}">NONE</span></p>
+                <table class="products-table app-table" th:if="${cookingItems.size() > 0}">
                     <thead>
                     <tr>
                         <th style="width: 10%">Order ID</th>
