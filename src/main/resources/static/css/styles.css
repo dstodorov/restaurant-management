@@ -579,3 +579,11 @@ tr td button:hover, .button-order:hover {
 .stat {
     margin: 10px 0;
 }
+
+.stat:hover {
+    background-color: #484848;
+}
+
+.stat-color {
+    color: #538bd7;
+}

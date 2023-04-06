@@ -11,14 +11,15 @@
     <main class="main-content">
         <div class="report-container">
             <div style="margin: 15px; color: white" th:object="${stats}">
-                <h1><p>Interesting Stats</p></h1>
-                <p class="stat">Employees: <span th:text="*{employees}"></span></p>
-                <p class="stat">Tables: <span th:text="*{tables}"></span></p>
-                <p class="stat">Menu items: <span th:text="*{menuItems}"></span></p>
-                <p class="stat">Orders: <span th:text="*{orders}"></span></p>
-                <p class="stat">Wasted items: <span th:text="*{waistedItems}"></span></p>
-                <p class="stat">Total turnover: <span th:text="*{totalTurnover}"></span></p>
-                <p class="stat">Total profit: <span th:text="*{totalProfit}"></span></p>
+                <p style="color: #008cff"><h1>Interesting Stats</h1></p>
+                <p class="stat">Employees: <span class="stat-color" th:text="*{employees}"></span></p>
+                <p class="stat">Tables: <span class="stat-color" th:text="*{tables}"></span></p>
+                <p class="stat">Menu items: <span class="stat-color" th:text="*{menuItems}"></span></p>
+                <p class="stat">Orders: <span class="stat-color" th:text="*{orders}"></span></p>
+                <p class="stat">Wasted items: <span class="stat-color" th:text="*{waistedItems}"></span></p>
+                <p class="stat">Value of waisted products: <span class="stat-color" th:text="*{'$' + waistedItemsValue}"></span></p>
+                <p class="stat">Total turnover: <span class="stat-color" th:text="*{'$' + totalTurnover}"></span></p>
+                <p class="stat">Total profit: <span class="stat-color" th:text="*{'$' + totalProfit}"></span></p>
             </div>
         </div>
     </main>

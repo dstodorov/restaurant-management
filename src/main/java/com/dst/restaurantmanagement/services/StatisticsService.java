@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -47,11 +48,31 @@ public class StatisticsService {
 
     public StatsDTO getStats() {
         Long employees = this.employeeRepository.count();
+
         Long tables = this.restaurantTableRepository.count();
+
         Long menuItems = this.menuItemRepository.count();
-        Long orders = this.orderRepository.findAll().stream().filter(o -> o.getStatus().equals(OrderStatus.CLOSED)).count();
-        Long waistedItems = this.menuItemRepository.findAll().stream().filter(MenuItem::getWasted).mapToLong(MenuItem::getCurrentQuantity).sum();
+
+        Long orders = this.orderRepository
+                .findAll()
+                .stream()
+                .filter(o -> o.getStatus().equals(OrderStatus.CLOSED))
+                .count();
+
+        Long waistedItems = this.menuItemRepository
+                .findAll()
+                .stream()
+                .filter(MenuItem::getWasted).mapToLong(MenuItem::getCurrentQuantity).sum();
+
+        BigDecimal totalWaisted = this.menuItemRepository
+                .findAll()
+                .stream()
+                .filter(MenuItem::getWasted)
+                .map(item -> item.getPurchasePrice().multiply(BigDecimal.valueOf(item.getCurrentQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
         BigDecimal totalTurnover = this.orderRepository.getTotalTurnover();
+
         BigDecimal totalPureProfit = this.orderRepository.getTotalPureProfit();
 
         return StatsDTO
@@ -61,6 +82,7 @@ public class StatisticsService {
                 .menuItems(menuItems)
                 .orders(orders)
                 .waistedItems(waistedItems)
+                .waistedItemsValue(totalWaisted)
                 .totalTurnover(totalTurnover)
                 .totalProfit(totalPureProfit)
                 .build();

@@ -15,6 +15,7 @@ public class StatsDTO {
     private Long menuItems;
     private Long orders;
     private Long waistedItems;
+    private BigDecimal waistedItemsValue;
     private BigDecimal totalTurnover;
     private BigDecimal totalProfit;
 }
