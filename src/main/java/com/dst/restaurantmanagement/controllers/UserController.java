@@ -125,7 +125,15 @@ public class UserController {
             return "redirect:/employees/edit/{id}";
         }
 
-        this.employeeService.editEmployee(id, editEmployeeDTO);
+        String errorMessage = this.employeeService.editEmployee(id, editEmployeeDTO);
+
+        if (errorMessage != null) {
+            redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
+            redirectAttributes.addFlashAttribute("editEmployeeDTO", editEmployeeDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editEmployeeDTO", bindingResult);
+
+            return "redirect:/employees/edit/{id}";
+        }
 
         return "redirect:/employees";
     }

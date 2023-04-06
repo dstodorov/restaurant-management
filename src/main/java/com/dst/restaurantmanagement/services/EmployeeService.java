@@ -1,8 +1,6 @@
 package com.dst.restaurantmanagement.services;
 
 import com.dst.restaurantmanagement.enums.RoleType;
-import com.dst.restaurantmanagement.exceptions.PhoneNumberDuplicationException;
-import com.dst.restaurantmanagement.exceptions.UsernameDuplicationException;
 import com.dst.restaurantmanagement.initializers.InitUsersData;
 import com.dst.restaurantmanagement.models.dto.AddEmployeeDTO;
 import com.dst.restaurantmanagement.models.dto.EditEmployeeDTO;
@@ -143,16 +141,25 @@ public class EmployeeService {
         return this.employeeRepository.getByUsername(username);
     }
 
-    public void editEmployee(Long employeeId, EditEmployeeDTO editEmployeeDTO) {
+    public String editEmployee(Long employeeId, EditEmployeeDTO editEmployeeDTO) {
 
-        // Throw duplication exception in case of unique constraint error for a different employee
-        validateUsernameAndPhoneNumber(employeeId, editEmployeeDTO.getUsername(), editEmployeeDTO.getPhoneNumber());
+        Optional<Employee> employeeByUsername = this.employeeRepository.getByUsername(editEmployeeDTO.getUsername());
 
-        // Valid data
-        Optional<Employee> employee = this.employeeRepository.findById(employeeId);
+        Optional<Employee> employeeByPhoneNumber = this.employeeRepository.getByPhoneNumber(editEmployeeDTO.getPhoneNumber());
+
+        Optional<Employee> employeeToEdit = this.employeeRepository.findById(employeeId);
+
         Role role = this.roleRepository.findByRoleType(RoleType.valueOf(editEmployeeDTO.getRole()));
 
-        employee.ifPresent(e -> {
+        if (employeeByUsername.isPresent() && employeeByUsername.get().getId() != employeeToEdit.get().getId()) {
+            return String.format("User with username %s, already exists!", editEmployeeDTO.getUsername());
+        }
+
+        if (employeeByPhoneNumber.isPresent() && employeeByPhoneNumber.get().getId() != employeeToEdit.get().getId()) {
+            return String.format("User with phone number %s, already exists!", editEmployeeDTO.getPhoneNumber());
+        }
+
+        employeeToEdit.ifPresent(e -> {
             e.setFirstName(editEmployeeDTO.getFirstName());
             e.setLastName(editEmployeeDTO.getLastName());
             e.setUsername(editEmployeeDTO.getUsername());
@@ -167,24 +174,8 @@ public class EmployeeService {
 
             this.employeeRepository.saveAndFlush(e);
         });
-    }
 
-    //TODO: CALL BASE FUNCTION
-    private void validateUsernameAndPhoneNumber(Long employeeId, String username, String phoneNumber) {
-        Optional<Employee> employeeByUsername = this.employeeRepository.getByUsername(username);
-        Optional<Employee> employeeByPhoneNumber = this.employeeRepository.getByPhoneNumber(phoneNumber);
-
-        if (employeeByUsername.isPresent() && employeeByUsername.get().getId() != employeeId) {
-            throw new UsernameDuplicationException(String.format("User with username %s, already exists!", username));
-        }
-
-        if (employeeByPhoneNumber.isPresent() && employeeByPhoneNumber.get().getId() != employeeId) {
-            throw new PhoneNumberDuplicationException(String.format("User with phone number %s, already exists!", phoneNumber));
-        }
-    }
-
-    private void validateUsernameAndPhoneNumber(String username, String phoneNumber) {
-
+        return null;
     }
 
     public void initUsers() {
