@@ -17,7 +17,6 @@ public class AppInitializerImpl implements CommandLineRunner, AppInitializer {
 
     private final RoleService roleService;
     private final EmployeeService employeeService;
-    private final RestaurantTableService restaurantTableService;
 
     @Override
     public void run(String... args) {
