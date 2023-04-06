@@ -9,7 +9,8 @@
 <div class="container">
     <th:block th:insert="~{fragments/navigation}"></th:block>
     <main class="main-content">
-        <div class="employee-container">
+        <p style="color: white; margin: 15px; font-size: 2em" th:if="${userOrders.isEmpty()}">Coffee time!</p>
+        <div class="employee-container" th:if="${userOrders.size() > 0 || orderedItems.size() > 0}">
             <div class="flex-container">
                 <p class="table-label my-tables">My tables: <span th:unless="${userOrders.size() > 0}">NONE</span></p>
                 <table class="my-tables app-table" th:if="${userOrders.size() > 0}">
@@ -27,7 +28,7 @@
                                     <button type="button" class="button app-edit">Add item</button>
                                 </a>
                                 <a th:href="@{/service/preview(orderId=${order.orderId})}">
-                                    <button type="button" class="button app-edit"
+                                    <button type="button" class="button app-edit" id="addItemButton"
                                             th:disabled="${order.canBeClosed eq true}">Complete order
                                     </button>
                                 </a>

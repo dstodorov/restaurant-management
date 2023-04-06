@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Access Logs</title>
+    <th:block th:insert="~{fragments/head-content}"></th:block>
+</head>
+<body>
+<th:block th:insert="~{fragments/header}"></th:block>
+<div class="container">
+    <th:block th:insert="~{fragments/navigation}"></th:block>
+    <main class="main-content">
+        <table class="app-table status-table">
+            <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Username</th>
+                <th>Url</th>
+                <th>Method</th>
+            </tr>
+            </thead>
+            <tbody id="status-section">
+            <tr th:each="log : ${logs}" th:object="${log}">
+                <td><span th:text="*{timestamp}"></span></td>
+                <td><span th:text="*{username}"></span></td>
+                <td><span th:text="*{url}"></span></td>
+                <td><span th:text="*{method}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+<th:block th:insert="~{fragments/footer}"></th:block>
+</body>
+</html>

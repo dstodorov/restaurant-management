@@ -3,6 +3,7 @@
     <li sec:authorize="hasRole('ADMIN')"><a href="/employees" th:class="${employees_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-user"></i>Employees</a></li>
     <li sec:authorize="hasRole('ADMIN')"><a href="/employees/add" th:class="${add_employee_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-plus"></i>Add employee</a></li>
     <li sec:authorize="hasRole('ADMIN')"><a href="/events" th:class="${events_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-calendar"></i>Events</a></li>
+    <li sec:authorize="hasRole('ADMIN')"><a href="/access" th:class="${access_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-key"></i>Access Logs</a></li>
     <li sec:authorize="hasRole('MANAGER')"><a href="/manage/tables" th:class="${tables_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-utensils"></i>Tables</a></li>
     <li sec:authorize="hasRole('MANAGER')"><a href="/manage/reports" th:class="${reports_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-chart-simple"></i>Reports</a></li>
     <li sec:authorize="hasRole('MANAGER')"><a href="/manage/stats" th:class="${stats_menu == true ? 'active-menu-item' : ''}"><i class="fa-solid fa-chart-simple"></i>Stats</a></li>

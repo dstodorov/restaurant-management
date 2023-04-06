@@ -58,7 +58,7 @@ public class UserController {
 
         String errorMessage = this.employeeService.saveEmployee(addEmployeeDTO);
 
-        if (this.employeeService.saveEmployee(addEmployeeDTO) != null) {
+        if (errorMessage != null) {
             redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
             redirectAttributes.addFlashAttribute("addEmployeeDTO", addEmployeeDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addEmployeeDTO", bindingResult);

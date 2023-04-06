@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @AllArgsConstructor
 @Component
@@ -22,19 +23,25 @@ public class AuditingInterceptor implements HandlerInterceptor {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        String[] skipStrings = new String[]{"css", "images", "js"};
+
         if (authentication != null && authentication.isAuthenticated()) {
             String username = authentication.getName();
             String url = request.getRequestURI();
             String method = request.getMethod();
             LocalDateTime timestamp = LocalDateTime.now();
 
-            LogEntry logEntry = new LogEntry();
-            logEntry.setUsername(username);
-            logEntry.setUrl(url);
-            logEntry.setMethod(method);
-            logEntry.setTimestamp(timestamp);
+            boolean skip = Arrays.stream(skipStrings).anyMatch(url::contains);
 
-            logEntryRepository.save(logEntry);
+            if (!skip){
+                LogEntry logEntry = new LogEntry();
+                logEntry.setUsername(username);
+                logEntry.setUrl(url);
+                logEntry.setMethod(method);
+                logEntry.setTimestamp(timestamp);
+
+                logEntryRepository.save(logEntry);
+            }
         }
     }
 }

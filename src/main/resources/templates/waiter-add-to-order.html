@@ -10,7 +10,9 @@
     <th:block th:insert="~{fragments/navigation}"></th:block>
     <form th:action="@{/service/{orderId}/add(orderId=${orderId})}" th:method="POST">
         <div class="form-group">
-            <label for="itemId">Product:</label>
+            <p style="font-size: 2em; margin:10px; color: white">Order items for table <span style="color: #333232" th:text="${'N-' + orderId}"></span></p>
+            <hr>
+            <label for="itemId">Item:</label>
             <select id="itemId" name="itemId">
                 <option value="" selected>Select menu item</option>
                 <optgroup th:each="type : ${availableMenuItems}"
@@ -21,6 +23,7 @@
         </div>
         <button type="submit" class="button-save">ADD</button>
     </form>
+    <div th:if="${addedItem != null}"><span th:text="${addedItem}"></span></div>
 </div>
 <th:block th:insert="~{fragments/footer}"></th:block>
 <script type="text/javascript" src="/js/addItemToOrderErrorStylize.js"></script>
