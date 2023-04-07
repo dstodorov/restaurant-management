@@ -3,7 +3,6 @@ package com.dst.restaurantmanagement.services;
 import com.dst.restaurantmanagement.enums.RoleType;
 import com.dst.restaurantmanagement.models.entities.Employee;
 import com.dst.restaurantmanagement.models.entities.Role;
-import com.dst.restaurantmanagement.models.user.RMUserDetails;
 import com.dst.restaurantmanagement.repositories.EmployeeRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,19 +31,12 @@ class AppUserDetailsServiceTest {
 
     @BeforeEach
     void setUp() {
-        this.appUserDetailsService = new AppUserDetailsService(
-                mockEmployeeRepository
-        );
-
-    }
-
-    @Test
-    void loadUserByUsername() {
+        this.appUserDetailsService = new AppUserDetailsService(mockEmployeeRepository);
     }
 
     @Test
     void testEmployeeFound() {
-
+        // ARRANGE
         Employee testEmployee = new Employee();
         Role testRole = new Role();
         testRole.setRoleType(RoleType.ADMIN);
@@ -56,8 +46,10 @@ class AppUserDetailsServiceTest {
 
         when(mockEmployeeRepository.findByUsername(EXISTING_USER)).thenReturn(Optional.of(testEmployee));
 
+        // ACT
         UserDetails adminDetails = appUserDetailsService.loadUserByUsername(EXISTING_USER);
 
+        // ASSERT
         Assertions.assertNotNull(adminDetails);
 
         Assertions.assertEquals(EXISTING_USER, adminDetails.getUsername());
