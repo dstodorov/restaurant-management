@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:hsqldb:mem:testdb
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.HSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: never
+app:
+  admin:
+    username: admin
+    password: password
+    firstName: Dimitar
+    lastName: Todorov
+    phoneNumber: 0897065558
+  init:
+    users: true
