@@ -128,29 +128,6 @@ public class EmployeeServiceTest {
         assertEquals("User with phone number 123-456-7890, already exists!", result);
     }
 
-/*    @Test
-    @DisplayName("Init Administrator - Successful")
-    public void testInitAdministratorSuccessful() {
-        Role adminRole = new Role();
-
-        adminRole.setRoleType(RoleType.ADMIN);
-        Employee admin = Employee
-                .builder()
-                .username("admin")
-                .password(passwordEncoder.encode("password"))
-                .firstName("Dimitar")
-                .lastName("Todorov")
-                .phoneNumber("123-456-7890")
-                .role(adminRole)
-                .build();
-
-        when(employeeRepository.findByUsername("admin")).thenReturn(Optional.of(admin));
-
-        Employee actual = this.employeeRepository.save(admin);
-
-        Assertions.assertEquals(admin.getUsername(), actual.getUsername());
-    }*/
-
     @Test
     @DisplayName("Edit Employee - Successful")
     void editEmployeeTest() {

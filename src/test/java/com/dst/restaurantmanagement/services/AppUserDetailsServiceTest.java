@@ -36,7 +36,6 @@ class AppUserDetailsServiceTest {
 
     @Test
     void testEmployeeFound() {
-        // ARRANGE
         Employee testEmployee = new Employee();
         Role testRole = new Role();
         testRole.setRoleType(RoleType.ADMIN);
@@ -46,10 +45,8 @@ class AppUserDetailsServiceTest {
 
         when(mockEmployeeRepository.findByUsername(EXISTING_USER)).thenReturn(Optional.of(testEmployee));
 
-        // ACT
         UserDetails adminDetails = appUserDetailsService.loadUserByUsername(EXISTING_USER);
 
-        // ASSERT
         Assertions.assertNotNull(adminDetails);
 
         Assertions.assertEquals(EXISTING_USER, adminDetails.getUsername());
