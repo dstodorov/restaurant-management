@@ -32,8 +32,8 @@
                 <tr th:each="item : *{items.values()}">
                     <td><span th:text="${item.name}"></span></td>
                     <td><span th:text="${item.count}"></span></td>
-                    <td><span th:text="${item.pricePerItem.setScale(2)}"></span></td>
-                    <td><span th:text="${item.pricePerItem * item.count}"></span></td>
+                    <td><span th:text="${'$' + item.pricePerItem.setScale(2)}"></span></td>
+                    <td><span th:text="${'$' + item.pricePerItem * item.count}"></span></td>
                 </tr>
                 </tbody>
             </table>
