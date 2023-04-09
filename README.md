@@ -3,6 +3,8 @@
 **Project Description** – Restaurant Management is a web application, built on top of Spring Boot and Thymeleaf. It is created as final
 project for Java Web course in Software University (Softuni).
 
+### -> [Restaurant Manager in Azure Cloud](https://lb-restaurant-manager-restaurantmanager.azuremicroservices.io/ "Restaurant Manager")
+
 ## Application roles:
 
 * **Host**
