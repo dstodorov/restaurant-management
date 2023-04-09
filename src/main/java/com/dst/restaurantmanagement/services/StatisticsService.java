@@ -83,8 +83,8 @@ public class StatisticsService {
                 .orders(orders)
                 .waistedItems(waistedItems)
                 .waistedItemsValue(totalWaisted)
-                .totalTurnover(totalTurnover)
-                .totalProfit(totalPureProfit)
+                .totalTurnover(totalTurnover != null ? totalTurnover : BigDecimal.ZERO)
+                .totalProfit(totalPureProfit != null ? totalPureProfit : BigDecimal.ZERO)
                 .build();
     }
 
